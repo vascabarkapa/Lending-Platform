@@ -1,4 +1,4 @@
-📄 Lending Platform
+📈 Lending Platform
 =============================================
 
 🧩 Project Description
