@@ -58,12 +58,12 @@ main {
 
 .nav-links a:hover {
     color: #fff;
-    border-bottom: 2px solid #555; /* hover border */
+    border-bottom: 2px solid #555;
 }
 
 .nav-links a.active {
     color: #fff;
-    border-bottom: 2px solid #2f80ed; /* active border */
+    border-bottom: 2px solid #2f80ed;
 }
 
 .connect-btn {
@@ -126,15 +126,12 @@ footer {
 }
 
 /*----- WALLET MODAL -----*/
-
-/* Modal background & rounding */
 .wallet-modal {
     background-color: #121212;
     border-radius: 16px;
     border: 1px solid rgb(39 39 42);
 }
 
-/* Opcije dugmadi (MetaMask, WalletConnect) */
 .wallet-option {
     width: 100%;
     background-color: #1a1a1a;
@@ -160,13 +157,11 @@ footer {
     object-fit: contain;
 }
 
-/* Tip sekcija */
 .tip-text {
     line-height: 1.4;
     font-size: 13px;
 }
 
-/* Blur spinner overlay */
 .wallet-overlay {
     position: absolute;
     top: 0;
