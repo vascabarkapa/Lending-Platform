@@ -1,0 +1,43 @@
+<!-- Header Component -->
+<nav class="navbar navbar-expand-md d-flex justify-content-between align-items-center py-md-0 py-2">
+    <div class="d-flex align-items-center">
+        <a class="navbar-brand" href="#">
+            <i class="bi bi-grid-fill"></i> Lending Platform
+        </a>
+        <div class="nav-links d-none d-md-flex ms-4">
+            <a href="index.html">Dashboard</a>
+            <a href="about.html">About</a>
+        </div>
+    </div>
+
+    <!-- Right Side (Wallet + Settings) -->
+    <div class="d-flex align-items-center">
+        <!-- Connect Wallet Button -->
+        <button class="connect-btn">
+            <i class="bi bi-person"></i>
+            <span class="d-none d-md-inline ms-md-2 ms-0">Connect wallet</span>
+        </button>
+
+        <!-- Settings Icon -->
+        <i class="bi bi-gear settings-icon d-inline"></i>
+
+        <!-- Mobile Menu Button -->
+        <button class="navbar-toggler d-md-none ms-2" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#mobileMenu">
+            <i class="bi bi-list"></i>
+        </button>
+    </div>
+</nav>
+
+<!-- Mobile Offcanvas Menu -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="mobileMenu">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title">Menu</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body d-flex flex-column">
+        <a href="index.html" class="mb-3">Dashboard</a>
+        <a href="about.html" class="mb-3">About</a>
+        <a href="#">Contact</a>
+    </div>
+</div>
