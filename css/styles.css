@@ -1,0 +1,119 @@
+/*----- GLOBAL -----*/
+body {
+    background-color: #0d0d0d;
+    color: white;
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+main {
+    flex-grow: 1;
+}
+
+/*----- HEADER -----*/
+.navbar {
+    background-color: #0d0d0d;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid rgb(39 39 42);
+}
+
+.navbar-brand {
+    color: #2f80ed;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+}
+
+.navbar-brand:hover {
+    color: #2f80ed;
+}
+
+.navbar-brand i {
+    font-size: 1.2rem;
+    margin-right: 0.5rem;
+}
+
+.nav-links a {
+    color: #bbb;
+    text-decoration: none;
+    margin-left: 1rem;
+    font-weight: 500;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.2s ease, color 0.2s ease;
+    padding: 15px 5px;
+}
+
+.nav-links a:hover {
+    color: #fff;
+    border-bottom: 2px solid #555; /* hover border */
+}
+
+.nav-links a.active {
+    color: #fff;
+    border-bottom: 2px solid #2f80ed; /* active border */
+}
+
+.connect-btn {
+    background-color: #2f80ed;
+    border: none;
+    padding: 0.45rem 1rem;
+    border-radius: 12px;
+    color: white;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+}
+
+.connect-btn:hover {
+    background-color: #1f5fcc;
+    transition: all 0.2s ease;
+}
+
+.settings-icon {
+    color: #999;
+    margin-left: 1rem;
+    font-size: 1.25rem;
+    cursor: pointer;
+}
+
+.navbar-toggler {
+    border: none;
+    color: white;
+    font-size: 1.25rem;
+}
+
+.offcanvas {
+    background-color: #121212;
+    color: white;
+}
+
+.offcanvas a {
+    color: #bbb;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.offcanvas a:hover {
+    color: #fff;
+}
+
+/*----- FOOTER -----*/
+footer {
+    border-top: 1px solid rgb(39 39 42);
+    background-color: #0d0d0d;
+    color: #ccc;
+}
+
+.footer-option {
+    transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.footer-option:hover {
+    color: rgb(248, 249, 250) !important;
+}
+
