@@ -1,3 +1,8 @@
+function shortenAddress(address) {
+    if (!address) return '';
+    return `${address.slice(0, 6)}...${address.slice(-4)}`;
+}
+
 // Load header
 fetch('./components/shared/header.html')
     .then(res => res.text())
@@ -10,6 +15,30 @@ fetch('./components/shared/header.html')
                 link.classList.add('active');
             }
         });
+
+        const connectBtn = document.getElementById("connectWalletBtn");
+        const user = localStorage.getItem("walletUser");
+
+        if (user && connectBtn) {
+            const parsed = JSON.parse(user);
+            connectBtn.innerHTML = `<i class="bi bi-person-check"></i> <span class="d-none d-md-inline ms-1">${shortenAddress(parsed.address)}</span>`;
+        }
+
+        if (connectBtn) {
+            connectBtn.addEventListener("click", () => {
+                const user = localStorage.getItem("walletUser");
+
+                if (user) {
+                    const parsed = JSON.parse(user);
+                    const modal = new bootstrap.Modal(document.getElementById("walletModal"));
+                    document.getElementById("walletAddressDisplay").innerText = shortenAddress(parsed.address);
+                    modal.show();
+                } else {
+                    const modal = new bootstrap.Modal(document.getElementById("walletSelectModal"));
+                    modal.show();
+                }
+            });
+        }
     });
 
 // Load footer
