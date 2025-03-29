@@ -1,40 +1,50 @@
 <div class="modal fade" id="walletSelectModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content text-white p-4" style="background-color: #1c1c1c; border-radius: 12px;">
-            <div class="modal-header border-0">
+    <div class="modal-dialog modal-dialog-centered modal-md">
+        <div class="modal-content wallet-modal p-4 text-white">
+
+            <div class="modal-header border-0 pb-0">
                 <h5 class="modal-title">Choose your wallet</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
             </div>
 
-            <div class="modal-body text-center position-relative">
+            <div class="modal-body text-center position-relative px-2">
 
-                <!-- Opcije -->
+                <!-- Wallet Options -->
                 <div id="walletOptionsArea">
-                    <div class="row g-3">
+                    <div class="row g-3 justify-content-center mb-4 mt-2">
+
                         <div class="col-6">
-                            <button class="btn w-100 p-3 border border-secondary bg-dark text-white" id="chooseMetaMask">
-                                <img src="./assets/images/metamask.svg" alt="MetaMask" width="32" class="mb-2" /><br />
-                                MetaMask
+                            <button class="wallet-option" id="chooseMetaMask">
+                                <img src="./../../assets/images/meta-mask.png" alt="MetaMask" class="wallet-icon mb-2"/>
+                                <div class="mt-2">MetaMask</div>
                             </button>
                         </div>
+
                         <div class="col-6">
-                            <button class="btn w-100 p-3 border border-secondary bg-dark text-white" id="chooseWalletConnect">
-                                <img src="./assets/images/walletconnect.svg" alt="WalletConnect" width="32" class="mb-2" /><br />
-                                WalletConnect
+                            <button class="wallet-option" id="chooseWalletConnect">
+                                <img src="./../../assets/images/wallet-connect.png" alt="WalletConnect"
+                                     class="wallet-icon mb-2"/>
+                                <div class="mt-2">WalletConnect</div>
                             </button>
                         </div>
+
                     </div>
 
-                    <div class="mt-4 text-muted small">Don't you want to use a Wallet?</div>
-                    <button class="btn btn-primary w-100 mt-2" id="connectWithoutWallet">Connect Without a Wallet (Advanced)</button>
+                    <div class="mb-1 text-light small fw-medium">Don't you want to use a Wallet?</div>
 
-                    <div class="text-start mt-3 text-secondary small">
-                        <strong>Tip</strong><br />
-                        Have an invite code? Connect your wallet first and then you'll be asked to make your registration.
+                    <button class="btn btn-primary w-100 py-2 rounded-3" id="connectWithoutWallet">
+                        Connect Without a Wallet (Advanced)
+                    </button>
+
+                    <div class="text-justify mt-4 text-secondary small tip-text">
+                        <strong>Tip:</strong>&nbsp;
+                        Have an invite code? Connect your wallet first and then you'll be asked to make your
+                        registration.
                     </div>
                 </div>
 
-                <!-- Spinner overlay -->
+                <!-- Overlay spinner -->
                 <div class="wallet-overlay d-none" id="walletLoadingOverlay">
                     <div class="spinner-border text-light" role="status"></div>
                 </div>
