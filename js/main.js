@@ -48,6 +48,13 @@ fetch('./components/shared/footer.html')
         document.getElementById('footer-placeholder').innerHTML = html;
     });
 
+// Load main page content (for index.html)
+fetch('./components/home/content.html')
+    .then(res => res.text())
+    .then(html => {
+        document.getElementById('page-content').innerHTML = html;
+    });
+
 // Load wallet info modal
 fetch('./components/shared/wallet-modal.html')
     .then(res => res.text())
@@ -112,7 +119,7 @@ async function connectWalletFlow(successShouldCloseModal = false) {
             return;
         }
 
-        const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
+        const accounts = await window.ethereum.request({method: "eth_requestAccounts"});
         const account = accounts[0];
 
         const domain = window.location.hostname;
@@ -125,7 +132,7 @@ async function connectWalletFlow(successShouldCloseModal = false) {
             params: [message, account],
         });
 
-        const userData = { address: account, signature, nonce, timestamp };
+        const userData = {address: account, signature, nonce, timestamp};
         localStorage.setItem("walletUser", JSON.stringify(userData));
 
         const connectBtn = document.getElementById("connectWalletBtn");
@@ -147,3 +154,10 @@ async function connectWalletFlow(successShouldCloseModal = false) {
         if (optionsArea) optionsArea.classList.remove("blurred");
     }
 }
+
+document.addEventListener("click", (e) => {
+    if (e.target && e.target.id === "connectWalletBtnSecondary") {
+        const btn = document.getElementById("connectWalletBtn");
+        if (btn) btn.click(); // Trigger the main connect flow
+    }
+});
