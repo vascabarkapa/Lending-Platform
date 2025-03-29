@@ -4,7 +4,6 @@ fetch('./components/shared/header.html')
     .then(html => {
         document.getElementById('header-placeholder').innerHTML = html;
 
-        // Highlight current nav link
         const currentPath = window.location.pathname.split('/').pop();
         document.querySelectorAll('.nav-links a').forEach(link => {
             if (link.getAttribute('href') === currentPath) {
@@ -19,3 +18,103 @@ fetch('./components/shared/footer.html')
     .then(html => {
         document.getElementById('footer-placeholder').innerHTML = html;
     });
+
+// Load wallet info modal
+fetch('./components/shared/wallet-modal.html')
+    .then(res => res.text())
+    .then(html => {
+        document.getElementById('modal-placeholder').insertAdjacentHTML("beforeend", html);
+
+        document.addEventListener("click", (e) => {
+            if (e.target.closest("#copyWalletBtn")) {
+                const user = JSON.parse(localStorage.getItem("walletUser") || "{}");
+                const address = user?.address;
+                if (address) {
+                    navigator.clipboard.writeText(address).then(() => {
+                        const icon = e.target.closest("button").querySelector("i");
+                        const originalClass = icon.className;
+                        icon.className = "bi bi-check-lg";
+                        setTimeout(() => {
+                            icon.className = originalClass;
+                        }, 1500);
+                    });
+                }
+            }
+
+            if (e.target && e.target.id === "disconnectWalletBtn") {
+                localStorage.removeItem("walletUser");
+                location.reload();
+            }
+        });
+    });
+
+// Load wallet select modal
+fetch('./components/shared/wallet-select-modal.html')
+    .then(res => res.text())
+    .then(html => {
+        document.getElementById('modal-placeholder').insertAdjacentHTML("beforeend", html);
+
+        document.addEventListener("click", (e) => {
+            if (e.target.closest("#chooseMetaMask")) {
+                connectWalletFlow(true);
+            }
+
+            if (e.target.closest("#chooseWalletConnect")) {
+                alert("WalletConnect support coming soon...");
+            }
+
+            if (e.target.closest("#connectWithoutWallet")) {
+                alert("Advanced login without wallet coming soon...");
+            }
+        });
+    });
+
+// Wallet login flow with spinner
+async function connectWalletFlow(successShouldCloseModal = false) {
+    const overlay = document.getElementById("walletLoadingOverlay");
+    const optionsArea = document.getElementById("walletOptionsArea");
+
+    try {
+        if (overlay) overlay.classList.remove("d-none");
+        if (optionsArea) optionsArea.classList.add("blurred");
+
+        if (typeof window.ethereum === "undefined") {
+            alert("MetaMask is not installed. Please install it first.");
+            return;
+        }
+
+        const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
+        const account = accounts[0];
+
+        const domain = window.location.hostname;
+        const nonce = Math.floor(Math.random() * 1000000);
+        const timestamp = new Date().toISOString();
+        const message = `Please, make sure that you are signing this message on Bitcoin Betting domain: ${domain}\nNonce: ${nonce}\nTimestamp: ${timestamp}`;
+
+        const signature = await window.ethereum.request({
+            method: "personal_sign",
+            params: [message, account],
+        });
+
+        const userData = { address: account, signature, nonce, timestamp };
+        localStorage.setItem("walletUser", JSON.stringify(userData));
+
+        const connectBtn = document.getElementById("connectWalletBtn");
+        if (connectBtn) {
+            connectBtn.innerHTML = `<i class="bi bi-person-check"></i> <span class="d-none d-md-inline ms-1">${shortenAddress(account)}</span>`;
+        }
+
+        if (successShouldCloseModal) {
+            const modal = bootstrap.Modal.getInstance(document.getElementById("walletSelectModal"));
+            if (modal) modal.hide();
+        }
+
+        console.log("Connected:", userData);
+    } catch (err) {
+        console.error("Wallet connect error:", err);
+        alert("Wallet connection failed.");
+    } finally {
+        if (overlay) overlay.classList.add("d-none");
+        if (optionsArea) optionsArea.classList.remove("blurred");
+    }
+}

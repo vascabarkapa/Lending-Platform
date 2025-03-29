@@ -1,0 +1,45 @@
+<div class="modal fade" id="walletSelectModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content text-white p-4" style="background-color: #1c1c1c; border-radius: 12px;">
+            <div class="modal-header border-0">
+                <h5 class="modal-title">Choose your wallet</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body text-center position-relative">
+
+                <!-- Opcije -->
+                <div id="walletOptionsArea">
+                    <div class="row g-3">
+                        <div class="col-6">
+                            <button class="btn w-100 p-3 border border-secondary bg-dark text-white" id="chooseMetaMask">
+                                <img src="./assets/images/metamask.svg" alt="MetaMask" width="32" class="mb-2" /><br />
+                                MetaMask
+                            </button>
+                        </div>
+                        <div class="col-6">
+                            <button class="btn w-100 p-3 border border-secondary bg-dark text-white" id="chooseWalletConnect">
+                                <img src="./assets/images/walletconnect.svg" alt="WalletConnect" width="32" class="mb-2" /><br />
+                                WalletConnect
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 text-muted small">Don't you want to use a Wallet?</div>
+                    <button class="btn btn-primary w-100 mt-2" id="connectWithoutWallet">Connect Without a Wallet (Advanced)</button>
+
+                    <div class="text-start mt-3 text-secondary small">
+                        <strong>Tip</strong><br />
+                        Have an invite code? Connect your wallet first and then you'll be asked to make your registration.
+                    </div>
+                </div>
+
+                <!-- Spinner overlay -->
+                <div class="wallet-overlay d-none" id="walletLoadingOverlay">
+                    <div class="spinner-border text-light" role="status"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
