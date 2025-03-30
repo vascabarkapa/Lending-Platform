@@ -211,3 +211,21 @@ footer {
     background-color: #18181b80;
     border: 1px solid rgb(39 39 42);
 }
+
+/*----- SETTINGS MODAL -----*/
+
+.input-primary {
+    background-color: #121212 !important;
+    border: 1px solid rgb(39 39 42) !important;
+}
+
+.form-select:focus,
+.form-select:active,
+.form-select:focus-visible,
+.form-control:focus,
+.form-control:active,
+.form-control:focus-visible {
+    outline: none;
+    box-shadow: none;
+    border: 1px solid #2f80ed !important;
+}
