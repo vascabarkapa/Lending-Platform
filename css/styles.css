@@ -37,8 +37,14 @@ main {
     font-size: 1rem;
 }
 
-.navbar-brand:hover {
+.navbar-brand,
+.navbar-brand:focus,
+.navbar-brand:hover,
+.navbar-brand:active {
     color: #2f80ed;
+    text-decoration: none;
+    outline: none;
+    box-shadow: none;
 }
 
 .navbar-brand i {
