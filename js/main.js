@@ -19,7 +19,6 @@ function loadScriptsSequentially(files, callback) {
 
 document.addEventListener("DOMContentLoaded", () => {
     loadScriptsSequentially([...scripts], () => {
-        // kad su svi učitani, pozovi entry point
         if (typeof loadHeader === 'function') loadHeader();
         if (typeof loadFooter === 'function') loadFooter();
         if (typeof loadMainContent === 'function') loadMainContent();

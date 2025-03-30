@@ -19,7 +19,6 @@ function loadWalletSelectModal() {
             });
         });
 
-    // sekundarni connect wallet dugme
     document.addEventListener("click", (e) => {
         if (e.target && e.target.id === "connectWalletBtnSecondary") {
             const btn = document.getElementById("connectWalletBtn");

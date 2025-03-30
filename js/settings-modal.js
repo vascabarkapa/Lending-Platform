@@ -15,7 +15,6 @@ function loadSettingsModal() {
                     const userId = document.getElementById("userid");
                     const customGroup = document.getElementById("customUrlGroup");
 
-                    // 📦 Load settings
                     const defaultSettings = {
                         selected: "wss://node928.info:82",
                         custom: "wss://",
@@ -66,7 +65,6 @@ function loadSettingsModal() {
                         }
                     });
 
-                    // ✅ Remove duplicate listeners
                     const connectBtn = document.getElementById("connectWsBtn");
                     connectBtn.replaceWith(connectBtn.cloneNode(true));
                     document.getElementById("connectWsBtn").addEventListener("click", () => {
@@ -111,6 +109,7 @@ function loadSettingsModal() {
                                 };
 
                                 ws.send(JSON.stringify(payload));
+                                updateWsStatusIndicator();
                             };
 
                             ws.onmessage = (event) => {
@@ -131,7 +130,6 @@ function loadSettingsModal() {
                         modal.hide();
                     });
 
-                    // ❌ Erase all data
                     const eraseBtn = document.getElementById("eraseDataBtn");
                     eraseBtn.replaceWith(eraseBtn.cloneNode(true));
                     document.getElementById("eraseDataBtn").addEventListener("click", () => {

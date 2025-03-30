@@ -4,6 +4,8 @@ function loadHeader() {
         .then(html => {
             document.getElementById('header-placeholder').innerHTML = html;
 
+            updateWsStatusIndicator();
+
             const currentPath = window.location.pathname.split('/').pop();
             document.querySelectorAll('.nav-links a').forEach(link => {
                 if (link.getAttribute('href') === currentPath) {

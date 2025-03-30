@@ -124,6 +124,12 @@ main {
     color: #fff;
 }
 
+#wsStatusIndicator {
+    width: 10px;
+    height: 10px;
+    pointer-events: none;
+}
+
 /*----- FOOTER -----*/
 footer {
     border-top: 1px solid rgb(39 39 42);
