@@ -10,9 +10,16 @@ fetch('./components/shared/header.html')
         document.getElementById('header-placeholder').innerHTML = html;
 
         const currentPath = window.location.pathname.split('/').pop();
+
         document.querySelectorAll('.nav-links a').forEach(link => {
             if (link.getAttribute('href') === currentPath) {
                 link.classList.add('active');
+            }
+        });
+
+        document.querySelectorAll('.offcanvas a').forEach(link => {
+            if (link.getAttribute('href') === currentPath) {
+                link.classList.add('text-primary');
             }
         });
 
