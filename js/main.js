@@ -131,7 +131,7 @@ async function connectWalletFlow(successShouldCloseModal = false) {
             return;
         }
 
-        const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
+        const accounts = await window.ethereum.request({method: "eth_requestAccounts"});
         const account = accounts[0];
 
         const domain = window.location.hostname;
@@ -144,7 +144,7 @@ async function connectWalletFlow(successShouldCloseModal = false) {
             params: [message, account],
         });
 
-        const userData = { address: account, signature, nonce, timestamp };
+        const userData = {address: account, signature, nonce, timestamp};
         localStorage.setItem("walletUser", JSON.stringify(userData));
 
         const connectBtn = document.getElementById("connectWalletBtn");
