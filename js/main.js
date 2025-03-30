@@ -145,13 +145,11 @@ async function connectWalletFlow(successShouldCloseModal = false) {
             connectBtn.innerHTML = `<i class="bi bi-person-check"></i> <span class="d-none d-md-inline ms-1">${shortenAddress(account)}</span>`;
         }
 
-        // Zatvori modal nakon login-a
         if (successShouldCloseModal) {
             const modal = bootstrap.Modal.getInstance(document.getElementById("walletSelectModal"));
             if (modal) modal.hide();
         }
 
-        // Zamijeni connect-screen sa dashboardom
         fetch('./components/home/dashboard.html')
             .then(res => res.text())
             .then(html => {
