@@ -15,7 +15,7 @@ function loadSettingsModal() {
                     const userId = document.getElementById("userid");
                     const customGroup = document.getElementById("customUrlGroup");
 
-                    // 📦 Load settings from one object
+                    // 📦 Load settings
                     const defaultSettings = {
                         selected: "wss://node928.info:82",
                         custom: "wss://",
@@ -66,6 +66,7 @@ function loadSettingsModal() {
                         }
                     });
 
+                    // ✅ Remove duplicate listeners
                     const connectBtn = document.getElementById("connectWsBtn");
                     connectBtn.replaceWith(connectBtn.cloneNode(true));
                     document.getElementById("connectWsBtn").addEventListener("click", () => {
@@ -78,7 +79,6 @@ function loadSettingsModal() {
                             return;
                         }
 
-                        // Save all in one object
                         const updatedSettings = {
                             selected: urlSelect.value,
                             custom: finalUrl,
@@ -86,7 +86,6 @@ function loadSettingsModal() {
                         };
                         localStorage.setItem("wsSettings", JSON.stringify(updatedSettings));
 
-                        // WebSocket connection
                         const NODE_ID = 104;
                         const wsUrl = (urlSelect.value === "") ? urlInput.value : urlSelect.value;
 
@@ -130,6 +129,16 @@ function loadSettingsModal() {
                         }
 
                         modal.hide();
+                    });
+
+                    // ❌ Erase all data
+                    const eraseBtn = document.getElementById("eraseDataBtn");
+                    eraseBtn.replaceWith(eraseBtn.cloneNode(true));
+                    document.getElementById("eraseDataBtn").addEventListener("click", () => {
+                        if (confirm("Are you sure you want to erase all data?")) {
+                            localStorage.clear();
+                            location.reload();
+                        }
                     });
                 });
             }
