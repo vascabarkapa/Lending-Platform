@@ -48,8 +48,13 @@ fetch('./components/shared/footer.html')
         document.getElementById('footer-placeholder').innerHTML = html;
     });
 
-// Load main page content (for index.html)
-fetch('./components/home/content.html')
+// Load main page content (dashboard or connect screen)
+const user = localStorage.getItem("walletUser");
+const homePage = user
+    ? './components/home/dashboard.html'
+    : './components/home/content.html';
+
+fetch(homePage)
     .then(res => res.text())
     .then(html => {
         document.getElementById('page-content').innerHTML = html;
@@ -119,7 +124,7 @@ async function connectWalletFlow(successShouldCloseModal = false) {
             return;
         }
 
-        const accounts = await window.ethereum.request({method: "eth_requestAccounts"});
+        const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
         const account = accounts[0];
 
         const domain = window.location.hostname;
@@ -132,7 +137,7 @@ async function connectWalletFlow(successShouldCloseModal = false) {
             params: [message, account],
         });
 
-        const userData = {address: account, signature, nonce, timestamp};
+        const userData = { address: account, signature, nonce, timestamp };
         localStorage.setItem("walletUser", JSON.stringify(userData));
 
         const connectBtn = document.getElementById("connectWalletBtn");
@@ -140,10 +145,19 @@ async function connectWalletFlow(successShouldCloseModal = false) {
             connectBtn.innerHTML = `<i class="bi bi-person-check"></i> <span class="d-none d-md-inline ms-1">${shortenAddress(account)}</span>`;
         }
 
+        // Zatvori modal nakon login-a
         if (successShouldCloseModal) {
             const modal = bootstrap.Modal.getInstance(document.getElementById("walletSelectModal"));
             if (modal) modal.hide();
         }
+
+        // Zamijeni connect-screen sa dashboardom
+        fetch('./components/home/dashboard.html')
+            .then(res => res.text())
+            .then(html => {
+                const pageContent = document.getElementById("page-content");
+                if (pageContent) pageContent.innerHTML = html;
+            });
 
         console.log("Connected:", userData);
     } catch (err) {
@@ -155,9 +169,10 @@ async function connectWalletFlow(successShouldCloseModal = false) {
     }
 }
 
+// Secondary button triggers same connect flow
 document.addEventListener("click", (e) => {
     if (e.target && e.target.id === "connectWalletBtnSecondary") {
         const btn = document.getElementById("connectWalletBtn");
-        if (btn) btn.click(); // Trigger the main connect flow
+        if (btn) btn.click();
     }
 });
