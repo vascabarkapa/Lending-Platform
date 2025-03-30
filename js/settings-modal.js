@@ -15,14 +15,18 @@ function loadSettingsModal() {
                     const userId = document.getElementById("userid");
                     const customGroup = document.getElementById("customUrlGroup");
 
-                    // ⬇️ Defaultna vrijednost (Asia) ako ništa nije snimljeno
-                    const savedUrl = localStorage.getItem("wsURL") ?? "wss://node928.info:82";
-                    const savedCustom = localStorage.getItem("wsURLc") ?? "wss://";
-                    const savedUser = localStorage.getItem("wsUserId") ?? "";
+                    // 📦 Load settings from one object
+                    const defaultSettings = {
+                        selected: "wss://node928.info:82",
+                        custom: "wss://",
+                        userId: ""
+                    };
 
-                    urlSelect.value = savedUrl;
-                    urlInput.value = savedCustom;
-                    userId.value = savedUser;
+                    const settings = JSON.parse(localStorage.getItem("wsSettings")) || defaultSettings;
+
+                    urlSelect.value = settings.selected;
+                    urlInput.value = settings.custom;
+                    userId.value = settings.userId;
 
                     if (urlSelect.value === "") {
                         customGroup.classList.remove("d-none");
@@ -62,7 +66,8 @@ function loadSettingsModal() {
                         }
                     });
 
-                    // ✅ Validacija i čuvanje
+                    const connectBtn = document.getElementById("connectWsBtn");
+                    connectBtn.replaceWith(connectBtn.cloneNode(true));
                     document.getElementById("connectWsBtn").addEventListener("click", () => {
                         const finalUrl = urlInput.value.trim();
                         const finalUser = userId.value.trim();
@@ -73,11 +78,57 @@ function loadSettingsModal() {
                             return;
                         }
 
-                        localStorage.setItem("wsURL", urlSelect.value);
-                        localStorage.setItem("wsURLc", finalUrl);
-                        localStorage.setItem("wsUserId", finalUser);
+                        // Save all in one object
+                        const updatedSettings = {
+                            selected: urlSelect.value,
+                            custom: finalUrl,
+                            userId: finalUser
+                        };
+                        localStorage.setItem("wsSettings", JSON.stringify(updatedSettings));
 
-                        console.log("WebSocket settings saved:", {finalUrl, finalUser});
+                        // WebSocket connection
+                        const NODE_ID = 104;
+                        const wsUrl = (urlSelect.value === "") ? urlInput.value : urlSelect.value;
+
+                        try {
+                            const ws = new WebSocket(wsUrl);
+
+                            ws.onerror = (error) => {
+                                console.error("WebSocket error:", error);
+                                localStorage.setItem("wsStatus", "error");
+                                localStorage.setItem("wsLastError", error.message || "Unknown error");
+                            };
+
+                            ws.onopen = () => {
+                                console.log("Connected to WebSocket");
+                                localStorage.setItem("wsStatus", "connected");
+                                localStorage.setItem("wsConnectedURL", wsUrl);
+                                localStorage.setItem("wsConnectedUserId", finalUser);
+
+                                const payload = {
+                                    Type: "SubscribeBalance",
+                                    UserID: finalUser,
+                                    NodeID: NODE_ID,
+                                };
+
+                                ws.send(JSON.stringify(payload));
+                            };
+
+                            ws.onmessage = (event) => {
+                                try {
+                                    const dataObject = JSON.parse(event.data);
+                                    localStorage.setItem("wsLastMessage", JSON.stringify(dataObject));
+                                } catch (error) {
+                                    console.error("Error processing message:", error);
+                                }
+                            };
+
+                        } catch (err) {
+                            console.error("WebSocket failed to connect:", err);
+                            localStorage.setItem("wsStatus", "error");
+                            localStorage.setItem("wsLastError", err.message || "Unknown connection failure");
+                        }
+
                         modal.hide();
                     });
                 });
