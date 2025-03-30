@@ -182,6 +182,16 @@ footer {
     user-select: none;
 }
 
+#chooseMetaMask:hover {
+    background-color: #2b1a14;
+    border-color: #e2761b;
+}
+
+#chooseWalletConnect:hover {
+    background-color: #0f1d36;
+    border-color: #3b99fc;
+}
+
 /*----- HOME -----*/
 .home-welcome {
     background-color: #18181b80;
