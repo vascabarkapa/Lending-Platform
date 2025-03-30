@@ -6,6 +6,7 @@ const scripts = [
     './js/wallet-modal.js',
     './js/wallet-connect.js',
     './js/wallet-select-modal.js',
+    './js/settings-modal.js',
 ];
 
 function loadScriptsSequentially(files, callback) {
@@ -24,5 +25,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (typeof loadMainContent === 'function') loadMainContent();
         if (typeof loadWalletInfoModal === 'function') loadWalletInfoModal();
         if (typeof loadWalletSelectModal === 'function') loadWalletSelectModal();
+        if (typeof loadSettingsModal === 'function') loadSettingsModal();
     });
 });
