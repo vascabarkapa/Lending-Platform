@@ -7,6 +7,8 @@ const scripts = [
     './js/wallet-connect.js',
     './js/wallet-select-modal.js',
     './js/settings-modal.js',
+    './js/api.js',
+    './shared/local-storage.js',
 ];
 
 function loadScriptsSequentially(files, callback) {

@@ -6,7 +6,7 @@ function loadWalletSelectModal() {
 
             document.addEventListener("click", (e) => {
                 if (e.target.closest("#chooseMetaMask")) {
-                    connectWalletFlow(true);
+                    connectMetaMask(true);
                 }
 
                 if (e.target.closest("#chooseWalletConnect")) {
