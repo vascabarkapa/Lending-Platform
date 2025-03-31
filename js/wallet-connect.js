@@ -28,7 +28,6 @@ async function connectMetaMask(successShouldCloseModal = false) {
 
         const msgHash = ethers.utils.hashMessage(message);
         const recoveredPubKey = ethers.utils.recoverPublicKey(msgHash, signature);
-
         const pubKeyBase64 = btoa(
             recoveredPubKey
                 .replace(/^0x/, '')
@@ -43,10 +42,15 @@ async function connectMetaMask(successShouldCloseModal = false) {
             const userID = await getUserIDFromPublicKey(pubKeyBase64);
             LocalStorage.setItem("userID", userID);
             console.log("User ID:", userID);
+
+            await connectWebSocket(); // ⬅️ čekaj da se WS poveže
         } catch (apiErr) {
-            console.error("Failed to fetch user ID from public key:", apiErr);
-            alert("Connected wallet, but failed to fetch user ID.");
+            console.error("Failed to fetch user ID or connect WebSocket:", apiErr);
+            alert("Connected wallet, but failed to fetch user ID or WebSocket.");
+            return; // ⬅️ prekini ako WS ne prođe – ne zatvaraj modal
         }
+
+        // ✅ Nakon što su svi podaci uspješno sačuvani i WS povezan
 
         const connectBtn = document.getElementById("connectWalletBtn");
         if (connectBtn) {

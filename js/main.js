@@ -9,6 +9,7 @@ const scripts = [
     './js/settings-modal.js',
     './js/api.js',
     './shared/local-storage.js',
+    './shared/connect-websocket.js',
 ];
 
 function loadScriptsSequentially(files, callback) {
