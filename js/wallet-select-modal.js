@@ -10,11 +10,11 @@ function loadWalletSelectModal() {
                 }
 
                 if (e.target.closest("#chooseWalletConnect")) {
-                    showToast("WalletConnect support coming soon...", "info");
+                    showToast("WalletConnect support coming soon...", ToastType.INFO);
                 }
 
                 if (e.target.closest("#connectWithoutWallet")) {
-                    showToast("Advanced login without wallet coming soon...", "info");
+                    showToast("Advanced login without wallet coming soon...", ToastType.INFO);
                 }
             });
         });

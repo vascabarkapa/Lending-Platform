@@ -1,10 +1,10 @@
-function showToast(message, type = "info", delay = 4000) {
+function showToast(message, type = "info", delay = 2000) {
     const toastContainer = document.getElementById("toast-container");
     if (!toastContainer) return;
 
     const typeClasses = {
         success: "bg-success text-white",
-        info: "bg-primary text-white",
+        info: "bg-info text-white",
         warning: "bg-warning text-dark",
         error: "bg-danger text-white"
     };

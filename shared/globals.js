@@ -5,3 +5,10 @@ const WebSocketServers = [
     {value: "wss://sa.bitcoin-betting.com:82", label: "South America [bitcoin-betting.com]"},
     {value: "", label: "Choose Custom"}
 ];
+
+const ToastType = {
+    SUCCESS: "success",
+    INFO: "info",
+    WARNING: "warning",
+    ERROR: "error"
+};
