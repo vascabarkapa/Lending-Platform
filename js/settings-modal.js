@@ -12,7 +12,7 @@ function loadSettingsModal() {
                 modal.show();
 
                 const settings = LocalStorage.getItem("wsSettings") || {
-                    selected: "wss://node928.info:82",
+                    selected: WebSocketServers[0].value,
                     custom: "wss://",
                     connected: false
                 };
