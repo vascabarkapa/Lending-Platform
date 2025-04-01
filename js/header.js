@@ -4,6 +4,17 @@ function loadHeader() {
         .then(html => {
             document.getElementById('header-placeholder').innerHTML = html;
 
+            const defaultSettings = {
+                selected: "wss://node928.info:82",
+                custom: "wss://",
+                connected: false
+            };
+
+            const existingSettings = LocalStorage.getItem("wsSettings");
+            if (!existingSettings) {
+                LocalStorage.setItem("wsSettings", defaultSettings);
+            }
+
             updateWsStatusIndicator();
 
             let currentPath = window.location.pathname.split('/').pop() || 'index.html';
