@@ -10,6 +10,7 @@ const scripts = [
     './js/api.js',
     './shared/local-storage.js',
     './shared/connect-websocket.js',
+    './shared/globals.js',
 ];
 
 function loadScriptsSequentially(files, callback) {

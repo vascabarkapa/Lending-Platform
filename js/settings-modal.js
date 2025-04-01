@@ -21,6 +21,14 @@ function loadSettingsModal() {
                 const customInput = document.getElementById("wsURLc");
                 const customGroup = document.getElementById("customUrlGroup");
 
+                wsSelect.innerHTML = "";
+                WebSocketServers.forEach(server => {
+                    const option = document.createElement("option");
+                    option.value = server.value;
+                    option.textContent = server.label;
+                    wsSelect.appendChild(option);
+                });
+
                 wsSelect.value = settings.selected;
                 customInput.value = settings.custom;
 
