@@ -20,3 +20,16 @@ function updateWsStatusIndicator() {
         el.classList.add("bg-secondary");
     }
 }
+
+function updateCurrentNodeDisplay() {
+    const wsSettings = LocalStorage.getItem("wsSettings");
+    if (!wsSettings) return;
+
+    const selectedUrl = wsSettings.selected;
+    const currentNode = WebSocketServers.find(server => server.value === selectedUrl);
+
+    const nodeDisplay = document.getElementById("currentNodeDisplay");
+    if (nodeDisplay && currentNode) {
+        nodeDisplay.innerText = `Node: ${currentNode.label}`;
+    }
+}

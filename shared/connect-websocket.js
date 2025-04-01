@@ -25,6 +25,9 @@ async function connectWebSocket() {
             settings.connected = true;
             LocalStorage.setItem("wsSettings", settings);
 
+            updateWsStatusIndicator();
+            updateCurrentNodeDisplay();
+
             resolve(ws);
         };
 
