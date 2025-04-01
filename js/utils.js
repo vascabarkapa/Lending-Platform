@@ -47,3 +47,20 @@ function hexToBase64(hex) {
         )
     );
 }
+
+function ticksToDate(ticks) {
+    const epochTicks = 621355968000000000;
+    const ticksPerMillisecond = 10000;
+    const msSinceUnixEpoch = (ticks - epochTicks) / ticksPerMillisecond;
+    const date = new Date(msSinceUnixEpoch);
+
+    return date.toLocaleString('en-US', {
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric',
+        hour: 'numeric',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true
+    });
+}
