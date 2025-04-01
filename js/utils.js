@@ -7,12 +7,12 @@ function updateWsStatusIndicator() {
     const el = document.getElementById("wsStatusIndicator");
     if (!el) return;
 
-    const status = localStorage.getItem("wsStatus");
+    const status = LocalStorage.getItem("wsSettings").connected;
 
-    if (status === "connected") {
+    if (status === true) {
         el.classList.remove("bg-danger", "bg-secondary");
         el.classList.add("bg-success");
-    } else if (status === "error") {
+    } else if (status === false) {
         el.classList.remove("bg-success", "bg-secondary");
         el.classList.add("bg-danger");
     } else {
