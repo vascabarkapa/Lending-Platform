@@ -13,6 +13,6 @@ const LocalStorage = {
 
     getActiveWebSocketUrl() {
         const settings = this.getItem("wsSettings");
-        return settings?.selected || settings?.custom || WebSocketServers[0].value;
+        return settings?.selected || settings?.custom || WebSocketServer.ASIA.value;
     }
 };

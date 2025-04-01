@@ -12,7 +12,7 @@ function loadSettingsModal() {
                 modal.show();
 
                 const settings = LocalStorage.getItem("wsSettings") || {
-                    selected: WebSocketServers[0].value,
+                    selected: WebSocketServer.ASIA.value,
                     custom: "wss://",
                     connected: false
                 };
