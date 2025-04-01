@@ -1,7 +1,8 @@
 <nav class="navbar navbar-expand-md d-flex justify-content-between align-items-center py-md-0 py-2">
     <div class="d-flex align-items-center">
         <a class="navbar-brand" href="#">
-            <img src="./../../assets/favicon.ico" alt="Lending Platform" class="me-2" width="16"> Lending Platform
+            <img src="./../../assets/favicon.ico" alt="Lending Platform" class="me-2" width="16">
+            Lending Platform
         </a>
         <div class="nav-links d-none d-md-flex ms-4">
             <a href="index.html">Dashboard</a>
@@ -14,8 +15,14 @@
             <span class="d-none d-md-inline ms-md-2 ms-0">Connect wallet</span>
         </button>
 
-        <i class="bi bi-gear settings-icon d-inline position-relative">
-            <span id="wsStatusIndicator" class="position-absolute top-0 start-100 translate-middle p-1 border border-dark rounded-circle bg-secondary"></span>
+        <div id="walletHeaderArea" class="text-start d-none me-2 p-2 rounded">
+            <div class="text-light small fw-medium" id="walletAddressDisplayHeader"></div>
+            <div class="text-primary small fw-semibold" id="walletBalanceDisplayHeader"></div>
+        </div>
+
+        <i class="bi bi-gear settings-icon d-inline position-relative ms-3 me-1">
+            <span id="wsStatusIndicator"
+                  class="position-absolute top-0 start-100 translate-middle p-1 border border-dark rounded-circle bg-secondary"></span>
         </i>
 
         <button class="navbar-toggler d-md-none ms-2" type="button" data-bs-toggle="offcanvas"

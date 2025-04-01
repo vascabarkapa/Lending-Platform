@@ -24,6 +24,7 @@ function loadHeader() {
                     link.classList.add('active');
                 }
             });
+
             document.querySelectorAll('.offcanvas a').forEach(link => {
                 if (link.getAttribute('href') === currentPath) {
                     link.classList.add('text-primary');
@@ -31,21 +32,49 @@ function loadHeader() {
             });
 
             const connectBtn = document.getElementById("connectWalletBtn");
-            const user = localStorage.getItem("walletUser");
+            const walletArea = document.getElementById("walletHeaderArea");
+            const addressEl = document.getElementById("walletAddressDisplayHeader");
+            const balanceEl = document.getElementById("walletBalanceDisplayHeader");
 
-            if (user && connectBtn) {
-                const parsed = JSON.parse(user);
-                connectBtn.innerHTML = `<i class="bi bi-person-check"></i> <span class="d-none d-md-inline ms-1">${shortenAddress(parsed.address)}</span>`;
+            const user = LocalStorage.getItem("walletUser");
+            const userId = LocalStorage.getItem("userID");
+
+            if (user && userId && walletArea && addressEl && balanceEl) {
+                const parsed = user;
+                const address = parsed.address;
+                const balance = "1.00 mRBTC";
+
+                addressEl.innerHTML = `${shortenAddress(address)} <i class="bi bi-person-vcard ms-2 text-white-50"></i> <span class="text-white-50">${userId}</span>`;
+                balanceEl.innerText = balance;
+
+                walletArea.classList.remove("d-none");
+                connectBtn.classList.add("d-none");
             }
 
             if (connectBtn) {
                 connectBtn.addEventListener("click", () => {
-                    const user = localStorage.getItem("walletUser");
+                    const user = LocalStorage.getItem("walletUser");
                     const modalId = user ? "walletModal" : "walletSelectModal";
                     const modal = new bootstrap.Modal(document.getElementById(modalId));
 
                     if (user) {
-                        const parsed = JSON.parse(user);
+                        const parsed = user;
+                        document.getElementById("walletAddressDisplay").innerText = shortenAddress(parsed.address);
+                    }
+
+                    modal.show();
+                });
+            }
+
+            const walletClickable = document.getElementById("walletHeaderArea");
+            if (walletClickable) {
+                walletClickable.addEventListener("click", () => {
+                    const user = LocalStorage.getItem("walletUser");
+                    const modalId = user ? "walletModal" : "walletSelectModal";
+                    const modal = new bootstrap.Modal(document.getElementById(modalId));
+
+                    if (user) {
+                        const parsed = user;
                         document.getElementById("walletAddressDisplay").innerText = shortenAddress(parsed.address);
                     }
 

@@ -130,6 +130,16 @@ main {
     pointer-events: none;
 }
 
+#walletHeaderArea {
+    cursor: pointer;
+    line-height: 1.2;
+    font-size: 15px;
+}
+
+#walletHeaderArea:hover {
+    background-color: #222222;
+}
+
 /*----- FOOTER -----*/
 footer {
     border-top: 1px solid rgb(39 39 42);
