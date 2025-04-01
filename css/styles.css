@@ -145,6 +145,11 @@ footer {
     color: rgb(248, 249, 250) !important;
 }
 
+.footer-col {
+    flex: 1;
+    padding: 0 10px;
+}
+
 /*----- WALLET MODAL -----*/
 .wallet-modal {
     background-color: #121212;
