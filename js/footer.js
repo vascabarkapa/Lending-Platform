@@ -6,7 +6,8 @@ function loadFooter() {
 
             const defaultSettings = {
                 selected: "wss://node928.info:82",
-                custom: "wss://"
+                custom: "wss://",
+                connected: false
             };
 
             const existingSettings = LocalStorage.getItem("wsSettings");

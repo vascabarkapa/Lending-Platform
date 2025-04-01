@@ -13,7 +13,8 @@ function loadSettingsModal() {
 
                 const settings = LocalStorage.getItem("wsSettings") || {
                     selected: "wss://node928.info:82",
-                    custom: "wss://"
+                    custom: "wss://",
+                    connected: false
                 };
 
                 const wsSelect = document.getElementById("wsURL");
@@ -35,7 +36,8 @@ function loadSettingsModal() {
 
                     const updatedSettings = {
                         selected: selectedUrl,
-                        custom: customUrl
+                        custom: customUrl,
+                        connected: false
                     };
 
                     LocalStorage.setItem("wsSettings", updatedSettings);

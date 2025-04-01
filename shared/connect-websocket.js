@@ -21,6 +21,10 @@ async function connectWebSocket() {
                 NodeID: NODE_ID,
             }));
 
+            const settings = LocalStorage.getItem("wsSettings");
+            settings.connected = true;
+            LocalStorage.setItem("wsSettings", settings);
+
             resolve(ws);
         };
 
