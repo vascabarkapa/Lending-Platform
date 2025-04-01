@@ -5,140 +5,65 @@ function loadSettingsModal() {
             document.getElementById('modal-placeholder').insertAdjacentHTML('beforeend', html);
 
             const icon = document.querySelector(".settings-icon");
-            if (icon) {
-                icon.addEventListener("click", () => {
-                    const modal = new bootstrap.Modal(document.getElementById("settingsModal"));
-                    modal.show();
+            if (!icon) return;
 
-                    const urlSelect = document.getElementById("wsURL");
-                    const urlInput = document.getElementById("wsURLc");
-                    const userId = document.getElementById("userid");
-                    const customGroup = document.getElementById("customUrlGroup");
+            icon.addEventListener("click", () => {
+                const modal = new bootstrap.Modal(document.getElementById("settingsModal"));
+                modal.show();
 
-                    const defaultSettings = {
-                        selected: "wss://node928.info:82",
-                        custom: "wss://",
-                        userId: ""
+                const settings = LocalStorage.getItem("wsSettings") || {
+                    selected: "wss://node928.info:82",
+                    custom: "wss://"
+                };
+
+                const wsSelect = document.getElementById("wsURL");
+                const customInput = document.getElementById("wsURLc");
+                const customGroup = document.getElementById("customUrlGroup");
+
+                wsSelect.value = settings.selected;
+                customInput.value = settings.custom;
+
+                if (settings.selected === "") {
+                    customGroup.classList.remove("d-none");
+                }
+
+                const connectBtn = document.getElementById("connectWsBtn");
+                connectBtn.replaceWith(connectBtn.cloneNode(true));
+                document.getElementById("connectWsBtn").addEventListener("click", async () => {
+                    const selectedUrl = wsSelect.value;
+                    const customUrl = customInput.value;
+
+                    const updatedSettings = {
+                        selected: selectedUrl,
+                        custom: customUrl
                     };
 
-                    const settings = JSON.parse(localStorage.getItem("wsSettings")) || defaultSettings;
+                    LocalStorage.setItem("wsSettings", updatedSettings);
 
-                    urlSelect.value = settings.selected;
-                    urlInput.value = settings.custom;
-                    userId.value = settings.userId;
+                    try {
+                        await connectWebSocket();
+                        modal.hide();
+                    } catch (err) {
+                        alert("WebSocket connection failed: " + err.message);
+                    }
+                });
 
-                    if (urlSelect.value === "") {
+                const eraseBtn = document.getElementById("eraseDataBtn");
+                eraseBtn.replaceWith(eraseBtn.cloneNode(true));
+                document.getElementById("eraseDataBtn").addEventListener("click", () => {
+                    if (confirm("Are you sure you want to erase all data?")) {
+                        localStorage.clear();
+                        location.reload();
+                    }
+                });
+
+                wsSelect.addEventListener("change", (e) => {
+                    if (e.target.value === "") {
                         customGroup.classList.remove("d-none");
-                        setTimeout(() => {
-                            urlInput.setSelectionRange(urlInput.value.length, urlInput.value.length);
-                        }, 0);
                     } else {
                         customGroup.classList.add("d-none");
-                        urlInput.value = urlSelect.value;
                     }
-
-                    urlSelect.addEventListener("change", () => {
-                        if (urlSelect.value === "") {
-                            customGroup.classList.remove("d-none");
-                            urlInput.value = "wss://";
-                            setTimeout(() => {
-                                urlInput.setSelectionRange(urlInput.value.length, urlInput.value.length);
-                            }, 0);
-                        } else {
-                            customGroup.classList.add("d-none");
-                            urlInput.value = urlSelect.value;
-                        }
-                    });
-
-                    urlInput.addEventListener("input", () => {
-                        if (!urlInput.value.startsWith("wss://")) {
-                            urlInput.value = "wss://";
-                        }
-                    });
-
-                    urlInput.addEventListener("keydown", (e) => {
-                        const prefix = "wss://";
-                        const pos = urlInput.selectionStart;
-                        if ((e.key === "Backspace" || e.key === "ArrowLeft") && pos <= prefix.length) {
-                            e.preventDefault();
-                            urlInput.setSelectionRange(prefix.length, prefix.length);
-                        }
-                    });
-
-                    const connectBtn = document.getElementById("connectWsBtn");
-                    connectBtn.replaceWith(connectBtn.cloneNode(true));
-                    document.getElementById("connectWsBtn").addEventListener("click", () => {
-                        const finalUrl = urlInput.value.trim();
-                        const finalUser = userId.value.trim();
-
-                        if (!finalUser) {
-                            alert("Please enter a valid User ID.");
-                            userId.focus();
-                            return;
-                        }
-
-                        const updatedSettings = {
-                            selected: urlSelect.value,
-                            custom: finalUrl,
-                            userId: finalUser
-                        };
-                        localStorage.setItem("wsSettings", JSON.stringify(updatedSettings));
-
-                        const NODE_ID = 104;
-                        const wsUrl = (urlSelect.value === "") ? urlInput.value : urlSelect.value;
-
-                        try {
-                            const ws = new WebSocket(wsUrl);
-
-                            ws.onerror = (error) => {
-                                console.error("WebSocket error:", error);
-                                localStorage.setItem("wsStatus", "error");
-                                localStorage.setItem("wsLastError", error.message || "Unknown error");
-                            };
-
-                            ws.onopen = () => {
-                                console.log("Connected to WebSocket");
-                                localStorage.setItem("wsStatus", "connected");
-                                localStorage.setItem("wsConnectedURL", wsUrl);
-                                localStorage.setItem("wsConnectedUserId", finalUser);
-
-                                const payload = {
-                                    Type: "SubscribeBalance",
-                                    UserID: finalUser,
-                                    NodeID: NODE_ID,
-                                };
-
-                                ws.send(JSON.stringify(payload));
-                                updateWsStatusIndicator();
-                            };
-
-                            ws.onmessage = (event) => {
-                                try {
-                                    const dataObject = JSON.parse(event.data);
-                                    localStorage.setItem("wsLastMessage", JSON.stringify(dataObject));
-                                } catch (error) {
-                                    console.error("Error processing message:", error);
-                                }
-                            };
-
-                        } catch (err) {
-                            console.error("WebSocket failed to connect:", err);
-                            localStorage.setItem("wsStatus", "error");
-                            localStorage.setItem("wsLastError", err.message || "Unknown connection failure");
-                        }
-
-                        modal.hide();
-                    });
-
-                    const eraseBtn = document.getElementById("eraseDataBtn");
-                    eraseBtn.replaceWith(eraseBtn.cloneNode(true));
-                    document.getElementById("eraseDataBtn").addEventListener("click", () => {
-                        if (confirm("Are you sure you want to erase all data?")) {
-                            localStorage.clear();
-                            location.reload();
-                        }
-                    });
                 });
-            }
+            });
         });
 }
