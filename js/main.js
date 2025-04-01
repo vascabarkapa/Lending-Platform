@@ -12,7 +12,8 @@ const scripts = [
     './shared/connect-websocket.js',
     './shared/globals.js',
     './shared/get-user-settings.js',
-    './shared/get-lending-info.js'
+    './shared/get-lending-info.js',
+    './js/dashboard-lending.js',
 ];
 
 function loadScriptsSequentially(files, callback) {
