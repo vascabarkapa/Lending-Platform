@@ -33,3 +33,17 @@ function updateCurrentNodeDisplay() {
         nodeDisplay.innerText = `Node: ${currentNode.label}`;
     }
 }
+
+function unixToTicks(unix) {
+    return unix * 10000 + 621355968000000000;
+}
+
+function hexToBase64(hex) {
+    return btoa(
+        String.fromCharCode(
+            ...new Uint8Array(
+                hex.match(/.{1,2}/g).map(byte => parseInt(byte, 16))
+            )
+        )
+    );
+}
