@@ -28,6 +28,7 @@ async function renderLendingInfo() {
         `;
 
         document.getElementById("lendingInfoContent").innerHTML = html;
+        document.getElementById("lendingInfoContent").classList.remove("placeholder-glow");
     } catch (err) {
         document.getElementById("lendingInfoContent").innerHTML = `<span class='text-white mt-3'>Information are not available right now! Try again later.</span>`;
     }
