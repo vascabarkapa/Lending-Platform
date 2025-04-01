@@ -11,7 +11,8 @@ const scripts = [
     './shared/local-storage.js',
     './shared/connect-websocket.js',
     './shared/globals.js',
-    './shared/get-user-settings.js'
+    './shared/get-user-settings.js',
+    './shared/get-lending-info.js'
 ];
 
 function loadScriptsSequentially(files, callback) {
