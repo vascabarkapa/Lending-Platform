@@ -10,7 +10,7 @@ function showToast(message, type = "info", delay = 2000) {
     };
 
     const toastEl = document.createElement("div");
-    toastEl.className = `toast align-items-center show toast-custom ${typeClasses[type] || typeClasses.info}`;
+    toastEl.className = `toast align-items-center show toast-custom m-3 ${typeClasses[type] || typeClasses.info}`;
     toastEl.setAttribute("role", "alert");
     toastEl.setAttribute("aria-live", "assertive");
     toastEl.setAttribute("aria-atomic", "true");
