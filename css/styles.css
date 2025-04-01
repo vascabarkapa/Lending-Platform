@@ -250,3 +250,13 @@ footer {
     box-shadow: none;
     border: 1px solid #2f80ed !important;
 }
+
+/*----- LENDING INFO -----*/
+#lendingInfoCard {
+    background-color: #18181b80;
+    border: 1px solid rgb(39 39 42);
+}
+
+.lending-border-bottom {
+    border-bottom: 1px solid rgb(39 39 42);
+}
