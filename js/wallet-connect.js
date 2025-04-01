@@ -7,7 +7,7 @@ async function connectMetaMask(successShouldCloseModal = false) {
         if (optionsArea) optionsArea.classList.add("blurred");
 
         if (typeof window.ethereum === "undefined") {
-            alert("MetaMask is not installed. Please install it first.");
+            showToast("MetaMask is not installed. Please install it first.", "info");
             return;
         }
 
@@ -47,7 +47,7 @@ async function connectMetaMask(successShouldCloseModal = false) {
             await getUserSettings();
         } catch (apiErr) {
             console.error("Failed to fetch user ID or connect WebSocket:", apiErr);
-            alert("Connected wallet, but failed to fetch user ID or WebSocket.");
+            showToast("Connected wallet, but failed to fetch user ID or WebSocket.", "error");
             return; // ⬅️ prekini ako WS ne prođe – ne zatvaraj modal
         }
 
@@ -69,7 +69,7 @@ async function connectMetaMask(successShouldCloseModal = false) {
 
     } catch (err) {
         console.error("Wallet connect error:", err);
-        alert("Wallet connection failed.");
+        showToast("Wallet connection failed.", "error");
     } finally {
         if (overlay) overlay.classList.add("d-none");
         if (optionsArea) optionsArea.classList.remove("blurred");

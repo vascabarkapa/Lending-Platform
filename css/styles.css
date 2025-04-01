@@ -260,3 +260,18 @@ footer {
 .lending-border-bottom {
     border-bottom: 1px solid rgb(39 39 42);
 }
+
+/*----- TOAST -----*/
+.toast-custom {
+    min-width: 280px;
+    max-width: 360px;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    box-shadow: 0 0 0.75rem rgba(0, 0, 0, 0.3);
+}
+
+.toast-custom .toast-body {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}

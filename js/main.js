@@ -14,6 +14,7 @@ const scripts = [
     './shared/get-user-settings.js',
     './shared/get-lending-info.js',
     './js/dashboard-lending.js',
+    './shared/toast.js',
 ];
 
 function loadScriptsSequentially(files, callback) {

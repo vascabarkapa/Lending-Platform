@@ -54,7 +54,7 @@ function loadSettingsModal() {
                         await connectWebSocket();
                         modal.hide();
                     } catch (err) {
-                        alert("WebSocket connection failed: " + err.message);
+                        showToast("WebSocket connection failed: " + err.message, "error");
                     }
                 });
 
