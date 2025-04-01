@@ -44,6 +44,7 @@ async function connectMetaMask(successShouldCloseModal = false) {
             console.log("User ID:", userID);
 
             await connectWebSocket(); // ⬅️ čekaj da se WS poveže
+            await getUserSettings();
         } catch (apiErr) {
             console.error("Failed to fetch user ID or connect WebSocket:", apiErr);
             alert("Connected wallet, but failed to fetch user ID or WebSocket.");
