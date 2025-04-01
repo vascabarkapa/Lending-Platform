@@ -28,6 +28,7 @@ async function connectMetaMask(successShouldCloseModal = false) {
 
         const msgHash = ethers.utils.hashMessage(message);
         const recoveredPubKey = ethers.utils.recoverPublicKey(msgHash, signature);
+
         const pubKeyBase64 = btoa(
             recoveredPubKey
                 .replace(/^0x/, '')
@@ -36,26 +37,27 @@ async function connectMetaMask(successShouldCloseModal = false) {
                 .join('')
         );
 
-        console.log("Base64 PublicKey:", pubKeyBase64);
-
         try {
             const userID = await getUserIDFromPublicKey(pubKeyBase64);
             LocalStorage.setItem("userID", userID);
-            console.log("User ID:", userID);
-
-            await connectWebSocket(); // ⬅️ čekaj da se WS poveže
+            await connectWebSocket();
             await getUserSettings();
         } catch (apiErr) {
             console.error("Failed to fetch user ID or connect WebSocket:", apiErr);
             showToast("Connected wallet, but failed to fetch user ID or WebSocket.", "error");
-            return; // ⬅️ prekini ako WS ne prođe – ne zatvaraj modal
+            return;
         }
 
-        // ✅ Nakon što su svi podaci uspješno sačuvani i WS povezan
-
         const connectBtn = document.getElementById("connectWalletBtn");
-        if (connectBtn) {
-            connectBtn.innerHTML = `<i class="bi bi-person-check"></i> <span class="d-none d-md-inline ms-1">${shortenAddress(account)}</span>`;
+        const walletArea = document.getElementById("walletHeaderArea");
+        const addressEl = document.getElementById("walletAddressDisplayHeader");
+        const balanceEl = document.getElementById("walletBalanceDisplayHeader");
+
+        if (walletArea && addressEl && balanceEl) {
+            addressEl.innerHTML = `${shortenAddress(account)} <i class="bi bi-person-vcard ms-2 text-white-50"></i> <span class="text-white-50">${LocalStorage.getItem("userID")}</span>`;
+            balanceEl.innerText = "1.00 mRBTC";
+            walletArea.classList.remove("d-none");
+            connectBtn?.classList.add("d-none");
         }
 
         if (successShouldCloseModal) {
