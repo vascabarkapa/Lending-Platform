@@ -4,10 +4,29 @@ function loadWalletInfoModal() {
         .then(html => {
             document.getElementById('modal-placeholder').insertAdjacentHTML("beforeend", html);
 
+            const user = JSON.parse(localStorage.getItem("walletUser") || "{}");
+            const userId = LocalStorage.getItem("userID");
+            const address = user?.address;
+
+            if (address) {
+                document.getElementById("walletAddressDisplay").textContent = address;
+            }
+
+            const rbtc = LocalStorage.getRBTC();
+            const usdc = LocalStorage.getUSDC();
+
+            document.getElementById("wallerUserId").textContent = "User ID: " + userId;
+
+            document.getElementById("rbtcAvailable").textContent = parseFloat(rbtc.AvailableFunds).toFixed(2);
+            document.getElementById("rbtcReserved").textContent = parseFloat(rbtc.ReservedFunds).toFixed(2);
+            document.getElementById("rbtcUsed").textContent = parseFloat(rbtc.UsedFunds).toFixed(2);
+
+            document.getElementById("usdcAvailable").textContent = parseFloat(usdc.AvailableFunds).toFixed(2);
+            document.getElementById("usdcReserved").textContent = parseFloat(usdc.ReservedFunds).toFixed(2);
+            document.getElementById("usdcUsed").textContent = parseFloat(usdc.UsedFunds).toFixed(2);
+
             document.addEventListener("click", (e) => {
                 if (e.target.closest("#copyWalletBtn")) {
-                    const user = JSON.parse(localStorage.getItem("walletUser") || "{}");
-                    const address = user?.address;
                     if (address) {
                         navigator.clipboard.writeText(address).then(() => {
                             const icon = e.target.closest("button").querySelector("i");
