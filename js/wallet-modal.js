@@ -21,7 +21,7 @@ function loadWalletInfoModal() {
                 }
 
                 if (e.target && e.target.id === "disconnectWalletBtn") {
-                    localStorage.removeItem("walletUser");
+                    localStorage.clear();
                     location.reload();
                 }
             });
