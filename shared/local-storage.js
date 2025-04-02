@@ -1,3 +1,9 @@
+const defaultBalance = {
+    ReservedFunds: 0,
+    UsedFunds: 0,
+    AvailableFunds: 0
+};
+
 const LocalStorage = {
     getItem(key) {
         return JSON.parse(localStorage.getItem(key));
@@ -18,11 +24,11 @@ const LocalStorage = {
 
     getRBTC() {
         const balance = LocalStorage.getItem("SubscribeBalance");
-        return balance?.[CryptoCurrency.RBTC] ?? null;
+        return balance?.[CryptoCurrency.RBTC] ?? defaultBalance;
     },
 
     getUSDC() {
         const balance = LocalStorage.getItem("SubscribeBalance");
-        return balance?.[CryptoCurrency.USDC] ?? null;
+        return balance?.[CryptoCurrency.USDC] ?? defaultBalance;
     }
 };
