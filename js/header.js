@@ -16,6 +16,7 @@ function loadHeader() {
             }
 
             updateWsStatusIndicator();
+            updateCurrentNodeDisplay();
 
             let currentPath = window.location.pathname.split('/').pop() || 'index.html';
 

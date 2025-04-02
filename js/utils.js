@@ -29,8 +29,14 @@ function updateCurrentNodeDisplay() {
     const currentNode = WebSocketServers.find(server => server.value === selectedUrl);
 
     const nodeDisplay = document.getElementById("currentNodeDisplay");
+    const nodeDisplayCanvas = document.getElementById("currentNodeDisplayCanvas");
+
     if (nodeDisplay && currentNode) {
         nodeDisplay.innerText = `Node: ${currentNode.label}`;
+    }
+
+    if (nodeDisplayCanvas && currentNode) {
+        nodeDisplayCanvas.innerText = `Node: ${currentNode.label}`;
     }
 }
 
