@@ -1,4 +1,4 @@
-function loadWalletInfoModal() {
+function loadWalletInfoModal(callback) {
     fetch('./components/shared/wallet-modal.html')
         .then(res => res.text())
         .then(html => {
@@ -9,13 +9,16 @@ function loadWalletInfoModal() {
             const address = user?.address;
 
             if (address) {
-                document.getElementById("walletAddressDisplay").textContent = address;
+                document.getElementById("walletAddressDisplay").textContent = shortenAddress(address);
+            }
+
+            const userIdEl = document.getElementById("walletUserId");
+            if (userId && userIdEl) {
+                userIdEl.textContent = "User ID: " + userId;
             }
 
             const rbtc = LocalStorage.getRBTC();
             const usdc = LocalStorage.getUSDC();
-
-            document.getElementById("wallerUserId").textContent = "User ID: " + userId;
 
             document.getElementById("rbtcAvailable").textContent = formatAmount(rbtc.AvailableFunds);
             document.getElementById("rbtcReserved").textContent = formatAmount(rbtc.ReservedFunds);
@@ -44,5 +47,9 @@ function loadWalletInfoModal() {
                     location.reload();
                 }
             });
+
+            if (typeof callback === "function") {
+                callback();
+            }
         });
 }
