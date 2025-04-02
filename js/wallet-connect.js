@@ -16,7 +16,7 @@ async function connectMetaMask(successShouldCloseModal = false) {
         const domain = window.location.hostname;
         const nonce = Math.floor(Math.random() * 1000000);
         const timestamp = new Date().toISOString();
-        const message = `Please, make sure that you are signing this message on Bitcoin Betting domain: ${domain}\nNonce: ${nonce}\nTimestamp: ${timestamp}`;
+        const message = `Please, make sure that you are signing this message on Lending Platform domain: ${domain}\n\nNonce: ${nonce}\nTimestamp: ${timestamp}`;
 
         const signature = await window.ethereum.request({
             method: "personal_sign",
