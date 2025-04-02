@@ -8,5 +8,9 @@ function loadMainContent() {
         .then(res => res.text())
         .then(html => {
             document.getElementById('page-content').innerHTML = html;
+
+            if (user) {
+                renderDashboardBalances();
+            }
         });
 }
