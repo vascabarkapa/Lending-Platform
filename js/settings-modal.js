@@ -43,6 +43,7 @@ function loadSettingsModal() {
 
                     document.getElementById("connectWsBtn").replaceWith(document.getElementById("connectWsBtn").cloneNode(true));
                     document.getElementById("connectWsBtn").addEventListener("click", async () => {
+                        const connectBtn = document.getElementById("connectWsBtn");
                         const selectedUrl = wsSelect.value;
                         const customUrl = customInput.value;
 
@@ -54,11 +55,18 @@ function loadSettingsModal() {
 
                         LocalStorage.setItem("wsSettings", updatedSettings);
 
+                        connectBtn.disabled = true;
+                        const originalHTML = connectBtn.innerHTML;
+                        connectBtn.innerHTML = `<span class="spinner-border spinner-border-sm me-2" role="status"></span> Connecting...`;
+
                         try {
                             await connectWebSocket();
                             modal.hide();
                         } catch (err) {
                             showToast("WebSocket connection failed: " + err.message, ToastType.ERROR);
+                        } finally {
+                            connectBtn.disabled = false;
+                            connectBtn.innerHTML = originalHTML;
                         }
                     });
 
