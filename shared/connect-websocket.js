@@ -39,6 +39,7 @@ async function connectWebSocket() {
                 switch (Type) {
                     case "SubscribeBalance":
                         LocalStorage.setItem("SubscribeBalance", Data);
+                        renderDashboardBalances();
                         break;
                     case "OrderAlteration":
                         LocalStorage.setItem("OrderAlteration", Data);
