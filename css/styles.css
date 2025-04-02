@@ -232,10 +232,23 @@ footer {
     padding: 12px 16px;
     border-radius: 12px;
     border: 1px solid rgb(39 39 42);
+    position: relative;
+    overflow: hidden;
 }
 
 .currency-section ul li {
     padding: 2px 0;
+}
+
+.currency-bg-logo {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    width: 48px;
+    height: 48px;
+    opacity: 0.04;
+    pointer-events: none;
+    user-select: none;
 }
 
 /*----- HOME -----*/
