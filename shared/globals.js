@@ -29,3 +29,8 @@ const ToastType = {
     WARNING: "warning",
     ERROR: "error"
 };
+
+const CryptoCurrency = {
+    RBTC: 5,
+    USDC: 6
+};

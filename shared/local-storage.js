@@ -14,5 +14,15 @@ const LocalStorage = {
     getActiveWebSocketUrl() {
         const settings = this.getItem("wsSettings");
         return settings?.selected || settings?.custom || WebSocketServer.ASIA.value;
+    },
+
+    getRBTC() {
+        const balance = LocalStorage.getItem("SubscribeBalance");
+        return balance?.[CryptoCurrency.RBTC] ?? null;
+    },
+
+    getUSDC() {
+        const balance = LocalStorage.getItem("SubscribeBalance");
+        return balance?.[CryptoCurrency.USDC] ?? null;
     }
 };

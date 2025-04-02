@@ -43,7 +43,7 @@ function loadHeader() {
             if (user && userId && walletArea && addressEl && balanceEl) {
                 const parsed = user;
                 const address = parsed.address;
-                const balance = "1.00 mRBTC";
+                const balance = LocalStorage.getRBTC().AvailableFunds.toFixed(2) + " mRBTC";
 
                 addressEl.innerHTML = `${shortenAddress(address)} <i class="bi bi-person-vcard ms-2 text-white-50"></i> <span class="text-white-50">${userId}</span>`;
                 balanceEl.innerText = balance;
