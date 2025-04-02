@@ -70,3 +70,9 @@ function ticksToDate(ticks) {
         hour12: true
     });
 }
+
+function formatAmount(val) {
+    const defaultVal = 0
+    const num = parseFloat(val);
+    return isNaN(num) ? defaultVal.toFixed(4) : num.toFixed(4);
+}

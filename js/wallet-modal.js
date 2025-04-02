@@ -17,13 +17,13 @@ function loadWalletInfoModal() {
 
             document.getElementById("wallerUserId").textContent = "User ID: " + userId;
 
-            document.getElementById("rbtcAvailable").textContent = parseFloat(rbtc.AvailableFunds).toFixed(2);
-            document.getElementById("rbtcReserved").textContent = parseFloat(rbtc.ReservedFunds).toFixed(2);
-            document.getElementById("rbtcUsed").textContent = parseFloat(rbtc.UsedFunds).toFixed(2);
+            document.getElementById("rbtcAvailable").textContent = formatAmount(rbtc.AvailableFunds);
+            document.getElementById("rbtcReserved").textContent = formatAmount(rbtc.ReservedFunds);
+            document.getElementById("rbtcUsed").textContent = formatAmount(rbtc.UsedFunds);
 
-            document.getElementById("usdcAvailable").textContent = parseFloat(usdc.AvailableFunds).toFixed(2);
-            document.getElementById("usdcReserved").textContent = parseFloat(usdc.ReservedFunds).toFixed(2);
-            document.getElementById("usdcUsed").textContent = parseFloat(usdc.UsedFunds).toFixed(2);
+            document.getElementById("usdcAvailable").textContent = formatAmount(usdc.AvailableFunds);
+            document.getElementById("usdcReserved").textContent = formatAmount(usdc.ReservedFunds);
+            document.getElementById("usdcUsed").textContent = formatAmount(usdc.UsedFunds);
 
             document.addEventListener("click", (e) => {
                 if (e.target.closest("#copyWalletBtn")) {
