@@ -5,7 +5,7 @@ function loadHeader() {
             document.getElementById('header-placeholder').innerHTML = html;
 
             const defaultSettings = {
-                selected: "wss://node928.info:82",
+                selected: WebSocketServer.ASIA.value,
                 custom: "wss://",
                 connected: false
             };
