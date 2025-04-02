@@ -1,5 +1,8 @@
 async function renderLendingInfo() {
     try {
+        const USER_ID = LocalStorage.getItem("userID");
+        if (!USER_ID) return;
+
         const data = await getLendingInfo();
         const {Settings, Interest, CompoundInterestFactor, LastPriceChange} = data;
 
