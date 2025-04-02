@@ -56,14 +56,21 @@ function loadHeader() {
                 connectBtn.addEventListener("click", () => {
                     const user = LocalStorage.getItem("walletUser");
                     const modalId = user ? "walletModal" : "walletSelectModal";
-                    const modal = new bootstrap.Modal(document.getElementById(modalId));
 
                     if (user) {
-                        const parsed = user;
-                        document.getElementById("walletAddressDisplay").innerText = shortenAddress(parsed.address);
-                    }
+                        document.getElementById("walletModal")?.remove();
 
-                    modal.show();
+                        loadWalletInfoModal(() => {
+                            const modalEl = document.getElementById("walletModal");
+                            if (modalEl) {
+                                const modal = new bootstrap.Modal(modalEl);
+                                modal.show();
+                            }
+                        });
+                    } else {
+                        const modal = new bootstrap.Modal(document.getElementById(modalId));
+                        modal.show();
+                    }
                 });
             }
 
@@ -72,14 +79,21 @@ function loadHeader() {
                 walletClickable.addEventListener("click", () => {
                     const user = LocalStorage.getItem("walletUser");
                     const modalId = user ? "walletModal" : "walletSelectModal";
-                    const modal = new bootstrap.Modal(document.getElementById(modalId));
 
                     if (user) {
-                        const parsed = user;
-                        document.getElementById("walletAddressDisplay").innerText = shortenAddress(parsed.address);
-                    }
+                        document.getElementById("walletModal")?.remove();
 
-                    modal.show();
+                        loadWalletInfoModal(() => {
+                            const modalEl = document.getElementById("walletModal");
+                            if (modalEl) {
+                                const modal = new bootstrap.Modal(modalEl);
+                                modal.show();
+                            }
+                        });
+                    } else {
+                        const modal = new bootstrap.Modal(document.getElementById(modalId));
+                        modal.show();
+                    }
                 });
             }
         });
