@@ -95,10 +95,12 @@ function initPlaceOrderForm() {
                     SignatureUser: hexToBase64(signature.slice(2)),
                     Data: orderData,
                 };
-console.log(message)
+
                 ws.send(JSON.stringify(message));
+
                 console.log("📤 Order sent to WebSocket.");
                 showToast("Order sent successfully!", ToastType.SUCCESS);
+                loadPlaceOrderModal(orderData);
             } catch (error) {
                 console.error(`❌ Error placing order: ${error.message}`);
                 showToast("Error placing order", ToastType.ERROR);

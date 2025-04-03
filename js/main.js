@@ -18,6 +18,7 @@ const scripts = [
     './js/dashboard.js',
     './js/advanced-connect-modal.js',
     './shared/place-order.js',
+    './js/place-order-summary.js',
 ];
 
 function loadScriptsSequentially(files, callback) {
