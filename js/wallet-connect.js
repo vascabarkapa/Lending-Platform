@@ -55,7 +55,7 @@ async function connectMetaMask(successShouldCloseModal = false) {
 
         if (walletArea && addressEl && balanceEl) {
             addressEl.innerHTML = `${shortenAddress(account)} <i class="bi bi-person-vcard ms-2 text-white-50"></i> <span class="text-white-50">${LocalStorage.getItem("userID")}</span>`;
-            balanceEl.innerText = "1.00 mRBTC";
+            balanceEl.innerText = "0.00 mRBTC";
             walletArea.classList.remove("d-none");
             connectBtn?.classList.add("d-none");
         }
@@ -137,7 +137,7 @@ async function connectWalletConnect() {
 
         if (walletArea && addressEl && balanceEl) {
             addressEl.innerHTML = `${shortenAddress(account)} <i class="bi bi-person-vcard ms-2 text-white-50"></i> <span class="text-white-50">${userID}</span>`;
-            balanceEl.innerText = "1.00 mRBTC";
+            balanceEl.innerText = "0.00 mRBTC";
             walletArea.classList.remove("d-none");
             connectBtn?.classList.add("d-none");
         }
