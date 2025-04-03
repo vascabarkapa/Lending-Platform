@@ -140,6 +140,11 @@ main {
     background-color: #222222;
 }
 
+.custom-tooltip {
+    --bs-tooltip-bg: #222222;
+    --bs-tooltip-color: white;
+}
+
 /*----- FOOTER -----*/
 footer {
     border-top: 1px solid rgb(39 39 42);

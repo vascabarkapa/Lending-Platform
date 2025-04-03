@@ -50,6 +50,7 @@ function loadHeader() {
 
                 walletArea.classList.remove("d-none");
                 connectBtn.classList.add("d-none");
+                new bootstrap.Tooltip(walletArea);
             }
 
             if (connectBtn) {
