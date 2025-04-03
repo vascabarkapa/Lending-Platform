@@ -24,26 +24,29 @@ function advancedConnect() {
 
 function setupPrivateKeyMasking() {
     const inputEl = document.getElementById("privateKeyInput");
+    realPrivateKey = "";
 
     inputEl.addEventListener("input", (e) => {
-        const currentValue = e.target.value;
-        const prevLength = inputEl.dataset.prevLength || 0;
-        const newLength = currentValue.length;
+        const input = e.target;
+        const currentDisplay = input.value;
+        const numStars = (currentDisplay.match(/\*/g) || []).length;
 
-        let rawInput = currentValue.replace(/\*/g, "");
-
-        if (newLength > prevLength) {
-            const addedChar = rawInput.slice(-1);
+        if (currentDisplay.length > input.dataset.prevLength) {
+            const addedChar = currentDisplay.replace(/\*/g, "").slice(-1);
             realPrivateKey += addedChar;
-        } else if (newLength < prevLength) {
-            realPrivateKey = realPrivateKey.slice(0, -1);
+        }
+        else if (currentDisplay.length < input.dataset.prevLength) {
+            const diff = input.dataset.prevLength - currentDisplay.length;
+            realPrivateKey = realPrivateKey.slice(0, -diff);
         }
 
-        const visiblePart = realPrivateKey.slice(0, 5);
-        const maskedPart = "*".repeat(Math.max(realPrivateKey.length - 5, 0));
-        inputEl.value = visiblePart + maskedPart;
+        const visible = realPrivateKey.slice(0, 5);
+        const masked = "*".repeat(Math.max(realPrivateKey.length - 5, 0));
+        input.value = visible + masked;
 
-        inputEl.dataset.prevLength = inputEl.value.length;
+        input.dataset.prevLength = input.value.length;
+
+        input.setSelectionRange(input.value.length, input.value.length);
     });
 
     inputEl.addEventListener("paste", (e) => {
@@ -51,11 +54,12 @@ function setupPrivateKeyMasking() {
         const pasted = (e.clipboardData || window.clipboardData).getData("text").replace(/\s/g, "");
         realPrivateKey += pasted;
 
-        const visiblePart = realPrivateKey.slice(0, 5);
-        const maskedPart = "*".repeat(Math.max(realPrivateKey.length - 5, 0));
-        inputEl.value = visiblePart + maskedPart;
-
+        const visible = realPrivateKey.slice(0, 5);
+        const masked = "*".repeat(Math.max(realPrivateKey.length - 5, 0));
+        inputEl.value = visible + masked;
         inputEl.dataset.prevLength = inputEl.value.length;
+
+        inputEl.setSelectionRange(inputEl.value.length, inputEl.value.length);
     });
 
     inputEl.addEventListener("focus", () => {
@@ -112,7 +116,13 @@ function setupAdvancedConnectHandlers() {
 
                 const userID = await getUserIDFromPublicKey(pubKeyBase64);
 
-                LocalStorage.setItem("walletUser", { address: account, signature, nonce, timestamp });
+                if (!userID) {
+                    showToast("Invalid public key. Could not retrieve user ID.", ToastType.ERROR);
+                    showPrivateKeyStep();
+                    return;
+                }
+
+                LocalStorage.setItem("walletUser", {address: account, signature, nonce, timestamp});
                 LocalStorage.setItem("userID", userID);
                 LocalStorage.setItem("encryptedPK", encrypted);
 
@@ -144,6 +154,7 @@ function setupAdvancedConnectHandlers() {
             } catch (err) {
                 console.error("Private key login error", err);
                 showToast("Failed to complete login.", ToastType.ERROR);
+                showPrivateKeyStep();
             }
         }
     });
@@ -169,4 +180,43 @@ function showEncryptionStep(privateKey) {
 
         <button class="btn btn-primary w-100 py-2 rounded-3" id="storeKeyBtn">Store my Keys</button>
     `;
+}
+
+function showPrivateKeyStep() {
+    realPrivateKey = "";
+    window.tempPrivateKey = "";
+
+    const body = document.getElementById("advancedModalBody");
+    body.innerHTML = `
+        <p class="text-secondary small mb-4">
+            If you are using MetaMask, check <a
+                href="https://support.metamask.io/configure/accounts/how-to-export-an-accounts-private-key/"
+                target="_blank" class="text-primary">how to export your private key</a> guide.
+            If you are using another wallet, please refer to their documentation.
+        </p>
+
+        <div class="text-danger fw-semibold small mb-3">
+            Exporting and using private keys directly in the browser poses major security risks...
+        </div>
+
+        <ul class="text-danger small mb-4 ps-3">
+            <li>Never use this on a public computer.</li>
+            <li>Only use on a trusted browser with only trusted extensions.</li>
+            <li>Always backup your private key securely.</li>
+            <li>Ensure you are familiar with the risks of managing your own private keys.</li>
+            <li>Your private key will be persisted on disk in the end...</li>
+        </ul>
+
+        <div class="mb-4 mb-3">
+            <input type="text" id="privateKeyInput" class="form-control bg-dark text-light input-primary" autocomplete="off"
+                   placeholder="0x123123123123123..."/>
+            <div class="invalid-feedback d-block mt-1 ms-1 small" id="privateKeyError" style="display: none; font-size: 0.8em;"></div>
+        </div>
+
+        <button class="btn btn-primary w-100 py-2 rounded-3" id="submitPrivateKeyBtn">
+            Connect with Private Key
+        </button>
+    `;
+
+    setupPrivateKeyMasking();
 }
