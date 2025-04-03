@@ -6,10 +6,10 @@ function renderDashboardBalances() {
     const usdcBalanceEl = document.getElementById("usdcBalance");
 
     if (rbtcBalanceEl) {
-        rbtcBalanceEl.innerText = rbtc.AvailableFunds.toFixed(4);
+        rbtcBalanceEl.innerText = (rbtc.AvailableFunds / 1000).toFixed(4);
     }
 
     if (usdcBalanceEl) {
-        usdcBalanceEl.innerText = usdc.AvailableFunds.toFixed(4);
+        usdcBalanceEl.innerText = (usdc.AvailableFunds / 1000).toFixed(4);
     }
 }
