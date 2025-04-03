@@ -15,6 +15,10 @@ function loadWalletSelectModal() {
                 }
 
                 if (e.target.closest("#connectWithoutWallet")) {
+                    const walletModalEl = document.getElementById("walletSelectModal");
+                    const modalInstance = bootstrap.Modal.getInstance(walletModalEl) || new bootstrap.Modal(walletModalEl);
+                    modalInstance.hide();
+
                     advancedConnect();
                 }
             });
