@@ -6,6 +6,17 @@ function advancedConnect() {
         const modal = new bootstrap.Modal(existing);
         modal.show();
         setupPrivateKeyMasking();
+
+        // Reset modal sadržaja kad se zatvori
+        existing.addEventListener("hidden.bs.modal", () => {
+            realPrivateKey = "";
+            window.tempPrivateKey = "";
+            const body = document.getElementById("advancedModalBody");
+            if (body) {
+                showPrivateKeyStep();
+            }
+        });
+
         return;
     }
 
@@ -14,11 +25,21 @@ function advancedConnect() {
         .then(html => {
             document.getElementById('modal-placeholder').insertAdjacentHTML('beforeend', html);
 
-            const modal = new bootstrap.Modal(document.getElementById("advancedConnectModal"));
+            const modalEl = document.getElementById("advancedConnectModal");
+            const modal = new bootstrap.Modal(modalEl);
             modal.show();
 
             setupAdvancedConnectHandlers();
             setupPrivateKeyMasking();
+
+            modalEl.addEventListener("hidden.bs.modal", () => {
+                realPrivateKey = "";
+                window.tempPrivateKey = "";
+                const body = document.getElementById("advancedModalBody");
+                if (body) {
+                    showPrivateKeyStep();
+                }
+            });
         });
 }
 
@@ -49,7 +70,7 @@ function setupPrivateKeyMasking() {
         input.setSelectionRange(input.value.length, input.value.length);
     });
 
-    inputEl.addEventListener("paste", (e) => {
+    inputEl.onpaste = (e) => {
         e.preventDefault();
         const pasted = (e.clipboardData || window.clipboardData).getData("text").replace(/\s/g, "");
         realPrivateKey += pasted;
@@ -60,11 +81,11 @@ function setupPrivateKeyMasking() {
         inputEl.dataset.prevLength = inputEl.value.length;
 
         inputEl.setSelectionRange(inputEl.value.length, inputEl.value.length);
-    });
+    };
 
-    inputEl.addEventListener("focus", () => {
+    inputEl.onfocus = () => {
         inputEl.dataset.prevLength = inputEl.value.length;
-    });
+    };
 }
 
 
