@@ -32,17 +32,13 @@ function setupPrivateKeyMasking() {
 
         let rawInput = currentValue.replace(/\*/g, "");
 
-        // Odredi razliku u dužini (unos ili brisanje)
         if (newLength > prevLength) {
-            // Novi karakter dodan
             const addedChar = rawInput.slice(-1);
             realPrivateKey += addedChar;
         } else if (newLength < prevLength) {
-            // Karakter obrisan
             realPrivateKey = realPrivateKey.slice(0, -1);
         }
 
-        // Maskirani prikaz (prvih 5 karaktera, ostalo zvjezdice)
         const visiblePart = realPrivateKey.slice(0, 5);
         const maskedPart = "*".repeat(Math.max(realPrivateKey.length - 5, 0));
         inputEl.value = visiblePart + maskedPart;
@@ -62,7 +58,6 @@ function setupPrivateKeyMasking() {
         inputEl.dataset.prevLength = inputEl.value.length;
     });
 
-    // Reset helper on focus
     inputEl.addEventListener("focus", () => {
         inputEl.dataset.prevLength = inputEl.value.length;
     });
