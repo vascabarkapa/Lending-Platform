@@ -6,14 +6,13 @@ function advancedConnect() {
         const modal = new bootstrap.Modal(existing);
         modal.show();
         setupPrivateKeyMasking();
+        setupAdvancedConnectHandlers();
 
         existing.addEventListener("hidden.bs.modal", () => {
             realPrivateKey = "";
             window.tempPrivateKey = "";
             const body = document.getElementById("advancedModalBody");
-            if (body) {
-                showPrivateKeyStep();
-            }
+            if (body) showPrivateKeyStep();
         });
 
         return;
@@ -23,21 +22,18 @@ function advancedConnect() {
         .then(res => res.text())
         .then(html => {
             document.getElementById('modal-placeholder').insertAdjacentHTML('beforeend', html);
-
             const modalEl = document.getElementById("advancedConnectModal");
             const modal = new bootstrap.Modal(modalEl);
             modal.show();
 
-            setupAdvancedConnectHandlers();
             setupPrivateKeyMasking();
+            setupAdvancedConnectHandlers();
 
             modalEl.addEventListener("hidden.bs.modal", () => {
                 realPrivateKey = "";
                 window.tempPrivateKey = "";
                 const body = document.getElementById("advancedModalBody");
-                if (body) {
-                    showPrivateKeyStep();
-                }
+                if (body) showPrivateKeyStep();
             });
         });
 }
@@ -49,23 +45,20 @@ function setupPrivateKeyMasking() {
     inputEl.addEventListener("input", (e) => {
         const input = e.target;
         const currentDisplay = input.value;
-        const numStars = (currentDisplay.match(/\*/g) || []).length;
+        const prevLength = parseInt(input.dataset.prevLength || 0);
 
-        if (currentDisplay.length > input.dataset.prevLength) {
+        if (currentDisplay.length > prevLength) {
             const addedChar = currentDisplay.replace(/\*/g, "").slice(-1);
             realPrivateKey += addedChar;
-        }
-        else if (currentDisplay.length < input.dataset.prevLength) {
-            const diff = input.dataset.prevLength - currentDisplay.length;
+        } else if (currentDisplay.length < prevLength) {
+            const diff = prevLength - currentDisplay.length;
             realPrivateKey = realPrivateKey.slice(0, -diff);
         }
 
         const visible = realPrivateKey.slice(0, 5);
         const masked = "*".repeat(Math.max(realPrivateKey.length - 5, 0));
         input.value = visible + masked;
-
         input.dataset.prevLength = input.value.length;
-
         input.setSelectionRange(input.value.length, input.value.length);
     });
 
@@ -78,7 +71,6 @@ function setupPrivateKeyMasking() {
         const masked = "*".repeat(Math.max(realPrivateKey.length - 5, 0));
         inputEl.value = visible + masked;
         inputEl.dataset.prevLength = inputEl.value.length;
-
         inputEl.setSelectionRange(inputEl.value.length, inputEl.value.length);
     };
 
@@ -86,7 +78,6 @@ function setupPrivateKeyMasking() {
         inputEl.dataset.prevLength = inputEl.value.length;
     };
 }
-
 
 function setupAdvancedConnectHandlers() {
     document.addEventListener("click", async (e) => {
@@ -107,9 +98,15 @@ function setupAdvancedConnectHandlers() {
         if (e.target.id === "storeKeyBtn") {
             const pass = document.getElementById("encryptionPass").value;
             const confirm = document.getElementById("encryptionConfirmPass").value;
+            const storeBtn = document.getElementById("storeKeyBtn");
+
+            storeBtn.disabled = true;
+            storeBtn.innerHTML = `<span class="spinner-border spinner-border-sm me-2" role="status"></span> Storing...`;
 
             if (!pass || pass !== confirm) {
                 showToast("Passwords do not match", ToastType.ERROR);
+                storeBtn.disabled = false;
+                storeBtn.innerHTML = `Store my Keys`;
                 return;
             }
 
@@ -136,13 +133,15 @@ function setupAdvancedConnectHandlers() {
 
                 const userID = await getUserIDFromPublicKey(pubKeyBase64);
 
-                if (!userID) {
+                if (!userID || typeof userID !== "number") {
                     showToast("Invalid public key. Could not retrieve user ID.", ToastType.ERROR);
+                    storeBtn.disabled = false;
+                    storeBtn.innerHTML = `Store my Keys`;
                     showPrivateKeyStep();
                     return;
                 }
 
-                LocalStorage.setItem("walletUser", {address: account, signature, nonce, timestamp});
+                LocalStorage.setItem("walletUser", { address: account, signature, nonce, timestamp });
                 LocalStorage.setItem("userID", userID);
                 LocalStorage.setItem("encryptedPK", encrypted);
 
@@ -170,11 +169,13 @@ function setupAdvancedConnectHandlers() {
                 const html = await res.text();
                 document.getElementById("page-content").innerHTML = html;
                 renderDashboardBalances();
-
             } catch (err) {
                 console.error("Private key login error", err);
                 showToast("Failed to complete login.", ToastType.ERROR);
                 showPrivateKeyStep();
+            } finally {
+                storeBtn.disabled = false;
+                storeBtn.innerHTML = `Store my Keys`;
             }
         }
     });
@@ -229,7 +230,7 @@ function showPrivateKeyStep() {
 
         <div class="mb-4 mb-3">
             <input type="text" id="privateKeyInput" class="form-control bg-dark text-light input-primary" autocomplete="off"
-                   placeholder="0x123123123123123..."/>
+                   placeholder="0x123123123123123..." />
             <div class="invalid-feedback d-block mt-1 ms-1 small" id="privateKeyError" style="display: none; font-size: 0.8em;"></div>
         </div>
 
