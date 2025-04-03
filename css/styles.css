@@ -299,3 +299,47 @@ footer {
     align-items: center;
     gap: 0.5rem;
 }
+
+/*----- FORM -----*/
+
+#orderForm {
+    background-color: #18181b80;
+    border: 1px solid rgb(39 39 42);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.btn-check:checked + .btn-radio-block {
+    background-color: #2f80ed;
+    color: #fff;
+    border-color: transparent;
+}
+
+.btn-radio-block {
+    background-color: #121212;
+    color: #ccc;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.375rem;
+    font-weight: 500;
+    padding: 0.375rem 1rem;
+    text-align: center;
+    transition: all 0.2s ease;
+    width: 100%;
+}
+
+.btn-radio-block:hover {
+    border-color: #2f80ed;
+    cursor: pointer;
+}
+
+.btn-check:checked + .btn-radio-block:hover {
+    border-color: #2f80ed;
+}
