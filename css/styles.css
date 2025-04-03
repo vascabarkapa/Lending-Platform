@@ -307,6 +307,11 @@ footer {
     border: 1px solid rgb(39 39 42);
 }
 
+.order-input {
+    background-color: #09090b80 !important;
+    border: 1px solid rgb(39 39 42) !important;
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -324,7 +329,7 @@ input[type=number] {
 }
 
 .btn-radio-block {
-    background-color: #121212;
+    background-color: #09090b80;
     color: #ccc;
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 0.375rem;
