@@ -11,6 +11,7 @@ function loadMainContent() {
 
             if (user) {
                 renderDashboardBalances();
+                initPlaceOrderForm();
             }
         });
 }
