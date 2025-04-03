@@ -14,7 +14,7 @@ function loadWalletSelectModal() {
                 }
 
                 if (e.target.closest("#connectWithoutWallet")) {
-                    showToast("Advanced login without wallet coming soon...", ToastType.INFO);
+                    advancedConnect();
                 }
             });
         });
