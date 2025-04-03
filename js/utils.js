@@ -44,6 +44,10 @@ function unixToTicks(unix) {
     return unix * 10000 + 621355968000000000;
 }
 
+function ticksToUnix(ticks) {
+    return (ticks - 621355968000000000) / 10000;
+}
+
 function hexToBase64(hexString) {
     return btoa(
         hexString
