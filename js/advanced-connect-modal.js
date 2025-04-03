@@ -1,8 +1,11 @@
+let realPrivateKey = "";
+
 function advancedConnect() {
     const existing = document.getElementById("advancedConnectModal");
     if (existing) {
         const modal = new bootstrap.Modal(existing);
         modal.show();
+        setupPrivateKeyMasking();
         return;
     }
 
@@ -15,15 +18,62 @@ function advancedConnect() {
             modal.show();
 
             setupAdvancedConnectHandlers();
+            setupPrivateKeyMasking();
         });
 }
+
+function setupPrivateKeyMasking() {
+    const inputEl = document.getElementById("privateKeyInput");
+
+    inputEl.addEventListener("input", (e) => {
+        const currentValue = e.target.value;
+        const prevLength = inputEl.dataset.prevLength || 0;
+        const newLength = currentValue.length;
+
+        let rawInput = currentValue.replace(/\*/g, "");
+
+        // Odredi razliku u dužini (unos ili brisanje)
+        if (newLength > prevLength) {
+            // Novi karakter dodan
+            const addedChar = rawInput.slice(-1);
+            realPrivateKey += addedChar;
+        } else if (newLength < prevLength) {
+            // Karakter obrisan
+            realPrivateKey = realPrivateKey.slice(0, -1);
+        }
+
+        // Maskirani prikaz (prvih 5 karaktera, ostalo zvjezdice)
+        const visiblePart = realPrivateKey.slice(0, 5);
+        const maskedPart = "*".repeat(Math.max(realPrivateKey.length - 5, 0));
+        inputEl.value = visiblePart + maskedPart;
+
+        inputEl.dataset.prevLength = inputEl.value.length;
+    });
+
+    inputEl.addEventListener("paste", (e) => {
+        e.preventDefault();
+        const pasted = (e.clipboardData || window.clipboardData).getData("text").replace(/\s/g, "");
+        realPrivateKey += pasted;
+
+        const visiblePart = realPrivateKey.slice(0, 5);
+        const maskedPart = "*".repeat(Math.max(realPrivateKey.length - 5, 0));
+        inputEl.value = visiblePart + maskedPart;
+
+        inputEl.dataset.prevLength = inputEl.value.length;
+    });
+
+    // Reset helper on focus
+    inputEl.addEventListener("focus", () => {
+        inputEl.dataset.prevLength = inputEl.value.length;
+    });
+}
+
 
 function setupAdvancedConnectHandlers() {
     document.addEventListener("click", async (e) => {
         if (e.target.closest("#submitPrivateKeyBtn")) {
-            const input = document.getElementById("privateKeyInput");
             const errorEl = document.getElementById("privateKeyError");
-            const key = input.value.trim();
+            const key = realPrivateKey.trim();
 
             if (!/^0x[a-fA-F0-9]{64}$/.test(key)) {
                 errorEl.style.display = "block";
@@ -67,7 +117,7 @@ function setupAdvancedConnectHandlers() {
 
                 const userID = await getUserIDFromPublicKey(pubKeyBase64);
 
-                LocalStorage.setItem("walletUser", {address: account, signature, nonce, timestamp});
+                LocalStorage.setItem("walletUser", { address: account, signature, nonce, timestamp });
                 LocalStorage.setItem("userID", userID);
                 LocalStorage.setItem("encryptedPK", encrypted);
 
