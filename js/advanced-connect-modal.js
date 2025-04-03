@@ -7,7 +7,6 @@ function advancedConnect() {
         modal.show();
         setupPrivateKeyMasking();
 
-        // Reset modal sadržaja kad se zatvori
         existing.addEventListener("hidden.bs.modal", () => {
             realPrivateKey = "";
             window.tempPrivateKey = "";
