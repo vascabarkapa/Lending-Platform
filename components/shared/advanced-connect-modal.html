@@ -1,0 +1,45 @@
+<div class="modal fade" id="advancedConnectModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content wallet-modal p-4 text-white">
+            <div class="modal-header border-0 pb-0">
+                <h5 class="modal-title">Connect with Private Key</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+            <div class="modal-body pt-5" id="advancedModalBody">
+                <p class="text-secondary small mb-4">
+                    If you are using MetaMask, check <a
+                        href="https://support.metamask.io/configure/accounts/how-to-export-an-accounts-private-key/"
+                        target="_blank" class="text-primary">how to export your private key</a> guide.
+                    If you are using another wallet, please refer to their documentation.
+                </p>
+
+                <div class="text-danger fw-semibold small mb-3">
+                    Exporting and using private keys directly in the browser poses major security risks. Client-side
+                    storage or exposure of private keys may result in unauthorized access. Proceed only if you fully
+                    understand and accept these risks.
+                </div>
+
+                <ul class="text-danger small mb-4 ps-3">
+                    <li>Never use this on a public computer.</li>
+                    <li>Only use on a trusted browser with only trusted extensions.</li>
+                    <li>Always backup your private key securely.</li>
+                    <li>Ensure you are familiar with the risks of managing your own private keys.</li>
+                    <li>Your private key will be persisted on disk in the end (by the browser), so any malicious access
+                        could compromise your security.
+                    </li>
+                </ul>
+
+                <div class="mb-4 mb-3">
+                    <input type="text" id="privateKeyInput" class="form-control bg-dark text-light input-primary"
+                           placeholder="0x123123123123123..."/>
+                    <div class="invalid-feedback d-block mt-1 ms-1 small" id="privateKeyError" style="display: none; font-size: 0.8em;"></div>
+                </div>
+
+                <button class="btn btn-primary w-100 py-2 rounded-3" id="submitPrivateKeyBtn">
+                    Connect with Private Key
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
