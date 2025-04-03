@@ -26,6 +26,17 @@ function loadSettingsModal() {
                     const customInput = document.getElementById("wsURLc");
                     const customGroup = document.getElementById("customUrlGroup");
 
+                    const statusBadge = document.getElementById("settingsModalStatus");
+                    if (statusBadge) {
+                        if (settings.connected) {
+                            statusBadge.className = "badge text-bg-success";
+                            statusBadge.textContent = "Connected";
+                        } else {
+                            statusBadge.className = "badge text-bg-danger";
+                            statusBadge.textContent = "Disconnected";
+                        }
+                    }
+
                     wsSelect.innerHTML = "";
                     WebSocketServers.forEach(server => {
                         const option = document.createElement("option");
