@@ -68,6 +68,8 @@ async function connectMetaMask(successShouldCloseModal = false) {
         const res = await fetch('./components/home/dashboard.html');
         const html = await res.text();
         document.getElementById("page-content").innerHTML = html;
+        renderDashboardBalances();
+        initPlaceOrderForm();
 
     } catch (err) {
         console.error("Wallet connect error:", err);
@@ -149,6 +151,7 @@ async function connectWalletConnect() {
         const html = await res.text();
         document.getElementById("page-content").innerHTML = html;
         renderDashboardBalances();
+        initPlaceOrderForm();
 
     } catch (err) {
         console.error("WalletConnect error:", err);
