@@ -7,6 +7,18 @@ const scripts = [
     './js/wallet-connect.js',
     './js/wallet-select-modal.js',
     './js/settings-modal.js',
+    './js/api.js',
+    './shared/local-storage.js',
+    './shared/connect-websocket.js',
+    './shared/globals.js',
+    './shared/get-user-settings.js',
+    './shared/get-lending-info.js',
+    './js/dashboard-lending.js',
+    './shared/toast.js',
+    './js/dashboard.js',
+    './js/advanced-connect-modal.js',
+    './shared/place-order.js',
+    './js/place-order-summary.js',
 ];
 
 function loadScriptsSequentially(files, callback) {

@@ -6,15 +6,20 @@ function loadWalletSelectModal() {
 
             document.addEventListener("click", (e) => {
                 if (e.target.closest("#chooseMetaMask")) {
-                    connectWalletFlow(true);
+                    connectMetaMask(true);
                 }
 
                 if (e.target.closest("#chooseWalletConnect")) {
-                    alert("WalletConnect support coming soon...");
+                    showToast("WalletConnect support coming soon...", ToastType.INFO);
+                    // connectWalletConnect();
                 }
 
                 if (e.target.closest("#connectWithoutWallet")) {
-                    alert("Advanced login without wallet coming soon...");
+                    const walletModalEl = document.getElementById("walletSelectModal");
+                    const modalInstance = bootstrap.Modal.getInstance(walletModalEl) || new bootstrap.Modal(walletModalEl);
+                    modalInstance.hide();
+
+                    advancedConnect();
                 }
             });
         });

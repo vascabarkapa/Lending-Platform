@@ -1,7 +1,9 @@
 <nav class="navbar navbar-expand-md d-flex justify-content-between align-items-center py-md-0 py-2">
     <div class="d-flex align-items-center">
-        <a class="navbar-brand" href="#">
-            <i class="bi bi-grid-fill"></i> Lending Platform
+        <a class="navbar-brand">
+            <img src="./../../assets/favicon.ico" alt="Lending Platform" class="me-2 d-sm-block d-none" width="16">
+            <img src="./../../assets/favicon.ico" alt="Lending Platform" class="me-2 d-sm-none block" width="22">
+            <span class="d-sm-block d-none">Lending Platform</span>
         </a>
         <div class="nav-links d-none d-md-flex ms-4">
             <a href="index.html">Dashboard</a>
@@ -14,11 +16,19 @@
             <span class="d-none d-md-inline ms-md-2 ms-0">Connect wallet</span>
         </button>
 
-        <i class="bi bi-gear settings-icon d-inline position-relative">
-            <span id="wsStatusIndicator" class="position-absolute top-0 start-100 translate-middle p-1 border border-dark rounded-circle bg-secondary"></span>
-        </i>
+        <div id="walletHeaderArea" class="text-start d-none me-2 p-2 rounded" data-bs-toggle="tooltip"
+             data-bs-placement="bottom" title="View wallet details" data-bs-custom-class="custom-tooltip">
+            <div class="text-light small fw-medium" id="walletAddressDisplayHeader"></div>
+            <div class="text-primary small fw-semibold" id="walletBalanceDisplayHeader"></div>
+        </div>
 
-        <button class="navbar-toggler d-md-none ms-2" type="button" data-bs-toggle="offcanvas"
+        <div class="settings-icon d-inline-block position-relative ms-3 me-1" role="button" style="font-size: 1.25rem;">
+            <i class="bi bi-gear"></i>
+            <span id="wsStatusIndicator"
+                  class="position-absolute top-0 start-100 translate-middle p-1 border border-dark rounded-circle bg-secondary"></span>
+        </div>
+
+        <button class="navbar-toggler d-md-none ms-2 pe-0" type="button" data-bs-toggle="offcanvas"
                 data-bs-target="#mobileMenu">
             <i class="bi bi-list"></i>
         </button>
@@ -27,10 +37,12 @@
 
 <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileMenu">
     <div class="offcanvas-header">
-        <h5 class="offcanvas-title">Menu</h5>
+        <h5 class="offcanvas-title text-primary">Lending Platform</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
     </div>
     <div class="offcanvas-body d-flex flex-column">
         <a href="index.html" class="mb-3">Dashboard</a>
+
+        <div class="mt-auto text-secondary small pt-4" id="currentNodeDisplayCanvas"></div>
     </div>
 </div>
