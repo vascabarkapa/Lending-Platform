@@ -44,13 +44,12 @@ function unixToTicks(unix) {
     return unix * 10000 + 621355968000000000;
 }
 
-function hexToBase64(hex) {
+function hexToBase64(hexString) {
     return btoa(
-        String.fromCharCode(
-            ...new Uint8Array(
-                hex.match(/.{1,2}/g).map(byte => parseInt(byte, 16))
-            )
-        )
+        hexString
+            .match(/.{1,2}/g)
+            .map((byte) => String.fromCharCode(parseInt(byte, 16)))
+            .join("")
     );
 }
 
