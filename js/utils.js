@@ -76,3 +76,11 @@ function formatAmount(val) {
     const num = parseFloat(val);
     return isNaN(num) ? defaultVal.toFixed(4) : num.toFixed(4);
 }
+
+function generateUniqueOrderId() {
+    return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
+        const r = (Math.random() * 16) | 0;
+        const v = c === "x" ? r : (r & 0x3) | 0x8;
+        return v.toString(16);
+    });
+}
