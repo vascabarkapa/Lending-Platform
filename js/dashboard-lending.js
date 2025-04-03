@@ -17,7 +17,7 @@ async function renderLendingInfo() {
                 <span>Max Market Maker Position</span><span>${Settings.Maximum_mm_position}</span>
             </div>
             <div class="d-flex justify-content-between py-1 mt-3">
-                <span>Price</span><span>${Settings.Price} USDT</span>
+                <span>Price</span><span>${Settings.Price} USDC</span>
             </div>
             <div class="d-flex justify-content-between py-1">
                 <span>mBTC Collateral</span><span>${Settings.mBTC_Collateral}</span>
