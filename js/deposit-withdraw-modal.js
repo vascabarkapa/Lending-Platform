@@ -5,10 +5,12 @@ function loadDepositWithdrawModal() {
             document.body.insertAdjacentHTML('beforeend', html);
 
             const btn = document.getElementById("openDepositWithdrawModalBtn");
+            const modalEl = document.getElementById("depositWithdrawModal");
+
             if (btn) {
                 btn.addEventListener("click", () => {
                     resetModalViews();
-                    const modal = new bootstrap.Modal(document.getElementById("depositWithdrawModal"));
+                    const modal = new bootstrap.Modal(modalEl);
                     modal.show();
                 });
             }
@@ -25,6 +27,16 @@ function loadDepositWithdrawModal() {
                 } else if (e.target.closest("#chooseWithdraw")) {
                     showView("withdraw");
                 }
+            });
+
+            // Reset modal inputs & views on close
+            modalEl.addEventListener("hidden.bs.modal", () => {
+                resetModalViews();
+
+                // Clear all input fields
+                modalEl.querySelectorAll("input").forEach(input => {
+                    input.value = "";
+                });
             });
         });
 }
