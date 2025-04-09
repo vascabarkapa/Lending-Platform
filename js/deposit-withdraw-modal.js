@@ -4,10 +4,10 @@ function loadDepositWithdrawModal() {
         .then(html => {
             document.body.insertAdjacentHTML('beforeend', html);
 
-            const depositBtn = document.getElementById("openDepositModalBtn");
+            const depositBtn = document.getElementById("openDepositWithdrawModalBtn");
             if (depositBtn) {
                 depositBtn.addEventListener("click", () => {
-                    const modal = new bootstrap.Modal(document.getElementById("depositModal"));
+                    const modal = new bootstrap.Modal(document.getElementById("depositWithdrawModal"));
                     modal.show();
                 });
             }
