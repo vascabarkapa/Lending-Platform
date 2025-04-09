@@ -1,5 +1,5 @@
 function loadDepositTransferModal() {
-    fetch('./components/shared/deposit-transfer-modal.html')
+    fetch('./components/shared/deposit-withdraw-modal.html')
         .then(res => res.text())
         .then(html => {
             document.body.insertAdjacentHTML('beforeend', html);

@@ -19,7 +19,7 @@ const scripts = [
     './js/advanced-connect-modal.js',
     './shared/place-order.js',
     './js/place-order-summary.js',
-    './js/deposit-transfer-modal.js',
+    './js/deposit-withdraw-modal.js',
 ];
 
 function loadScriptsSequentially(files, callback) {
