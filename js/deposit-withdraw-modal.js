@@ -7,6 +7,7 @@ function loadDepositWithdrawModal() {
             const btn = document.getElementById("openDepositWithdrawModalBtn");
             if (btn) {
                 btn.addEventListener("click", () => {
+                    resetModalViews();
                     const modal = new bootstrap.Modal(document.getElementById("depositWithdrawModal"));
                     modal.show();
                 });
@@ -18,14 +19,24 @@ function loadDepositWithdrawModal() {
                 btn?.classList.remove("d-none");
             }
 
-            // Placeholder akcije
-            document.addEventListener("click", e => {
-                if (e.target.id === "chooseDeposit") {
-                    console.log("Deposit clicked");
-                    // Ovdje možeš otvoriti novi modal ili prikazati formu
-                } else if (e.target.id === "chooseWithdraw") {
-                    console.log("Withdraw clicked");
+            document.addEventListener("click", (e) => {
+                if (e.target.closest("#chooseDeposit")) {
+                    showView("deposit");
+                } else if (e.target.closest("#chooseWithdraw")) {
+                    showView("withdraw");
                 }
             });
         });
+}
+
+function resetModalViews() {
+    document.getElementById("depositWithdrawSelection")?.classList.remove("d-none");
+    document.getElementById("depositView")?.classList.add("d-none");
+    document.getElementById("withdrawView")?.classList.add("d-none");
+}
+
+function showView(type) {
+    document.getElementById("depositWithdrawSelection")?.classList.add("d-none");
+    document.getElementById("depositView")?.classList.toggle("d-none", type !== "deposit");
+    document.getElementById("withdrawView")?.classList.toggle("d-none", type !== "withdraw");
 }

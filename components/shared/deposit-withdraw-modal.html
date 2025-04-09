@@ -6,28 +6,101 @@
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body pt-2">
-                <p class="text-white-50 small mb-4">
-                    Choose the type of transaction and start moving your funds in or out Lending Platform.
-                </p>
+                <!-- Initial selection screen -->
+                <div id="depositWithdrawSelection">
+                    <p class="text-white-50 small mb-4">
+                        Choose the type of transaction and start moving your funds in or out Lending Platform.
+                    </p>
+                    <div class="d-flex gap-3 flex-column flex-md-row">
+                        <button id="chooseDeposit" class="wallet-option flex-fill">
+                            <div class="wallet-icon-circle deposit-circle mb-2">
+                                <i class="bi bi-arrow-down-circle text-primary fs-3"></i>
+                            </div>
+                            <div class="text-white">Deposit</div>
+                            <small class="text-white-50 mt-2">Bring funds to Lending Platform</small>
+                        </button>
 
-                <div class="d-flex gap-3 flex-column flex-md-row">
-                    <button id="chooseDeposit" class="wallet-option flex-fill">
-                        <div class="wallet-icon-circle deposit-circle mb-2">
-                            <i class="bi bi-arrow-down-circle text-primary fs-3"></i>
-                        </div>
-                        <div class="text-white">Deposit</div>
-                        <small class="text-white-50 mt-2">Bring funds to Lending Platform</small>
-                    </button>
+                        <button id="chooseWithdraw" class="wallet-option flex-fill">
+                            <div class="wallet-icon-circle withdraw-circle mb-2">
+                                <i class="bi bi-arrow-up-circle text-success fs-3"></i>
+                            </div>
+                            <div class="text-white">Withdraw</div>
+                            <small class="text-white-50 mt-2">Move funds out Lending Platform</small>
+                        </button>
+                    </div>
+                </div>
 
-                    <button id="chooseWithdraw" class="wallet-option flex-fill">
-                        <div class="wallet-icon-circle withdraw-circle mb-2">
-                            <i class="bi bi-arrow-up-circle text-success fs-3"></i>
-                        </div>
-                        <div class="text-white">Withdraw</div>
-                        <small class="text-white-50 mt-2">Move funds out Lending Platform</small>
-                    </button>
+                <!-- Deposit view -->
+                <div id="depositView" class="d-none">
+                    <h5 class="text-light mt-3 mb-2">Deposit funds from your wallet</h5>
+                    <p class="text-white-50 small mb-3">
+                        Select the currency you would like to transfer from, then enter the amount and confirm the
+                        transaction.
+                    </p>
+
+                    <!--                    <label class="form-label text-white-50 mb-2">Select currency</label>-->
+                    <!--                    <div class="d-flex gap-2 mb-3">-->
+                    <!--                        <button class="btn-radio-block flex-fill">Bitcoin<br><small class="text-white-50">BTC ⇔-->
+                    <!--                            mRBTC</small></button>-->
+                    <!--                        <button class="btn-radio-block flex-fill">RBTC<br><small class="text-white-50">0.00-->
+                    <!--                            mRBTC</small></button>-->
+                    <!--                        <button class="btn-radio-block flex-fill">Ether<br><small class="text-white-50">0.00-->
+                    <!--                            mETH</small></button>-->
+                    <!--                    </div>-->
+
+                    <label class="form-label text-white-50 mb-2">Amount to transfer</label>
+                    <input type="number" class="form-control order-input mb-3 text-white" placeholder="1.000"/>
+
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-outline-light w-50" data-bs-dismiss="modal">Cancel</button>
+                        <button class="btn btn-primary w-50">Transfer now</button>
+                    </div>
+
+                    <p class="text-white-50 small mt-3">
+                        <strong>Tip</strong>: You need to have enough funds in your wallet to cover the network
+                        transaction fees. Please note that these fees fluctuate significantly depending on network
+                        conditions.
+                    </p>
+                </div>
+
+                <!-- Withdraw view -->
+                <div id="withdrawView" class="d-none">
+                    <h5 class="text-light mt-3 mb-2">Withdraw from Lending Platform</h5>
+                    <p class="text-white-50 small mb-3">
+                        Select the currency and amount to withdraw to your wallet.
+                    </p>
+
+                    <!--                    <label class="form-label text-white-50 mb-2">Select currency</label>-->
+                    <!--                    <div class="d-flex gap-2 mb-3">-->
+                    <!--                        <button class="btn-radio-block flex-fill">Ether<br><small class="text-white-50">0.00-->
+                    <!--                            mETH</small></button>-->
+                    <!--                        <button class="btn-radio-block flex-fill">WBTC<br><small class="text-white-50">0.00-->
+                    <!--                            mWBTC</small></button>-->
+                    <!--                        <button class="btn-radio-block flex-fill">RBTC<br><small class="text-white-50">1.00-->
+                    <!--                            mRBTC</small></button>-->
+                    <!--                        <button class="btn-radio-block flex-fill">BTC<br><small class="text-white-50">1.00 mRBTC</small>-->
+                    <!--                        </button>-->
+                    <!--                    </div>-->
+
+                    <label class="form-label text-white-50 mb-2">Blockchain address</label>
+                    <input type="text" class="form-control mb-3 text-white input-primary" placeholder="0x123123..." readonly/>
+
+                    <label class="form-label text-white-50 mb-2">Amount to withdraw</label>
+                    <input type="number" class="form-control order-input mb-3 text-white" placeholder="1.000"/>
+
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-outline-light w-50" data-bs-dismiss="modal">Cancel</button>
+                        <button class="btn btn-success w-50">Withdraw now</button>
+                    </div>
+
+                    <p class="text-white-50 small mt-3">
+                        <strong>Tip</strong>: You need to have enough coins in your wallet to cover the network
+                        transaction fees. Please note that these fees fluctuate significantly depending on network
+                        conditions
+                    </p>
                 </div>
             </div>
+
         </div>
     </div>
 </div>
