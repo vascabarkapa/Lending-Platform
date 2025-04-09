@@ -13,7 +13,7 @@ const scripts = [
     './shared/globals.js',
     './shared/get-user-settings.js',
     './shared/get-lending-info.js',
-    './js/dashboard-lending.js',
+    './js/dashboard-lending-info.js',
     './shared/toast.js',
     './js/dashboard.js',
     './js/advanced-connect-modal.js',
