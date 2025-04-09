@@ -38,6 +38,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (typeof loadWalletInfoModal === 'function') loadWalletInfoModal();
         if (typeof loadWalletSelectModal === 'function') loadWalletSelectModal();
         if (typeof loadSettingsModal === 'function') loadSettingsModal();
-        if (typeof loadDepositTransferModal === 'function') loadDepositTransferModal();
+        if (typeof loadDepositWithdrawModal === 'function') loadDepositWithdrawModal();
     });
 });

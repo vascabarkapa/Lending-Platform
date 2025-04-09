@@ -1,4 +1,4 @@
-function loadDepositTransferModal() {
+function loadDepositWithdrawModal() {
     fetch('./components/shared/deposit-withdraw-modal.html')
         .then(res => res.text())
         .then(html => {
