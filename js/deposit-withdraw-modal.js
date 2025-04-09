@@ -39,4 +39,14 @@ function showView(type) {
     document.getElementById("depositWithdrawSelection")?.classList.add("d-none");
     document.getElementById("depositView")?.classList.toggle("d-none", type !== "deposit");
     document.getElementById("withdrawView")?.classList.toggle("d-none", type !== "withdraw");
+
+    if (type === "withdraw") {
+        const user = LocalStorage.getItem("walletUser");
+        if (user?.address) {
+            const addressInput = document.getElementById("withdrawAddressInput");
+            if (addressInput) {
+                addressInput.value = user.address;
+            }
+        }
+    }
 }

@@ -49,7 +49,7 @@
                     <!--                    </div>-->
 
                     <label class="form-label text-white-50 mb-2">Amount to transfer</label>
-                    <input type="number" class="form-control order-input mb-3 text-white" placeholder="1.000"/>
+                    <input type="number" class="form-control input-primary mb-3 text-white" placeholder="1.000"/>
 
                     <div class="d-flex gap-2">
                         <button class="btn btn-outline-light w-50" data-bs-dismiss="modal">Cancel</button>
@@ -83,10 +83,13 @@
                     <!--                    </div>-->
 
                     <label class="form-label text-white-50 mb-2">Blockchain address</label>
-                    <input type="text" class="form-control mb-3 text-white input-primary" placeholder="0x123123..." readonly/>
+                    <input type="text" id="withdrawAddressInput"
+                           class="form-control mb-3 text-white input-primary withdraw-input" placeholder="0x123123..."
+                           readonly/>
 
                     <label class="form-label text-white-50 mb-2">Amount to withdraw</label>
-                    <input type="number" class="form-control order-input mb-3 text-white" placeholder="1.000"/>
+                    <input type="number" class="form-control input-primary mb-3 text-white withdraw-input"
+                           placeholder="1.000"/>
 
                     <div class="d-flex gap-2">
                         <button class="btn btn-outline-light w-50" data-bs-dismiss="modal">Cancel</button>

@@ -324,6 +324,17 @@ footer {
     border: 1px solid #2f80ed !important;
 }
 
+.withdraw-input:focus,
+.withdraw-input:active,
+.withdraw-input:focus-visible,
+.withdraw-input:focus,
+.withdraw-input:active,
+.withdraw-input:focus-visible {
+    outline: none;
+    box-shadow: none;
+    border: 1px solid #198754 !important;
+}
+
 /*----- LENDING INFO -----*/
 #lendingInfoCard {
     background-color: #18181b80;
