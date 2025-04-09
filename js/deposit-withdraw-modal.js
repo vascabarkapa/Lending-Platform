@@ -1,4 +1,9 @@
 function loadDepositWithdrawModal() {
+    const user = LocalStorage.getItem("walletUser");
+    const userId = LocalStorage.getItem("userID");
+
+    if (!user || !userId) return;
+
     fetch('./components/shared/deposit-withdraw-modal.html')
         .then(res => res.text())
         .then(html => {
@@ -13,12 +18,7 @@ function loadDepositWithdrawModal() {
                     const modal = new bootstrap.Modal(modalEl);
                     modal.show();
                 });
-            }
-
-            const user = LocalStorage.getItem("walletUser");
-            const userId = LocalStorage.getItem("userID");
-            if (user && userId) {
-                btn?.classList.remove("d-none");
+                btn.classList.remove("d-none");
             }
 
             document.addEventListener("click", (e) => {
@@ -32,8 +32,6 @@ function loadDepositWithdrawModal() {
             // Reset modal inputs & views on close
             modalEl.addEventListener("hidden.bs.modal", () => {
                 resetModalViews();
-
-                // Clear all input fields
                 modalEl.querySelectorAll("input").forEach(input => {
                     input.value = "";
                 });
