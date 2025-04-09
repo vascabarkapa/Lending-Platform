@@ -19,6 +19,7 @@ const scripts = [
     './js/advanced-connect-modal.js',
     './shared/place-order.js',
     './js/place-order-summary.js',
+    './js/deposit-withdraw-modal.js',
 ];
 
 function loadScriptsSequentially(files, callback) {
@@ -37,5 +38,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (typeof loadWalletInfoModal === 'function') loadWalletInfoModal();
         if (typeof loadWalletSelectModal === 'function') loadWalletSelectModal();
         if (typeof loadSettingsModal === 'function') loadSettingsModal();
+        if (typeof loadDepositWithdrawModal === 'function') loadDepositWithdrawModal();
     });
 });

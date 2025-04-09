@@ -68,6 +68,7 @@ async function connectMetaMask(successShouldCloseModal = false) {
         const res = await fetch('./components/home/dashboard.html');
         const html = await res.text();
         document.getElementById("page-content").innerHTML = html;
+        loadDepositWithdrawModal();
         initPlaceOrderForm();
 
     } catch (err) {
