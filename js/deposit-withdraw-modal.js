@@ -76,17 +76,20 @@ function handleWithdrawCurrencySelection() {
             const addressLabel = document.getElementById("withdrawAddressLabel");
             const addressInput = document.getElementById("withdrawAddressInput");
             const tipText = document.getElementById("withdrawTip");
+            const currency = document.getElementById("currentWithdrawCurrency");
 
             if (selectedCurrency === "RBTC") {
                 addressLabel.textContent = "Blockchain address";
                 addressInput.placeholder = "0x123123...";
                 addressInput.value = LocalStorage.getItem("walletUser")?.address || "";
                 tipText.innerHTML = `<strong>Tip</strong>: You need to have enough RBTC in your wallet to cover the network transaction costs. Please note that these prices fluctuate a lot according to network conditions.`;
+                currency.innerHTML = "mRBTC";
             } else if (selectedCurrency === "BTC") {
                 addressLabel.textContent = "Bitcoin Address";
                 addressInput.placeholder = "bc1...";
                 addressInput.value = "";
                 tipText.innerHTML = `The <strong>Fees</strong> charged withdrawing to Bitcoin is <strong>0.1 mBTC</strong>.`;
+                currency.innerHTML = "mBTC";
             }
         });
     });

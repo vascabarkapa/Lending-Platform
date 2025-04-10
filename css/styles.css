@@ -498,3 +498,10 @@ input[type=number] {
     border-left: 3px solid #2f80ed;
     background-color: #0a0f1a;
 }
+
+.input-group-text {
+    background-color: #121212;
+    border: 1px solid rgb(39 39 42);
+    color: #cbd5e1;
+    font-weight: 500;
+}

@@ -60,7 +60,10 @@
                     </div>
 
                     <label class="form-label text-white-50 mb-2">Amount to Transfer</label>
-                    <input type="number" class="form-control input-primary mb-2 text-white" placeholder="1.000" />
+                    <div class="input-group mb-2">
+                        <input type="number" class="form-control input-primary text-white border-end-0" placeholder="1.000" />
+                        <span class="input-group-text text-white text-xs border-dark border-start-0">mBTC</span>
+                    </div>
                     <div class="text-danger fw-bold text-xs mb-3">
                         WARNING: Do not overpay or underpay and do not send from an exchange unless you are sure you
                         receive the exact amount!
@@ -144,8 +147,10 @@
                            class="form-control mb-3 text-white input-primary withdraw-input" placeholder="0x123123..."/>
 
                     <label class="form-label text-white-50 mb-2">Amount to withdraw</label>
-                    <input type="number" class="form-control input-primary mb-3 text-white withdraw-input"
-                           placeholder="1.000"/>
+                    <div class="input-group mb-2">
+                        <input type="number" class="form-control input-primary text-white border-end-0" placeholder="1.000" />
+                        <span id="currentWithdrawCurrency" class="input-group-text text-white text-xs border-dark border-start-0"></span>
+                    </div>
 
                     <div class="d-flex gap-2 mt-4">
                         <button class="btn btn-outline-light w-50" data-bs-dismiss="modal">Cancel</button>
