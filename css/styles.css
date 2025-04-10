@@ -204,7 +204,6 @@ footer {
 }
 
 .wallet-option:hover {
-    background-color: #222;
     border-color: #444;
 }
 
@@ -373,6 +372,7 @@ input[type=number] {
 
 /*----- DEPOSIT / WITHDRAW MODAL -----*/
 
+
 .wallet-icon-circle {
     width: 60px;
     height: 60px;
@@ -392,12 +392,12 @@ input[type=number] {
 
 #chooseDeposit:hover {
     border-color: #2f80ed;
-    box-shadow: 0 0 0 1px #2f80ed;
+    background-color: rgba(47, 128, 237, 0.1);
 }
 
 #chooseWithdraw:hover {
     border-color: #27ae60;
-    box-shadow: 0 0 0 1px #27ae60;
+    background-color: rgba(39, 174, 96, 0.1);
 }
 
 .withdraw-input:focus,
