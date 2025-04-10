@@ -6,6 +6,7 @@
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body pt-2">
+
                 <!-- Initial selection screen -->
                 <div id="depositWithdrawSelection">
                     <p class="text-white-50 small mb-4">
@@ -34,75 +35,142 @@
                 <div id="depositView" class="d-none">
                     <h5 class="text-light mt-3 mb-2">Deposit funds from your wallet</h5>
                     <p class="text-white-50 small mb-4">
-                        Add funds to your account by completing the deposit below.
+                        Select the currency you would like to transfer from, then enter the amount and confirm the
+                        transaction.
                     </p>
 
-                    <!--                    <label class="form-label text-white-50 mb-2">Select currency</label>-->
-                    <!--                    <div class="d-flex gap-2 mb-3">-->
-                    <!--                        <button class="btn-radio-block flex-fill">Bitcoin<br><small class="text-white-50">BTC ⇔-->
-                    <!--                            mRBTC</small></button>-->
-                    <!--                        <button class="btn-radio-block flex-fill">RBTC<br><small class="text-white-50">0.00-->
-                    <!--                            mRBTC</small></button>-->
-                    <!--                        <button class="btn-radio-block flex-fill">Ether<br><small class="text-white-50">0.00-->
-                    <!--                            mETH</small></button>-->
-                    <!--                    </div>-->
-
-                    <label class="form-label text-white-50 mb-2">Amount to transfer</label>
-                    <input type="number" class="form-control input-primary mb-3 text-white" placeholder="1.000"/>
-
-                    <div class="d-flex gap-2">
-                        <button class="btn btn-outline-light w-50" data-bs-dismiss="modal">Cancel</button>
-                        <button class="btn btn-primary w-50">Transfer now</button>
+                    <label class="form-label text-white-50 mb-2">Select currency</label>
+                    <div class="row g-2 mb-3" id="depositCurrencyOptions">
+                        <div class="col-12 col-md-6">
+                            <button class="btn-deposit-currency deposit-currency-btn w-100" data-currency="Bitcoin"
+                                    id="selectBitcoin">
+                                <div class="currency-icon">
+                                    <i class="bi bi-currency-bitcoin fs-5"></i>
+                                </div>
+                                Bitcoin<br><small class="text-white-50">BTC ⇔ mRBTC</small>
+                            </button>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <button class="btn-deposit-currency deposit-currency-btn w-100" data-currency="depositRBTC"
+                                    disabled id="selectDepositRBTC">
+                                <div class="currency-icon">
+                                    <i class="bi bi-currency-bitcoin fs-5"></i>
+                                </div>
+                                RBTC<br><small class="text-white-50">0.00 mRBTC</small>
+                            </button>
+                        </div>
                     </div>
 
-                    <p class="text-white-50 small mt-3">
-                        <strong>Tip</strong>: You need to have enough funds in your wallet to cover the network
-                        transaction fees. Please note that these fees fluctuate significantly depending on network
-                        conditions.
-                    </p>
+                    <label class="form-label text-white-50 mb-2">Amount to Transfer</label>
+                    <div class="input-group mb-2">
+                        <input type="number" class="form-control input-primary text-white border-end-0"
+                               placeholder="1.000"/>
+                        <span class="input-group-text text-white text-xs border-dark border-start-0">mBTC</span>
+                    </div>
+                    <div class="text-danger fw-bold text-xs mb-3">
+                        WARNING: Do not overpay or underpay and do not send from an exchange unless you are sure you
+                        receive the exact amount!
+                    </div>
+
+                    <div class="row g-2">
+                        <div class="col-12 col-md-6 d-flex flex-column">
+                            <div class="p-3 h-100 rounded-3 d-flex flex-column"
+                                 style="background-color:#0d0d0f; border: 1px solid white;">
+                                <div class="text-white mb-2 small fw-semibold">Bridge BTC to My Account</div>
+                                <div class="text-white-50 text-xs mb-3 flex-grow-1">
+                                    Bridge BTC to RBTC via BTCPayServer and have them directly deposited to your
+                                    Bitcoin-Betting Account.<br>
+                                    (ETA 10min, 0.005mBTC fees)
+                                </div>
+                                <button class="btn btn-primary w-100 mt-auto">Deposit/Bridge <i
+                                        class="bi bi-box-arrow-up-right ms-2 text-xs"></i></button>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-md-6 d-flex flex-column">
+                            <div class="p-3 h-100 rounded-3 d-flex flex-column"
+                                 style="background-color:#0d0d0f; border: 1px solid white;">
+                                <div class="text-white mb-2 small fw-semibold">Bridge BTC to My Wallet</div>
+                                <div class="text-white-50 text-xs mb-3 flex-grow-1">
+                                    Bridge BTC to RBTC via BTCPayServer and have them credited to your Wallet. Deposit
+                                    RBTC later in a separate transaction.<br>
+                                    (ETA 13min, 0.005mBTC fees)
+                                </div>
+                                <button class="btn btn-primary w-100 mt-auto">Deposit/Bridge <i
+                                        class="bi bi-box-arrow-up-right ms-2 text-xs"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <div class="bridge-extra-option p-2">
+                            <div class="text-white fw-semibold">
+                                Bridge BTC via Lightning Network. <i class="bi bi-box-arrow-up-right text-xs ms-1"></i>
+                            </div>
+                            <div class="text-white-50 text-xs mt-1">
+                                Use the Boltz Lightning Exchange to convert your BTC into RBTC. Deposit RBTC later in a
+                                separate transaction. (ETA 5min, 0.25% fees)
+                            </div>
+                        </div>
+
+                        <div class="bridge-extra-option p-2">
+                            <div class="text-white fw-semibold">
+                                Bridge BTC via PowPeg. <i class="bi bi-box-arrow-up-right text-xs ms-1"></i>
+                            </div>
+                            <div class="text-white-50 text-xs mt-1">
+                                Use the trustless PowPeg to bridge BTC to your RBTC Wallet. Deposit RBTC later in a
+                                separate transaction. (ETA 17 hours, 0.002mBTC fees)
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Withdraw view -->
                 <div id="withdrawView" class="d-none">
                     <h5 class="text-light mt-3 mb-2">Withdraw from Lending Platform</h5>
                     <p class="text-white-50 small mb-4">
-                        Complete the withdrawal by specifying the amount below.
+                        Select the currency and amount to withdraw to your wallet.
                     </p>
 
-                    <!--                    <label class="form-label text-white-50 mb-2">Select currency</label>-->
-                    <!--                    <div class="d-flex gap-2 mb-3">-->
-                    <!--                        <button class="btn-radio-block flex-fill">Ether<br><small class="text-white-50">0.00-->
-                    <!--                            mETH</small></button>-->
-                    <!--                        <button class="btn-radio-block flex-fill">WBTC<br><small class="text-white-50">0.00-->
-                    <!--                            mWBTC</small></button>-->
-                    <!--                        <button class="btn-radio-block flex-fill">RBTC<br><small class="text-white-50">1.00-->
-                    <!--                            mRBTC</small></button>-->
-                    <!--                        <button class="btn-radio-block flex-fill">BTC<br><small class="text-white-50">1.00 mRBTC</small>-->
-                    <!--                        </button>-->
-                    <!--                    </div>-->
+                    <label class="form-label text-white-50 mb-2">Select currency</label>
+                    <div class="d-flex gap-2 mb-3" id="withdrawCurrencyOptions">
+                        <button class="btn-withdraw-currency flex-fill withdraw-currency-btn" data-currency="RBTC"
+                                id="selectRBTC">
+                            <div class="currency-icon">
+                                <i class="bi bi-currency-bitcoin fs-5"></i>
+                            </div>
+                            RBTC<br><small class="text-white-50">1.00 mRBTC</small>
+                        </button>
+                        <button class="btn-withdraw-currency flex-fill withdraw-currency-btn" data-currency="BTC"
+                                id="selectBTC">
+                            <div class="currency-icon">
+                                <i class="bi bi-currency-bitcoin fs-5"></i>
+                            </div>
+                            BTC<br><small class="text-white-50">1.00 mRBTC</small>
+                        </button>
+                    </div>
 
-                    <label class="form-label text-white-50 mb-2">Blockchain address</label>
+                    <label class="form-label text-white-50 mb-2" id="withdrawAddressLabel">Blockchain address</label>
                     <input type="text" id="withdrawAddressInput"
-                           class="form-control mb-3 text-white input-primary withdraw-input" placeholder="0x123123..."
-                           readonly/>
+                           class="form-control mb-3 text-white input-primary withdraw-input" placeholder="0x123123..."/>
 
                     <label class="form-label text-white-50 mb-2">Amount to withdraw</label>
-                    <input type="number" class="form-control input-primary mb-3 text-white withdraw-input"
-                           placeholder="1.000"/>
+                    <div class="input-group mb-2">
+                        <input type="number" class="form-control input-primary text-white border-end-0"
+                               placeholder="1.000"/>
+                        <span id="currentWithdrawCurrency"
+                              class="input-group-text text-white text-xs border-dark border-start-0"></span>
+                    </div>
 
-                    <div class="d-flex gap-2">
+                    <div class="d-flex gap-2 mt-4">
                         <button class="btn btn-outline-light w-50" data-bs-dismiss="modal">Cancel</button>
                         <button class="btn btn-success w-50">Withdraw now</button>
                     </div>
 
-                    <p class="text-white-50 small mt-3">
-                        <strong>Tip</strong>: You need to have enough coins in your wallet to cover the network
-                        transaction fees. Please note that these fees fluctuate significantly depending on network
-                        conditions
-                    </p>
+                    <p class="text-white-50 tip mt-3" id="withdrawTip"></p>
                 </div>
-            </div>
 
+            </div>
         </div>
     </div>
 </div>
