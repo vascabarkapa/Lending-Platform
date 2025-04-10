@@ -22,6 +22,10 @@ main {
     width: 15% !important;
 }
 
+.text-xs {
+    font-size: .75rem;
+}
+
 /*----- HEADER -----*/
 .navbar {
     background-color: rgb(9 9 11);
@@ -481,4 +485,16 @@ input[type=number] {
 
 .btn-deposit-currency.active-currency small {
     color: #cbd5e1 !important;
+}
+
+.bridge-extra-option {
+    border-left: 3px solid transparent;
+    background-color: transparent;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.bridge-extra-option:hover {
+    border-left: 3px solid #2f80ed;
+    background-color: #0a0f1a;
 }
