@@ -56,10 +56,10 @@ function showView(type) {
 
     if (type === "withdraw") {
         handleWithdrawCurrencySelection();
-        document.getElementById("selectRBTC")?.click(); // default withdraw: RBTC
+        document.getElementById("selectRBTC")?.click();
     } else if (type === "deposit") {
         handleDepositCurrencySelection();
-        document.getElementById("selectBitcoin")?.click(); // default deposit: Bitcoin
+        document.getElementById("selectBitcoin")?.click();
     }
 }
 
@@ -105,7 +105,6 @@ function handleDepositCurrencySelection() {
             currencyButtons.forEach(b => b.classList.remove("active-currency"));
             btn.classList.add("active-currency");
 
-            // U budućnosti se ovdje može prikazivati dinamička mreža, ruta ili info o fee-u
             // console.log("Selected for deposit:", selectedCurrency);
         });
     });
