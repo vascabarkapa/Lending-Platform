@@ -34,13 +34,34 @@
                 <div id="depositView" class="d-none">
                     <h5 class="text-light mt-3 mb-2">Deposit funds from your wallet</h5>
                     <p class="text-white-50 small mb-4">
-                        Add funds to your account by completing the deposit below.
+                        Select the currency you would like to transfer from, then enter the amount and confirm the
+                        transaction.
                     </p>
+
+                    <div class="d-flex gap-2 mb-3" id="depositCurrencyOptions">
+                        <button class="btn-deposit-currency flex-fill deposit-currency-btn" data-currency="Bitcoin"
+                                id="selectBitcoin">
+                            <div class="currency-icon">
+                                <i class="bi bi-currency-bitcoin fs-5"></i>
+                            </div>
+                            Bitcoin
+                            <br>
+                            <small class="text-white-50">BTC ⇔ mRBTC</small>
+                        </button>
+                        <button class="btn-deposit-currency flex-fill deposit-currency-btn" data-currency="depositRBTC"
+                                disabled id="selectDepositRBTC">
+                            <div class="currency-icon">
+                                <i class="bi bi-currency-bitcoin fs-5"></i>
+                            </div>
+                            RBTC
+                            <br>
+                            <small class="text-white-50">0.00 mRBTC</small></button>
+                    </div>
 
                     <label class="form-label text-white-50 mb-2">Amount to transfer</label>
                     <input type="number" class="form-control input-primary mb-3 text-white" placeholder="1.000"/>
 
-                    <div class="d-flex gap-2">
+                    <div class="d-flex gap-2 mt-4">
                         <button class="btn btn-outline-light w-50" data-bs-dismiss="modal">Cancel</button>
                         <button class="btn btn-primary w-50">Transfer now</button>
                     </div>

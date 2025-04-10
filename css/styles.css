@@ -452,3 +452,33 @@ input[type=number] {
 .tip {
     font-size: .675em;
 }
+
+.btn-deposit-currency {
+    background-color: transparent;
+    padding: 0.5rem;
+    border-radius: 12px;
+    text-align: center;
+    color: #fff;
+    transition: all 0.2s ease;
+    font-family: inherit;
+    border: 1px solid rgb(39 39 42);
+}
+
+.btn-deposit-currency small {
+    color: #cbd5e1;
+}
+
+.btn-deposit-currency:hover:not(.active-currency) {
+    border-color: #2f80ed;
+    cursor: pointer;
+}
+
+.btn-deposit-currency.active-currency {
+    background-color: #0a1024;
+    color: #2f80ed;
+    border-color: #2f80ed;
+}
+
+.btn-deposit-currency.active-currency small {
+    color: #cbd5e1 !important;
+}

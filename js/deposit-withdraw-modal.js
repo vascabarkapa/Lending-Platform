@@ -31,9 +31,7 @@ function loadDepositWithdrawModal() {
 
             modalEl.addEventListener("hidden.bs.modal", () => {
                 resetModalViews();
-                modalEl.querySelectorAll("input").forEach(input => {
-                    input.value = "";
-                });
+                modalEl.querySelectorAll("input").forEach(input => input.value = "");
                 clearCurrencySelection();
             });
         });
@@ -46,8 +44,9 @@ function resetModalViews() {
 }
 
 function clearCurrencySelection() {
-    const currencyButtons = document.querySelectorAll(".withdraw-currency-btn");
-    currencyButtons.forEach(btn => btn.classList.remove("active-currency"));
+    document.querySelectorAll(".withdraw-currency-btn, .deposit-currency-btn").forEach(btn =>
+        btn.classList.remove("active-currency")
+    );
 }
 
 function showView(type) {
@@ -56,12 +55,15 @@ function showView(type) {
     document.getElementById("withdrawView")?.classList.toggle("d-none", type !== "withdraw");
 
     if (type === "withdraw") {
-        handleCurrencySelection();
-        document.getElementById("selectRBTC")?.click(); // default selekcija
+        handleWithdrawCurrencySelection();
+        document.getElementById("selectRBTC")?.click(); // default withdraw: RBTC
+    } else if (type === "deposit") {
+        handleDepositCurrencySelection();
+        document.getElementById("selectBitcoin")?.click(); // default deposit: Bitcoin
     }
 }
 
-function handleCurrencySelection() {
+function handleWithdrawCurrencySelection() {
     const currencyButtons = document.querySelectorAll(".withdraw-currency-btn");
 
     currencyButtons.forEach(btn => {
@@ -79,15 +81,29 @@ function handleCurrencySelection() {
                 addressLabel.textContent = "Blockchain address";
                 addressInput.placeholder = "0x123123...";
                 addressInput.value = LocalStorage.getItem("walletUser")?.address || "";
-
                 tipText.innerHTML = `<strong>Tip</strong>: You need to have enough RBTC in your wallet to cover the network transaction costs. Please note that these prices fluctuate a lot according to network conditions.`;
             } else if (selectedCurrency === "BTC") {
                 addressLabel.textContent = "Bitcoin Address";
                 addressInput.placeholder = "bc1...";
                 addressInput.value = "";
-
                 tipText.innerHTML = `The <strong>Fees</strong> charged withdrawing to Bitcoin is <strong>0.1 mBTC</strong>.`;
             }
+        });
+    });
+}
+
+function handleDepositCurrencySelection() {
+    const currencyButtons = document.querySelectorAll(".deposit-currency-btn");
+
+    currencyButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const selectedCurrency = btn.dataset.currency;
+
+            currencyButtons.forEach(b => b.classList.remove("active-currency"));
+            btn.classList.add("active-currency");
+
+            // U budućnosti se ovdje može prikazivati dinamička mreža, ruta ili info o fee-u
+            // console.log("Selected for deposit:", selectedCurrency);
         });
     });
 }
