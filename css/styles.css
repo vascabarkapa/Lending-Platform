@@ -445,6 +445,23 @@ input[type=number] {
     color: #cbd5e1 !important;
 }
 
+.btn-withdraw-currency:disabled,
+.btn-withdraw-currency[disabled] {
+    border-color: #2a2a2a;
+    color: #555 !important;
+    cursor: not-allowed;
+}
+
+.btn-withdraw-currency:disabled small,
+.btn-withdraw-currency[disabled] small {
+    color: #444 !important;
+}
+
+.btn-withdraw-currency:disabled:hover,
+.btn-withdraw-currency[disabled]:hover {
+    border-color: #2a2a2a;
+}
+
 #selectRBTC.active-currency {
     border-color: #27ae60;
 }
@@ -485,6 +502,23 @@ input[type=number] {
 
 .btn-deposit-currency.active-currency small {
     color: #cbd5e1 !important;
+}
+
+.btn-deposit-currency:disabled,
+.btn-deposit-currency[disabled] {
+    border-color: #2a2a2a;
+    color: #555 !important;
+    cursor: not-allowed;
+}
+
+.btn-deposit-currency:disabled small,
+.btn-deposit-currency[disabled] small {
+    color: #444 !important;
+}
+
+.btn-deposit-currency:disabled:hover,
+.btn-deposit-currency[disabled]:hover {
+    border-color: #2a2a2a;
 }
 
 .bridge-extra-option {
