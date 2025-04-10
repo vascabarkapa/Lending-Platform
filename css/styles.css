@@ -249,33 +249,6 @@ footer {
     border-color: #3b99fc;
 }
 
-.wallet-icon-circle {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.deposit-circle {
-    background: radial-gradient(circle at center, #1b2d4b 0%, #0a0f1a 100%);
-}
-
-.withdraw-circle {
-    background: radial-gradient(circle at center, #10352e 0%, #0b1c19 100%);
-}
-
-#chooseDeposit:hover {
-    border-color: #2f80ed;
-    box-shadow: 0 0 0 1px #2f80ed;
-}
-
-#chooseWithdraw:hover {
-    border-color: #27ae60;
-    box-shadow: 0 0 0 1px #27ae60;
-}
-
 .currency-section {
     background-color: #121212;
     padding: 12px 16px;
@@ -322,17 +295,6 @@ footer {
     outline: none;
     box-shadow: none;
     border: 1px solid #2f80ed !important;
-}
-
-.withdraw-input:focus,
-.withdraw-input:active,
-.withdraw-input:focus-visible,
-.withdraw-input:focus,
-.withdraw-input:active,
-.withdraw-input:focus-visible {
-    outline: none;
-    box-shadow: none;
-    border: 1px solid #198754 !important;
 }
 
 /*----- LENDING INFO -----*/
@@ -407,4 +369,86 @@ input[type=number] {
 
 .btn-check:checked + .btn-radio-block:hover {
     border-color: #2f80ed;
+}
+
+/*----- DEPOSIT / WITHDRAW MODAL -----*/
+
+.wallet-icon-circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.deposit-circle {
+    background: radial-gradient(circle at center, #1b2d4b 0%, #0a0f1a 100%);
+}
+
+.withdraw-circle {
+    background: radial-gradient(circle at center, #10352e 0%, #0b1c19 100%);
+}
+
+#chooseDeposit:hover {
+    border-color: #2f80ed;
+    box-shadow: 0 0 0 1px #2f80ed;
+}
+
+#chooseWithdraw:hover {
+    border-color: #27ae60;
+    box-shadow: 0 0 0 1px #27ae60;
+}
+
+.withdraw-input:focus,
+.withdraw-input:active,
+.withdraw-input:focus-visible,
+.withdraw-input:focus,
+.withdraw-input:active,
+.withdraw-input:focus-visible {
+    outline: none;
+    box-shadow: none;
+    border: 1px solid #198754 !important;
+}
+
+.btn-withdraw-currency {
+    background-color: transparent;
+    padding: 0.5rem;
+    border-radius: 12px;
+    text-align: center;
+    color: #fff;
+    transition: all 0.2s ease;
+    font-family: inherit;
+    border: 1px solid rgb(39 39 42);
+}
+
+.btn-withdraw-currency small {
+    color: #cbd5e1;
+}
+
+.btn-withdraw-currency:hover:not(.active-currency) {
+    border-color: #27ae60;
+    cursor: pointer;
+}
+
+.btn-withdraw-currency.active-currency {
+    background-color: #07130f;
+    color: #27ae60;
+    border-color: #27ae60;
+}
+
+.btn-withdraw-currency.active-currency small {
+    color: #cbd5e1 !important;
+}
+
+#selectRBTC.active-currency {
+    border-color: #27ae60;
+}
+
+#selectBTC.active-currency {
+    border-color: #27ae60;
+}
+
+.tip {
+    font-size: .675em;
 }
