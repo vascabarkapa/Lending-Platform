@@ -29,12 +29,12 @@ function loadDepositWithdrawModal() {
                 }
             });
 
-            // Reset modal inputs & views on close
             modalEl.addEventListener("hidden.bs.modal", () => {
                 resetModalViews();
                 modalEl.querySelectorAll("input").forEach(input => {
                     input.value = "";
                 });
+                clearCurrencySelection();
             });
         });
 }
@@ -45,18 +45,49 @@ function resetModalViews() {
     document.getElementById("withdrawView")?.classList.add("d-none");
 }
 
+function clearCurrencySelection() {
+    const currencyButtons = document.querySelectorAll(".withdraw-currency-btn");
+    currencyButtons.forEach(btn => btn.classList.remove("active-currency"));
+}
+
 function showView(type) {
     document.getElementById("depositWithdrawSelection")?.classList.add("d-none");
     document.getElementById("depositView")?.classList.toggle("d-none", type !== "deposit");
     document.getElementById("withdrawView")?.classList.toggle("d-none", type !== "withdraw");
 
     if (type === "withdraw") {
-        const user = LocalStorage.getItem("walletUser");
-        if (user?.address) {
-            const addressInput = document.getElementById("withdrawAddressInput");
-            if (addressInput) {
-                addressInput.value = user.address;
-            }
-        }
+        handleCurrencySelection();
+        document.getElementById("selectRBTC")?.click(); // default selekcija
     }
+}
+
+function handleCurrencySelection() {
+    const currencyButtons = document.querySelectorAll(".withdraw-currency-btn");
+
+    currencyButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const selectedCurrency = btn.dataset.currency;
+
+            currencyButtons.forEach(b => b.classList.remove("active-currency"));
+            btn.classList.add("active-currency");
+
+            const addressLabel = document.getElementById("withdrawAddressLabel");
+            const addressInput = document.getElementById("withdrawAddressInput");
+            const tipText = document.getElementById("withdrawTip");
+
+            if (selectedCurrency === "RBTC") {
+                addressLabel.textContent = "Blockchain address";
+                addressInput.placeholder = "0x123123...";
+                addressInput.value = LocalStorage.getItem("walletUser")?.address || "";
+
+                tipText.innerHTML = `<strong>Tip</strong>: You need to have enough RBTC in your wallet to cover the network transaction costs. Please note that these prices fluctuate a lot according to network conditions.`;
+            } else if (selectedCurrency === "BTC") {
+                addressLabel.textContent = "Bitcoin Address";
+                addressInput.placeholder = "bc1...";
+                addressInput.value = "";
+
+                tipText.innerHTML = `The <strong>Fees</strong> charged withdrawing to Bitcoin is <strong>0.1 mBTC</strong>.`;
+            }
+        });
+    });
 }
