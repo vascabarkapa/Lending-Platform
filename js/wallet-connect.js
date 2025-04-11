@@ -69,7 +69,7 @@ async function connectMetaMask(successShouldCloseModal = false) {
         const html = await res.text();
         document.getElementById("page-content").innerHTML = html;
         loadDepositWithdrawModal();
-        initPlaceOrderForm();
+        //initPlaceOrderForm();
 
     } catch (err) {
         console.error("Wallet connect error:", err);
@@ -151,7 +151,7 @@ async function connectWalletConnect() {
         const html = await res.text();
         document.getElementById("page-content").innerHTML = html;
         renderDashboardBalances();
-        initPlaceOrderForm();
+        //initPlaceOrderForm();
 
     } catch (err) {
         console.error("WalletConnect error:", err);
