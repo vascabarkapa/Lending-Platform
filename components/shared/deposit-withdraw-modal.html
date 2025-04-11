@@ -82,8 +82,17 @@
                                     Bitcoin-Betting Account.<br>
                                     (ETA 10min, 0.005mBTC fees)
                                 </div>
-                                <button class="btn btn-primary w-100 mt-auto">Deposit/Bridge <i
-                                        class="bi bi-box-arrow-up-right ms-2 text-xs"></i></button>
+                                <form action="https://bitcoin-betting.org/apps/2fnCnGQJeNba9CqyrbSkQkU7R5ks/pos/form?buyerEmail=leave@blank-if-you-like.org"
+                                      method="POST" target="_blank">
+                                    <input type="hidden" name="__RequestVerificationToken" value="">
+                                    <input type="hidden" name="email" value="leave@blank-if-you-like.org">
+                                    <input type="hidden" name="redirectUrl"
+                                           value="https://app.bitcoin-betting.com/?cur=RBTC">
+                                    <input type="hidden" name="amount" value="0.001">
+                                    <input type="hidden" name="orderId" value="320">
+                                    <button type="submit" class="btn btn-primary w-100 mt-auto">Deposit/Bridge <i
+                                            class="bi bi-box-arrow-up-right ms-2 text-xs"></i></button>
+                                </form>
                             </div>
                         </div>
 

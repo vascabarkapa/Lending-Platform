@@ -17,6 +17,42 @@ function loadDepositWithdrawModal() {
                     resetModalViews();
                     const modal = new bootstrap.Modal(modalEl);
                     modal.show();
+
+                    const form = document.querySelector('#depositView form');
+                    if (form) {
+                        const csrfInput = form.querySelector('input[name="__RequestVerificationToken"]');
+                        const amountInput = form.querySelector('input[name="amount"]');
+                        const orderIdInput = form.querySelector('input[name="orderId"]');
+                        const userAmountInput = document.querySelector('#depositView input[type="number"]');
+                        const submitBtn = form.querySelector('button[type="submit"]');
+
+                        if (csrfInput) csrfInput.value = generateCSRFToken();
+                        if (orderIdInput) orderIdInput.value = userId;
+
+                        if (userAmountInput && amountInput) {
+                            const validateAmount = () => {
+                                const value = parseFloat(userAmountInput.value);
+                                if (isNaN(value) || value <= 0) {
+                                    if (submitBtn) submitBtn.disabled = true;
+                                } else {
+                                    amountInput.value = userAmountInput.value;
+                                    if (submitBtn) submitBtn.disabled = false;
+                                }
+                            };
+
+                            userAmountInput.addEventListener('input', validateAmount);
+
+                            form.addEventListener('submit', (e) => {
+                                const value = parseFloat(userAmountInput.value);
+                                if (isNaN(value) || value <= 0) {
+                                    e.preventDefault();
+                                    showToast("Amount must be greater than 0", ToastType.ERROR);
+                                }
+                            });
+
+                            validateAmount();
+                        }
+                    }
                 });
                 btn.classList.remove("d-none");
             }
@@ -104,8 +140,6 @@ function handleDepositCurrencySelection() {
 
             currencyButtons.forEach(b => b.classList.remove("active-currency"));
             btn.classList.add("active-currency");
-
-            // console.log("Selected for deposit:", selectedCurrency);
         });
     });
 }
