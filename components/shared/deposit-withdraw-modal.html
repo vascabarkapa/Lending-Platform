@@ -96,81 +96,90 @@
                                     RBTC later in a separate transaction.<br>
                                     (ETA 13min, 0.005mBTC fees)
                                 </div>
-                                <button class="btn btn-primary w-100 mt-auto">Deposit/Bridge <i
+                                <button disabled class="btn btn-primary w-100 mt-auto">Deposit/Bridge <i
                                         class="bi bi-box-arrow-up-right ms-2 text-xs"></i></button>
                             </div>
                         </div>
                     </div>
 
                     <div class="mt-4">
-                        <div class="bridge-extra-option p-2">
-                            <div class="text-white fw-semibold">
-                                Bridge BTC via Lightning Network. <i class="bi bi-box-arrow-up-right text-xs ms-1"></i>
+                        <a href="https://boltz.exchange/" target="_blank" rel="noopener noreferrer"
+                           class="text-decoration-none">
+                            <div class="bridge-extra-option p-2">
+                                <div class="text-white fw-semibold">
+                                    Bridge BTC via Lightning Network. <i
+                                        class="bi bi-box-arrow-up-right text-xs ms-1"></i>
+                                </div>
+                                <div class="text-white-50 text-xs mt-1">
+                                    Use the Boltz Lightning Exchange to convert your BTC into RBTC. Deposit RBTC later
+                                    in a
+                                    separate transaction. (ETA 5min, 0.25% fees)
+                                </div>
                             </div>
-                            <div class="text-white-50 text-xs mt-1">
-                                Use the Boltz Lightning Exchange to convert your BTC into RBTC. Deposit RBTC later in a
-                                separate transaction. (ETA 5min, 0.25% fees)
+                        </a>
+
+                        <a href="https://powpeg.rootstock.io/" target="_blank" rel="noopener noreferrer"
+                           class="text-decoration-none">
+                            <div class="bridge-extra-option p-2">
+                                <div class="text-white fw-semibold">
+                                    Bridge BTC via PowPeg. <i class="bi bi-box-arrow-up-right text-xs ms-1"></i>
+                                </div>
+                                <div class="text-white-50 text-xs mt-1">
+                                    Use the trustless PowPeg to bridge BTC to your RBTC Wallet. Deposit RBTC later in a
+                                    separate transaction. (ETA 17 hours, 0.002mBTC fees)
+                                </div>
                             </div>
+                        </a>
+                    </div>
+
+                    <!-- Withdraw view -->
+                    <div id="withdrawView" class="d-none">
+                        <h5 class="text-light mt-3 mb-2">Withdraw from Lending Platform</h5>
+                        <p class="text-white-50 small mb-4">
+                            Select the currency and amount to withdraw to your wallet.
+                        </p>
+
+                        <label class="form-label text-white-50 mb-2">Select currency</label>
+                        <div class="d-flex gap-2 mb-3" id="withdrawCurrencyOptions">
+                            <button class="btn-withdraw-currency flex-fill withdraw-currency-btn" data-currency="RBTC"
+                                    id="selectRBTC">
+                                <div class="currency-icon">
+                                    <i class="bi bi-currency-bitcoin fs-5"></i>
+                                </div>
+                                RBTC<br><small class="text-white-50">1.00 mRBTC</small>
+                            </button>
+                            <button class="btn-withdraw-currency flex-fill withdraw-currency-btn" data-currency="BTC"
+                                    id="selectBTC">
+                                <div class="currency-icon">
+                                    <i class="bi bi-currency-bitcoin fs-5"></i>
+                                </div>
+                                BTC<br><small class="text-white-50">1.00 mRBTC</small>
+                            </button>
                         </div>
 
-                        <div class="bridge-extra-option p-2">
-                            <div class="text-white fw-semibold">
-                                Bridge BTC via PowPeg. <i class="bi bi-box-arrow-up-right text-xs ms-1"></i>
-                            </div>
-                            <div class="text-white-50 text-xs mt-1">
-                                Use the trustless PowPeg to bridge BTC to your RBTC Wallet. Deposit RBTC later in a
-                                separate transaction. (ETA 17 hours, 0.002mBTC fees)
-                            </div>
+                        <label class="form-label text-white-50 mb-2" id="withdrawAddressLabel">Blockchain
+                            address</label>
+                        <input type="text" id="withdrawAddressInput"
+                               class="form-control mb-3 text-white input-primary withdraw-input"
+                               placeholder="0x123123..."/>
+
+                        <label class="form-label text-white-50 mb-2">Amount to withdraw</label>
+                        <div class="input-group mb-2">
+                            <input type="number" class="form-control input-primary text-white border-end-0"
+                                   placeholder="1.000"/>
+                            <span id="currentWithdrawCurrency"
+                                  class="input-group-text text-white text-xs border-dark border-start-0"></span>
                         </div>
+
+                        <div class="d-flex gap-2 mt-4">
+                            <button class="btn btn-outline-light w-50" data-bs-dismiss="modal">Cancel</button>
+                            <button class="btn btn-success w-50">Withdraw now</button>
+                        </div>
+
+                        <p class="text-white-50 tip mt-3" id="withdrawTip"></p>
                     </div>
+
                 </div>
-
-                <!-- Withdraw view -->
-                <div id="withdrawView" class="d-none">
-                    <h5 class="text-light mt-3 mb-2">Withdraw from Lending Platform</h5>
-                    <p class="text-white-50 small mb-4">
-                        Select the currency and amount to withdraw to your wallet.
-                    </p>
-
-                    <label class="form-label text-white-50 mb-2">Select currency</label>
-                    <div class="d-flex gap-2 mb-3" id="withdrawCurrencyOptions">
-                        <button class="btn-withdraw-currency flex-fill withdraw-currency-btn" data-currency="RBTC"
-                                id="selectRBTC">
-                            <div class="currency-icon">
-                                <i class="bi bi-currency-bitcoin fs-5"></i>
-                            </div>
-                            RBTC<br><small class="text-white-50">1.00 mRBTC</small>
-                        </button>
-                        <button class="btn-withdraw-currency flex-fill withdraw-currency-btn" data-currency="BTC"
-                                id="selectBTC">
-                            <div class="currency-icon">
-                                <i class="bi bi-currency-bitcoin fs-5"></i>
-                            </div>
-                            BTC<br><small class="text-white-50">1.00 mRBTC</small>
-                        </button>
-                    </div>
-
-                    <label class="form-label text-white-50 mb-2" id="withdrawAddressLabel">Blockchain address</label>
-                    <input type="text" id="withdrawAddressInput"
-                           class="form-control mb-3 text-white input-primary withdraw-input" placeholder="0x123123..."/>
-
-                    <label class="form-label text-white-50 mb-2">Amount to withdraw</label>
-                    <div class="input-group mb-2">
-                        <input type="number" class="form-control input-primary text-white border-end-0"
-                               placeholder="1.000"/>
-                        <span id="currentWithdrawCurrency"
-                              class="input-group-text text-white text-xs border-dark border-start-0"></span>
-                    </div>
-
-                    <div class="d-flex gap-2 mt-4">
-                        <button class="btn btn-outline-light w-50" data-bs-dismiss="modal">Cancel</button>
-                        <button class="btn btn-success w-50">Withdraw now</button>
-                    </div>
-
-                    <p class="text-white-50 tip mt-3" id="withdrawTip"></p>
-                </div>
-
             </div>
         </div>
     </div>
-</div>
