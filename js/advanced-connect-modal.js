@@ -169,7 +169,7 @@ function setupAdvancedConnectHandlers() {
                 const html = await res.text();
                 document.getElementById("page-content").innerHTML = html;
                 renderDashboardBalances();
-                initPlaceOrderForm();
+                //initPlaceOrderForm();
             } catch (err) {
                 console.error("Private key login error", err);
                 showToast("Failed to complete login.", ToastType.ERROR);

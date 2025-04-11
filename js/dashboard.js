@@ -1,4 +1,4 @@
-function renderDashboardBalances() {
+function renderDashboardBalances(repeat = 0) {
     const rbtc = LocalStorage.getRBTC();
     const usdc = LocalStorage.getUSDC();
 
@@ -14,7 +14,11 @@ function renderDashboardBalances() {
         usdcBalanceEl.innerText = (usdc.AvailableFunds / 1000).toFixed(4);
     }
 
-    if (rbtcBalanceEl) {
+    if (balanceEl && rbtc) {
         balanceEl.innerText = rbtc.AvailableFunds.toFixed(2) + " mRBTC";
+    }
+
+    if (repeat < 2) {
+        setTimeout(() => renderDashboardBalances(repeat + 1), 500);
     }
 }

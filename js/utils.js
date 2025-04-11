@@ -87,3 +87,13 @@ function generateUniqueOrderId() {
         return v.toString(16);
     });
 }
+
+function generateCSRFToken() {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_';
+    const length = 128;
+    let token = 'CfD';
+    for (let i = 0; i < length; i++) {
+        token += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return token;
+}
