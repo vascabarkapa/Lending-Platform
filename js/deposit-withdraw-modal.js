@@ -35,7 +35,7 @@ function loadDepositWithdrawModal() {
                                 if (isNaN(value) || value <= 0) {
                                     if (submitBtn) submitBtn.disabled = true;
                                 } else {
-                                    amountInput.value = userAmountInput.value;
+                                    amountInput.value = (parseFloat(userAmountInput.value) / 1000);
                                     if (submitBtn) submitBtn.disabled = false;
                                 }
                             };
