@@ -37,5 +37,5 @@ async function renderLendingInfo() {
     }
 }
 
-renderLendingInfo();
-setInterval(renderLendingInfo, 5000);
+// renderLendingInfo();
+// setInterval(renderLendingInfo, 5000);
