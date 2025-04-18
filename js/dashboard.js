@@ -54,3 +54,35 @@ function toggleAssetsSupply() {
         icon.innerText = '+';
     }
 }
+
+function toggleYourBorrows() {
+    const content = document.getElementById('yourBorrowsContent');
+    const label = document.getElementById('yourBorrowsToggleLabel');
+    const icon = document.getElementById('yourBorrowsToggleIcon');
+
+    if (content.style.display === 'none') {
+        content.style.display = 'block';
+        label.innerText = 'Hide';
+        icon.innerText = '–';
+    } else {
+        content.style.display = 'none';
+        label.innerText = 'Show';
+        icon.innerText = '+';
+    }
+}
+
+function toggleYourSupplies() {
+    const content = document.getElementById('yourSuppliesContent');
+    const label = document.getElementById('yourSuppliesToggleLabel');
+    const icon = document.getElementById('yourSuppliesToggleIcon');
+
+    if (content.style.display === 'none') {
+        content.style.display = 'block';
+        label.innerText = 'Hide';
+        icon.innerText = '–';
+    } else {
+        content.style.display = 'none';
+        label.innerText = 'Show';
+        icon.innerText = '+';
+    }
+}
