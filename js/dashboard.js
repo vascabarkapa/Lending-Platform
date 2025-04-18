@@ -23,10 +23,14 @@ function renderDashboardBalances(repeat = 0) {
     }
 
     const assetBorrowAvailableInfo = document.getElementById("assetBorrowAvailableInfo");
+    const assetBorrowAvailableInfoMobile = document.getElementById("assetBorrowAvailableInfoMobile");
     const assetBorrowAPYInfo = document.getElementById("assetBorrowAPYInfo");
+    const assetBorrowAPYInfoMobile = document.getElementById("assetBorrowAPYInfoMobile");
 
     new bootstrap.Tooltip(assetBorrowAvailableInfo);
+    new bootstrap.Tooltip(assetBorrowAvailableInfoMobile);
     new bootstrap.Tooltip(assetBorrowAPYInfo);
+    new bootstrap.Tooltip(assetBorrowAPYInfoMobile);
 }
 
 function toggleSection(sectionName) {
