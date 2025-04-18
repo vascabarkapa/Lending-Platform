@@ -22,7 +22,41 @@
         b
     </div>
     <div class="col-6">
-        c
+        <div id="assetsSupplySection" class="dashboard-card pt-3 mb-4">
+            <div class="d-flex justify-content-between align-items-center mb-4 mx-4">
+                <h5 class="mb-0 text-white fw-semibold">Assets to supply</h5>
+                <span role="button" class="text-secondary" onclick="toggleAssetsSupply()">
+                    <span id="assetsSupplyToggleLabel">Hide</span>
+                    <span class="bi ms-1 fs-5" id="assetsSupplyToggleIcon">–</span>
+                </span>
+            </div>
+
+            <div id="assetsSupplyContent">
+                <div class="table-responsive">
+                    <table class="table table-borderless align-middle mb-0">
+                        <thead>
+                        <tr class="text-secondary lending-border-bottom">
+                            <th class="fw-normal fs-0875 text-light ps-3">Assets</th>
+                            <th class="fw-normal text-center fs-0875 text-light">APY</th>
+                        </tr>
+                        </thead>
+                        <tbody id="assetsSupplyTableBody">
+                        <tr>
+                            <td class="py-3 ps-3">
+                                <img src="../../assets/images/usdc.svg" width="32" class="me-2 align-middle" alt="USDC">
+                                <span class="fw-semibold text-light">USDC</span>
+                            </td>
+                            <td class="py-3 text-center fw-semibold text-light">1.84%</td>
+                            <td class="py-3 text-end pe-3">
+                                <button class="btn btn-sm btn-light me-1 px-3 py-2">Supply</button>
+                                <button class="btn btn-sm btn-outline-light px-3 py-2">...</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="col-6">
         <div id="assetsBorrowSection" class="dashboard-card pt-3 mb-4">
@@ -53,7 +87,7 @@
                                 <img src="../../assets/images/usdc.svg" width="32" class="me-2 align-middle" alt="USDC">
                                 <span class="fw-semibold text-light">USDC</span>
                             </td>
-                            <td class="py-3 text-center text-light">2.82M<br><span class="fs-085">$ 2.82M</span></td>
+                            <td class="py-2 text-center text-light">2.82M<br><span class="fs-085">$ 2.82M</span></td>
                             <td class="py-3 text-center fw-semibold text-light">4.24%</td>
                             <td class="py-3 text-end pe-3">
                                 <button class="btn btn-sm btn-light me-1 px-3 py-2">Borrow</button>

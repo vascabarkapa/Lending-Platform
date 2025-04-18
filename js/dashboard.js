@@ -38,3 +38,19 @@ function toggleAssetsBorrow() {
         icon.innerText = '+';
     }
 }
+
+function toggleAssetsSupply() {
+    const content = document.getElementById('assetsSupplyContent');
+    const label = document.getElementById('assetsSupplyToggleLabel');
+    const icon = document.getElementById('assetsSupplyToggleIcon');
+
+    if (content.style.display === 'none') {
+        content.style.display = 'block';
+        label.innerText = 'Hide';
+        icon.innerText = '–';
+    } else {
+        content.style.display = 'none';
+        label.innerText = 'Show';
+        icon.innerText = '+';
+    }
+}
