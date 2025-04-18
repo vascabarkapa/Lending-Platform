@@ -158,9 +158,17 @@
                                 <tr class="text-secondary lending-border-bottom">
                                     <th class="fw-normal fs-0875 text-light ps-3 w-25">Asset</th>
                                     <th class="fw-normal text-center fs-0875 text-light">Available
-                                        <i class="bi bi-info-circle fs-075 ms-1"></i></th>
+                                        <i id="assetBorrowAvailableInfo" data-bs-toggle="tooltip"
+                                           data-bs-placement="top"
+                                           title="This is the total amount available for you to borrow. You can borrow based on your collateral and until the borrow cap is reached."
+                                           data-bs-custom-class="header-info-tooltip"
+                                           class="bi bi-info-circle fs-075 ms-1"></i></th>
                                     <th class="fw-normal text-center fs-0875 text-light">APY, variable
-                                        <i class="bi bi-info-circle fs-075 ms-1"></i></th>
+                                        <i id="assetBorrowAPYInfo" data-bs-toggle="tooltip"
+                                           data-bs-placement="top"
+                                           title="Variable interest rate will fluctuate based on the market conditions."
+                                           data-bs-custom-class="header-info-tooltip"
+                                           class="bi bi-info-circle fs-075 ms-1"></i></th>
                                     <th></th>
                                 </tr>
                                 </thead>

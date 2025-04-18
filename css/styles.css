@@ -564,3 +564,9 @@ input[type=number] {
     position: relative;
     overflow: hidden;
 }
+
+.header-info-tooltip {
+    --bs-tooltip-bg: #222222;
+    --bs-tooltip-color: white;
+    opacity: 1 !important;
+}

@@ -21,6 +21,12 @@ function renderDashboardBalances(repeat = 0) {
     if (repeat < 2) {
         setTimeout(() => renderDashboardBalances(repeat + 1), 500);
     }
+
+    const assetBorrowAvailableInfo = document.getElementById("assetBorrowAvailableInfo");
+    const assetBorrowAPYInfo = document.getElementById("assetBorrowAPYInfo");
+
+    new bootstrap.Tooltip(assetBorrowAvailableInfo);
+    new bootstrap.Tooltip(assetBorrowAPYInfo);
 }
 
 function toggleSection(sectionName) {
