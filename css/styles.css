@@ -26,6 +26,22 @@ main {
     font-size: .75rem;
 }
 
+.fs-075 {
+    font-size: .75rem;
+}
+
+.fs-085 {
+    font-size: .85rem;
+}
+
+.fs-0875 {
+    font-size: .875rem;
+}
+
+.table {
+    --bs-table-bg: transparent !important;
+}
+
 /*----- HEADER -----*/
 .navbar {
     background-color: rgb(9 9 11);
@@ -537,4 +553,14 @@ input[type=number] {
     border: 1px solid rgb(39 39 42);
     color: #cbd5e1;
     font-weight: 500;
+}
+
+/*----- CARDS -----*/
+
+.dashboard-card {
+    background-color: #18181b80;
+    border-radius: 12px;
+    border: 1px solid rgb(39 39 42);
+    position: relative;
+    overflow: hidden;
 }

@@ -22,3 +22,19 @@ function renderDashboardBalances(repeat = 0) {
         setTimeout(() => renderDashboardBalances(repeat + 1), 500);
     }
 }
+
+function toggleAssetsBorrow() {
+    const content = document.getElementById('assetsBorrowContent');
+    const label = document.getElementById('assetsBorrowToggleLabel');
+    const icon = document.getElementById('assetsBorrowToggleIcon');
+
+    if (content.style.display === 'none') {
+        content.style.display = 'block';
+        label.innerText = 'Hide';
+        icon.innerText = '–';
+    } else {
+        content.style.display = 'none';
+        label.innerText = 'Show';
+        icon.innerText = '+';
+    }
+}
