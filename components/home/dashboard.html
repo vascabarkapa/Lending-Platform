@@ -16,80 +16,111 @@
 
 <div class="row">
     <div class="col-md-6 col-12">
-        <div class="row">
-            <div class="col-12">
-                <div id="yourSuppliesSection" class="dashboard-card pt-3 mb-3">
-                    <div class="d-flex justify-content-between align-items-center mb-4 mx-4">
-                        <h5 class="mb-0 text-white fw-semibold">Your Supplies</h5>
-                        <span role="button" class="text-secondary" onclick="toggleSection('yourSupplies')">
-                        <span id="yourSuppliesToggleLabel">Hide</span>
-                        <span class="bi ms-1 fs-5" id="yourSuppliesToggleIcon">–</span>
-                    </span>
-                    </div>
+        <div id="yourSuppliesSection" class="dashboard-card pt-3 mb-3">
+            <div class="d-flex justify-content-between align-items-center mb-4 mx-4">
+                <h5 class="mb-0 text-white fw-semibold">Your Supplies</h5>
+                <span role="button" class="text-secondary" onclick="toggleSection('yourSupplies')">
+          <span id="yourSuppliesToggleLabel">Hide</span>
+          <span class="bi ms-1 fs-5" id="yourSuppliesToggleIcon">–</span>
+        </span>
+            </div>
 
-                    <div id="yourSuppliesContent">
-                        <div class="table-responsive">
-                            <table class="table table-borderless align-middle mb-0">
-                                <thead>
-                                <tr class="text-secondary lending-border-bottom">
-                                    <th class="fw-normal fs-0875 text-light ps-3 w-25">Assets</th>
-                                    <th class="fw-normal text-center fs-0875 text-light">APY</th>
-                                </tr>
-                                </thead>
-                                <tbody id="yourSuppliesTableBody">
-                                <tr>
-                                    <td class="py-3 ps-3 w-25">
-                                        <img src="../../assets/images/usdc.svg" width="32" class="me-2 align-middle"
-                                             alt="USDC">
-                                        <span class="fw-semibold text-light">USDC</span>
-                                    </td>
-                                    <td class="py-3 text-center fw-semibold text-light">< 0.01%</td>
-                                    <td class="py-3 text-end pe-3">
-                                        <button class="btn btn-sm btn-primary me-1 px-3 py-2">Supply</button>
-                                        <button class="btn btn-sm btn-outline-light px-3 py-2">Withdraw</button>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
+            <div id="yourSuppliesContent">
+                <div class="table-responsive d-none d-md-block">
+                    <table class="table table-borderless align-middle mb-0">
+                        <thead>
+                        <tr class="text-secondary lending-border-bottom">
+                            <th class="fw-normal fs-0875 text-light ps-3 w-25">Assets</th>
+                            <th class="fw-normal text-center fs-0875 text-light">APY</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody id="yourSuppliesTableBody">
+                        <tr class="lending-border-bottom">
+                            <td class="py-3 ps-3 w-25">
+                                <img src="../../assets/images/usdc.svg" width="32" class="me-2 align-middle" alt="USDC">
+                                <span class="fw-semibold text-light">USDC</span>
+                            </td>
+                            <td class="py-3 text-center fw-semibold text-light">&lt; 0.01%</td>
+                            <td class="py-3 text-end pe-3">
+                                <button class="btn btn-sm btn-primary me-1 px-3 py-2">Supply</button>
+                                <button class="btn btn-sm btn-outline-light px-3 py-2">Withdraw</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="d-md-none px-3 pb-3">
+                    <div class="d-flex align-items-center mb-2">
+                        <img src="../../assets/images/usdc.svg" width="32" class="me-2" alt="USDC">
+                        <div>
+                            <div class="fw-semibold text-white">USD Coin</div>
+                            <div class="text-secondary small">USDC</div>
                         </div>
+                    </div>
+                    <div class="d-flex justify-content-between text-light small mb-4">
+                        <div>APY</div>
+                        <div>&lt; 0.01%</div>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-sm btn-primary me-2 w-100 py-2">Supply</button>
+                        <button class="btn btn-sm btn-outline-light w-100 py-2">Withdraw</button>
                     </div>
                 </div>
             </div>
-            <div class="col-12">
-                <div id="assetsSupplySection" class="dashboard-card pt-3 mb-3">
-                    <div class="d-flex justify-content-between align-items-center mb-4 mx-4">
-                        <h5 class="mb-0 text-white fw-semibold">Assets to supply</h5>
-                        <span role="button" class="text-secondary" onclick="toggleSection('assetsSupply')">
-                        <span id="assetsSupplyToggleLabel">Hide</span>
-                        <span class="bi ms-1 fs-5" id="assetsSupplyToggleIcon">–</span>
-                    </span>
-                    </div>
+        </div>
 
-                    <div id="assetsSupplyContent">
-                        <div class="table-responsive">
-                            <table class="table table-borderless align-middle mb-0">
-                                <thead>
-                                <tr class="text-secondary lending-border-bottom">
-                                    <th class="fw-normal fs-0875 text-light ps-3 w-25">Assets</th>
-                                    <th class="fw-normal text-center fs-0875 text-light">APY</th>
-                                </tr>
-                                </thead>
-                                <tbody id="assetsSupplyTableBody">
-                                <tr>
-                                    <td class="py-3 ps-3 w-25">
-                                        <img src="../../assets/images/usdc.svg" width="32" class="me-2 align-middle"
-                                             alt="USDC">
-                                        <span class="fw-semibold text-light">USDC</span>
-                                    </td>
-                                    <td class="py-3 text-center fw-semibold text-light">1.84%</td>
-                                    <td class="py-3 text-end pe-3">
-                                        <button class="btn btn-sm btn-primary me-1 px-3 py-2">Supply</button>
-                                        <button class="btn btn-sm btn-outline-light px-3 py-2">...</button>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
+        <div id="assetsSupplySection" class="dashboard-card pt-3 mb-3">
+            <div class="d-flex justify-content-between align-items-center mb-4 mx-4">
+                <h5 class="mb-0 text-white fw-semibold">Assets to supply</h5>
+                <span role="button" class="text-secondary" onclick="toggleSection('assetsSupply')">
+          <span id="assetsSupplyToggleLabel">Hide</span>
+          <span class="bi ms-1 fs-5" id="assetsSupplyToggleIcon">–</span>
+        </span>
+            </div>
+
+            <div id="assetsSupplyContent">
+                <div class="table-responsive d-none d-md-block">
+                    <table class="table table-borderless align-middle mb-0">
+                        <thead>
+                        <tr class="text-secondary lending-border-bottom">
+                            <th class="fw-normal fs-0875 text-light ps-3 w-25">Assets</th>
+                            <th class="fw-normal text-center fs-0875 text-light">APY</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody id="assetsSupplyTableBody">
+                        <tr class="lending-border-bottom">
+                            <td class="py-3 ps-3 w-25">
+                                <img src="../../assets/images/usdc.svg" width="32" class="me-2 align-middle" alt="USDC">
+                                <span class="fw-semibold text-light">USDC</span>
+                            </td>
+                            <td class="py-3 text-center fw-semibold text-light">1.84%</td>
+                            <td class="py-3 text-end pe-3">
+                                <button class="btn btn-sm btn-primary me-1 px-3 py-2">Supply</button>
+                                <button class="btn btn-sm btn-outline-light px-3 py-2">...</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="d-md-none px-3 pb-3">
+                    <div class="d-flex align-items-center mb-2">
+                        <img src="../../assets/images/usdc.svg" width="32" class="me-2" alt="USDC">
+                        <div>
+                            <div class="fw-semibold text-white">USD Coin</div>
+                            <div class="text-secondary small">USDC</div>
                         </div>
+                    </div>
+                    <div class="d-flex justify-content-between text-light small mb-4">
+                        <div>APY</div>
+                        <div>1.84%</div>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-sm btn-primary me-2 w-100 py-2">Supply</button>
+                        <button class="btn btn-sm btn-outline-light w-100 py-2">...</button>
                     </div>
                 </div>
             </div>
@@ -97,99 +128,124 @@
     </div>
 
     <div class="col-md-6 col-12">
-        <div class="row">
-            <div class="col-12">
-                <div id="yourBorrowsSection" class="dashboard-card pt-3 mb-3">
-                    <div class="d-flex justify-content-between align-items-center mb-4 mx-4">
-                        <h5 class="mb-0 text-white fw-semibold">Your Borrows</h5>
-                        <span role="button" class="text-secondary" onclick="toggleSection('yourBorrows')">
-                        <span id="yourBorrowsToggleLabel">Hide</span>
-                        <span class="bi ms-1 fs-5" id="yourBorrowsToggleIcon">–</span>
-                    </span>
-                    </div>
+        <div id="yourBorrowsSection" class="dashboard-card pt-3 mb-3">
+            <div class="d-flex justify-content-between align-items-center mb-4 mx-4">
+                <h5 class="mb-0 text-white fw-semibold">Your Borrows</h5>
+                <span role="button" class="text-secondary" onclick="toggleSection('yourBorrows')">
+          <span id="yourBorrowsToggleLabel">Hide</span>
+          <span class="bi ms-1 fs-5" id="yourBorrowsToggleIcon">–</span>
+        </span>
+            </div>
 
-                    <div id="yourBorrowsContent">
-                        <div class="table-responsive">
-                            <table class="table table-borderless align-middle mb-0">
-                                <thead>
-                                <tr class="text-secondary lending-border-bottom">
-                                    <th class="fw-normal fs-0875 text-light ps-3 w-25">Asset</th>
-                                    <th class="fw-normal text-center fs-0875 text-light">Debt</th>
-                                    <th class="fw-normal text-center fs-0875 text-light">APY</th>
-                                    <th></th>
-                                </tr>
-                                </thead>
-                                <tbody id="yourBorrowsTableBody">
-                                <tr>
-                                    <td class="py-3 ps-3 w-25">
-                                        <img src="../../assets/images/usdc.svg" width="32" class="me-2 align-middle"
-                                             alt="USDC">
-                                        <span class="fw-semibold text-light">USDC</span>
-                                    </td>
-                                    <td class="py-2 text-center text-light">2,079.47<br><span
-                                            class="fs-085">$2,079,24</span>
-                                    </td>
-                                    <td class="py-3 text-center fw-semibold text-light">4.20%</td>
-                                    <td class="py-3 text-end pe-3">
-                                        <button class="btn btn-sm btn-primary me-1 px-3 py-2">Switch</button>
-                                        <button class="btn btn-sm btn-outline-light px-3 py-2">Repay</button>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
+            <div id="yourBorrowsContent">
+                <div class="table-responsive d-none d-md-block">
+                    <table class="table table-borderless align-middle mb-0">
+                        <thead>
+                        <tr class="text-secondary lending-border-bottom">
+                            <th class="fw-normal fs-0875 text-light ps-3 w-25">Asset</th>
+                            <th class="fw-normal text-center fs-0875 text-light">Debt</th>
+                            <th class="fw-normal text-center fs-0875 text-light">APY</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody id="yourBorrowsTableBody">
+                        <tr>
+                            <td class="py-3 ps-3 w-25">
+                                <img src="../../assets/images/usdc.svg" width="32" class="me-2 align-middle" alt="USDC">
+                                <span class="fw-semibold text-light">USDC</span>
+                            </td>
+                            <td class="py-2 text-center text-light">2,079.47<br><span class="fs-085">$2,079.24</span>
+                            </td>
+                            <td class="py-3 text-center fw-semibold text-light">4.20%</td>
+                            <td class="py-3 text-end pe-3">
+                                <button class="btn btn-sm btn-primary me-1 px-3 py-2">Switch</button>
+                                <button class="btn btn-sm btn-outline-light px-3 py-2">Repay</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="d-md-none px-3 pb-3">
+                    <div class="d-flex align-items-center mb-2">
+                        <img src="../../assets/images/usdc.svg" width="32" class="me-2" alt="USDC">
+                        <div>
+                            <div class="fw-semibold text-white">USD Coin</div>
+                            <div class="text-secondary small">USDC</div>
                         </div>
+                    </div>
+                    <div class="d-flex justify-content-between text-light small mb-2">
+                        <div>Debt</div>
+                        <div>2,079.47&nbsp;&nbsp;<span class="fs-075">$2,079.24</span></div>
+                    </div>
+                    <div class="d-flex justify-content-between text-light small mb-4">
+                        <div>APY</div>
+                        <div>4.20%</div>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-sm btn-primary me-2 w-100 py-2">Supply</button>
+                        <button class="btn btn-sm btn-outline-light w-100 py-2">...</button>
                     </div>
                 </div>
             </div>
-            <div class="col-12">
-                <div id="assetsBorrowSection" class="dashboard-card pt-3 mb-3">
-                    <div class="d-flex justify-content-between align-items-center mb-4 mx-4">
-                        <h5 class="mb-0 text-white fw-semibold">Assets to borrow</h5>
-                        <span role="button" class="text-secondary" onclick="toggleSection('assetsBorrow')">
-                        <span id="assetsBorrowToggleLabel">Hide</span>
-                        <span class="bi ms-1 fs-5" id="assetsBorrowToggleIcon">–</span>
-                    </span>
-                    </div>
+        </div>
 
-                    <div id="assetsBorrowContent">
-                        <div class="table-responsive">
-                            <table class="table table-borderless align-middle mb-0">
-                                <thead>
-                                <tr class="text-secondary lending-border-bottom">
-                                    <th class="fw-normal fs-0875 text-light ps-3 w-25">Asset</th>
-                                    <th class="fw-normal text-center fs-0875 text-light">Available
-                                        <i id="assetBorrowAvailableInfo" data-bs-toggle="tooltip"
-                                           data-bs-placement="top"
-                                           title="This is the total amount available for you to borrow. You can borrow based on your collateral and until the borrow cap is reached."
-                                           data-bs-custom-class="header-info-tooltip"
-                                           class="bi bi-info-circle fs-075 ms-1"></i></th>
-                                    <th class="fw-normal text-center fs-0875 text-light">APY, variable
-                                        <i id="assetBorrowAPYInfo" data-bs-toggle="tooltip"
-                                           data-bs-placement="top"
-                                           title="Variable interest rate will fluctuate based on the market conditions."
-                                           data-bs-custom-class="header-info-tooltip"
-                                           class="bi bi-info-circle fs-075 ms-1"></i></th>
-                                    <th></th>
-                                </tr>
-                                </thead>
-                                <tbody id="borrowAssetsTableBody">
-                                <tr>
-                                    <td class="py-3 ps-3 w-25">
-                                        <img src="../../assets/images/usdc.svg" width="32" class="me-2 align-middle"
-                                             alt="USDC">
-                                        <span class="fw-semibold text-light">USDC</span>
-                                    </td>
-                                    <td class="py-2 text-center text-light">2.82M<br><span class="fs-085">$2.82M</span>
-                                    </td>
-                                    <td class="py-3 text-center fw-semibold text-light">4.24%</td>
-                                    <td class="py-3 text-end pe-3">
-                                        <button class="btn btn-sm btn-primary me-1 px-3 py-2">Borrow</button>
-                                        <button class="btn btn-sm btn-outline-light px-3 py-2">Details</button>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
+        <div id="assetsBorrowSection" class="dashboard-card pt-3 mb-3">
+            <div class="d-flex justify-content-between align-items-center mb-4 mx-4">
+                <h5 class="mb-0 text-white fw-semibold">Assets to borrow</h5>
+                <span role="button" class="text-secondary" onclick="toggleSection('assetsBorrow')">
+          <span id="assetsBorrowToggleLabel">Hide</span>
+          <span class="bi ms-1 fs-5" id="assetsBorrowToggleIcon">–</span>
+        </span>
+            </div>
+
+            <div id="assetsBorrowContent">
+                <div class="table-responsive d-none d-md-block">
+                    <table class="table table-borderless align-middle mb-0">
+                        <thead>
+                        <tr class="text-secondary lending-border-bottom">
+                            <th class="fw-normal fs-0875 text-light ps-3 w-25">Asset</th>
+                            <th class="fw-normal text-center fs-0875 text-light">Available</th>
+                            <th class="fw-normal text-center fs-0875 text-light">APY, variable</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody id="borrowAssetsTableBody">
+                        <tr>
+                            <td class="py-3 ps-3 w-25">
+                                <img src="../../assets/images/usdc.svg" width="32" class="me-2 align-middle" alt="USDC">
+                                <span class="fw-semibold text-light">USDC</span>
+                            </td>
+                            <td class="py-2 text-center text-light">2.82M<br><span class="fs-085">$2.82M</span></td>
+                            <td class="py-3 text-center fw-semibold text-light">4.24%</td>
+                            <td class="py-3 text-end pe-3">
+                                <button class="btn btn-sm btn-primary me-1 px-3 py-2">Borrow</button>
+                                <button class="btn btn-sm btn-outline-light px-3 py-2">Details</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="d-md-none px-3 pb-3">
+                    <div class="d-flex align-items-center mb-2">
+                        <img src="../../assets/images/usdc.svg" width="32" class="me-2" alt="USDC">
+                        <div>
+                            <div class="fw-semibold text-white">USD Coin</div>
+                            <div class="text-secondary small">USDC</div>
                         </div>
+                    </div>
+                    <div class="d-flex justify-content-between text-light small mb-2">
+                        <div>Available</div>
+                        <div>2.82M&nbsp;&nbsp;<span class="fs-075">$2.82M</span></div>
+                    </div>
+                    <div class="d-flex justify-content-between text-light small mb-4">
+                        <div>APY</div>
+                        <div>4.24%</div>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-sm btn-primary me-2 w-100 py-2">Supply</button>
+                        <button class="btn btn-sm btn-outline-light w-100 py-2">...</button>
                     </div>
                 </div>
             </div>
