@@ -1,4 +1,4 @@
-<div class="row align-items-start">
+<div class="row align-items-start mx-2">
     <div class="col-md-4">
         <div class="mb-5">
             <h5 class="text-primary fw-semibold">Balance</h5>
@@ -11,137 +11,256 @@
                 <span id="usdcBalance"></span>
             </p>
         </div>
-
-        <div class="rounded-4 p-4 text-white small" id="lendingInfoCard">
-            <h5 class="text-primary fw-semibold mb-1"><i class="bi bi-bar-chart-fill me-2"></i>Lending Market Overview
-            </h5>
-            <div id="lendingInfoContent" class="placeholder-glow">
-                <div class="text-secondary mb-3 mt-1 small placeholder col-6"></div>
-
-                <div class="d-flex justify-content-between py-2">
-                    <span class="placeholder col-6"></span>
-                    <span class="placeholder col-3"></span>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 col-12">
+        <div id="yourSuppliesSection" class="dashboard-card pt-3 mb-3">
+            <div class="d-flex justify-content-between align-items-center mb-4 mx-4">
+                <h5 class="mb-0 text-white fw-semibold">Your Supplies</h5>
+                <span role="button" class="text-secondary" onclick="toggleSection('yourSupplies')">
+                <span id="yourSuppliesToggleLabel">Hide</span>
+                <span class="bi ms-1 fs-5" id="yourSuppliesToggleIcon">–</span>
+                </span>
+            </div>
+            <div id="yourSuppliesContent">
+                <div class="table-responsive d-none d-md-block">
+                    <table class="table table-borderless align-middle mb-0">
+                        <thead>
+                        <tr class="text-secondary lending-border-bottom">
+                            <th class="fw-normal fs-0875 text-light ps-3 w-25">Assets</th>
+                            <th class="fw-normal text-center fs-0875 text-light">APY</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody id="yourSuppliesTableBody">
+                        <tr class="lending-border-bottom">
+                            <td class="py-3 ps-3 w-25">
+                                <img src="../../assets/images/btc.svg" width="32" class="me-2 align-middle" alt="USDC">
+                                <span class="fw-semibold text-light">RBTC</span>
+                            </td>
+                            <td class="py-3 text-center fw-semibold text-light">&lt; 0.01%</td>
+                            <td class="py-3 text-end pe-3">
+                                <button class="btn btn-sm btn-primary me-1 px-3 py-2">Supply</button>
+                                <button class="btn btn-sm btn-outline-light px-3 py-2">Withdraw</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <div class="d-flex justify-content-between py-2">
-                    <span class="placeholder col-7"></span>
-                    <span class="placeholder col-4"></span>
+                <div class="d-md-none px-3 pb-3">
+                    <div class="d-flex align-items-center mb-2">
+                        <img src="../../assets/images/btc.svg" width="32" class="me-2" alt="USDC">
+                        <div>
+                            <div class="fw-semibold text-white">Rootstock Bitcoin</div>
+                            <div class="text-secondary small">RBTC</div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between text-light small mb-4">
+                        <div>APY</div>
+                        <div>&lt; 0.01%</div>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-sm btn-primary me-2 w-100 py-2">Supply</button>
+                        <button class="btn btn-sm btn-outline-light w-100 py-2">Withdraw</button>
+                    </div>
                 </div>
-                <div class="d-flex justify-content-between py-2 mt-3">
-                    <span class="placeholder col-3"></span>
-                    <span class="placeholder col-4"></span>
+            </div>
+        </div>
+        <div id="assetsSupplySection" class="dashboard-card pt-3 mb-3">
+            <div class="d-flex justify-content-between align-items-center mb-4 mx-4">
+                <h5 class="mb-0 text-white fw-semibold">Assets to supply</h5>
+                <span role="button" class="text-secondary" onclick="toggleSection('assetsSupply')">
+                <span id="assetsSupplyToggleLabel">Hide</span>
+                <span class="bi ms-1 fs-5" id="assetsSupplyToggleIcon">–</span>
+                </span>
+            </div>
+            <div id="assetsSupplyContent">
+                <div class="table-responsive d-none d-md-block">
+                    <table class="table table-borderless align-middle mb-0">
+                        <thead>
+                        <tr class="text-secondary lending-border-bottom">
+                            <th class="fw-normal fs-0875 text-light ps-3 w-25">Assets</th>
+                            <th class="fw-normal text-center fs-0875 text-light">APY</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody id="assetsSupplyTableBody">
+                        <tr class="lending-border-bottom">
+                            <td class="py-3 ps-3 w-25">
+                                <img src="../../assets/images/btc.svg" width="32" class="me-2 align-middle" alt="USDC">
+                                <span class="fw-semibold text-light">RBTC</span>
+                            </td>
+                            <td class="py-3 text-center fw-semibold text-light">1.84%</td>
+                            <td class="py-3 text-end pe-3">
+                                <button class="btn btn-sm btn-primary me-1 px-3 py-2">Supply</button>
+                                <button class="btn btn-sm btn-outline-light px-3 py-2">...</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <div class="d-flex justify-content-between py-2">
-                    <span class="placeholder col-5"></span>
-                    <span class="placeholder col-3"></span>
-                </div>
-                <div class="d-flex justify-content-between py-2">
-                    <span class="placeholder col-6"></span>
-                    <span class="placeholder col-4"></span>
-                </div>
-                <div class="d-flex justify-content-between py-2">
-                    <span class="placeholder col-5"></span>
-                    <span class="placeholder col-5"></span>
+                <div class="d-md-none px-3 pb-3">
+                    <div class="d-flex align-items-center mb-2">
+                        <img src="../../assets/images/btc.svg" width="32" class="me-2" alt="USDC">
+                        <div>
+                            <div class="fw-semibold text-white">Rootstock Bitcoin</div>
+                            <div class="text-secondary small">RBTC</div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between text-light small mb-4">
+                        <div>APY</div>
+                        <div>1.84%</div>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-sm btn-primary me-2 w-100 py-2">Supply</button>
+                        <button class="btn btn-sm btn-outline-light w-100 py-2">...</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <!--    PLACE NEW ORDER FORM-->
-    <!--    <div class="offset-md-1 col-md-7 mt-md-0 mt-4">-->
-    <!--        <form id="orderForm" class="p-4 rounded-4">-->
-    <!--            <h5 class="text-primary fw-semibold mb-4"><i class="bi bi-border-width me-2"></i>Place New Order</h5>-->
-
-    <!--            <div class="row mb-3">-->
-    <!--                <div class="col-md-6 mb-3 mb-md-0">-->
-    <!--                    <label for="price" class="form-label text-light">Price</label>-->
-    <!--                    <input type="number" class="form-control text-white order-input" id="price" step="any" min="0"-->
-    <!--                           placeholder="0.00"-->
-    <!--                           required/>-->
-    <!--                </div>-->
-    <!--                <div class="col-md-6">-->
-    <!--                    <label for="amount" class="form-label text-light">Amount (mRBTC)</label>-->
-    <!--                    <input type="number" class="form-control text-white order-input" id="amount" step="any" min="0"-->
-    <!--                           placeholder="0.00"-->
-    <!--                           required/>-->
-    <!--                </div>-->
-    <!--            </div>-->
-
-    <!--            <div class="row mb-4">-->
-    <!--                <div class="col-md-6">-->
-    <!--                    <label class="form-label text-light mb-2">Order Type</label>-->
-    <!--                    <div class="d-flex gap-2">-->
-    <!--                        <div class="flex-fill">-->
-    <!--                            <input type="radio" class="btn-check" name="type" id="type0" value="0" autocomplete="off"-->
-    <!--                                   checked>-->
-    <!--                            <label class="btn-radio-block" for="type0">Normal</label>-->
-    <!--                        </div>-->
-
-    <!--                        <div class="flex-fill">-->
-    <!--                            <input type="radio" class="btn-check" name="type" id="type1" value="1" autocomplete="off">-->
-    <!--                            <label class="btn-radio-block" for="type1">Post only</label>-->
-    <!--                        </div>-->
-
-    <!--                        <div class="flex-fill">-->
-    <!--                            <input type="radio" class="btn-check" name="type" id="type2" value="2" autocomplete="off">-->
-    <!--                            <label class="btn-radio-block" for="type2">Fill or Kill</label>-->
-    <!--                        </div>-->
-    <!--                    </div>-->
-    <!--                </div>-->
-
-    <!--                <div class="col-md-6 mt-3 mt-md-0">-->
-    <!--                    <label class="form-label text-light mb-2">Side</label>-->
-    <!--                    <div class="d-flex gap-2">-->
-    <!--                        <div class="flex-fill">-->
-    <!--                            <input type="radio" class="btn-check" name="side" id="side0" value="0" autocomplete="off"-->
-    <!--                                   checked>-->
-    <!--                            <label class="btn-radio-block" for="side0">Bid</label>-->
-    <!--                        </div>-->
-
-    <!--                        <div class="flex-fill">-->
-    <!--                            <input type="radio" class="btn-check" name="side" id="side1" value="1" autocomplete="off">-->
-    <!--                            <label class="btn-radio-block" for="side1">Ask</label>-->
-    <!--                        </div>-->
-    <!--                    </div>-->
-    <!--                </div>-->
-    <!--            </div>-->
-
-    <!--            <button type="button" class="btn btn-primary w-100 py-2 rounded-2" id="placeOrderBtn">-->
-    <!--                Place Order-->
-    <!--            </button>-->
-    <!--        </form>-->
-    <!--        <div class="row mt-5 mx-3">-->
-    <!--            <div class="col-md-4">-->
-    <!--                <button class="btn btn-outline-light rounded-2 w-100 px-3 py-1">-->
-    <!--                    Deposit via MetaMask-->
-    <!--                </button>-->
-    <!--            </div>-->
-    <!--            <div class="col-md-4 mt-md-0 mt-3">-->
-    <!--                <button class="btn btn-outline-light rounded-2 w-100 px-3 py-1">-->
-    <!--                    Deposit on Platform-->
-    <!--                </button>-->
-    <!--            </div>-->
-    <!--            <div class="col-md-4 mt-md-0 mt-3">-->
-    <!--                <button class="btn btn-outline-light rounded-2 w-100 px-3 py-1">-->
-    <!--                    Burn RBTC-->
-    <!--                </button>-->
-    <!--            </div>-->
-    <!--        </div>-->
-    <!--        <div class="row mt-3 mx-3">-->
-    <!--            <div class="col-md-4">-->
-    <!--                <button class="btn btn-outline-light rounded-2 w-100 px-3 py-1">-->
-    <!--                    Stake RBTC-->
-    <!--                </button>-->
-    <!--            </div>-->
-    <!--            <div class="col-md-4 mt-md-0 mt-3">-->
-    <!--                <button class="btn btn-outline-light rounded-2 w-100 px-3 py-1">-->
-    <!--                    Borrow Using Stake-->
-    <!--                </button>-->
-    <!--            </div>-->
-    <!--            <div class="col-md-4 mt-md-0 mt-3">-->
-    <!--                <button class="btn btn-outline-light rounded-2 w-100 px-3 py-1">-->
-    <!--                    Place BTC Market Order-->
-    <!--                </button>-->
-    <!--            </div>-->
-    <!--        </div>-->
-    <!--    </div>-->
+    <div class="col-md-6 col-12">
+        <div id="yourBorrowsSection" class="dashboard-card pt-3 mb-3">
+            <div class="d-flex justify-content-between align-items-center mb-4 mx-4">
+                <h5 class="mb-0 text-white fw-semibold">Your Borrows</h5>
+                <span role="button" class="text-secondary" onclick="toggleSection('yourBorrows')">
+                <span id="yourBorrowsToggleLabel">Hide</span>
+                <span class="bi ms-1 fs-5" id="yourBorrowsToggleIcon">–</span>
+                </span>
+            </div>
+            <div id="yourBorrowsContent">
+                <div class="table-responsive d-none d-md-block">
+                    <table class="table table-borderless align-middle mb-0">
+                        <thead>
+                        <tr class="text-secondary lending-border-bottom">
+                            <th class="fw-normal fs-0875 text-light ps-3 w-25">Asset</th>
+                            <th class="fw-normal text-center fs-0875 text-light">Debt</th>
+                            <th class="fw-normal text-center fs-0875 text-light">APY</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody id="yourBorrowsTableBody">
+                        <tr>
+                            <td class="py-3 ps-3 w-25">
+                                <img src="../../assets/images/usdc.svg" width="32" class="me-2 align-middle" alt="USDC">
+                                <span class="fw-semibold text-light">USDC</span>
+                            </td>
+                            <td class="py-2 text-center text-light">2,079.47<br><span class="fs-085">$2,079.24</span>
+                            </td>
+                            <td class="py-3 text-center fw-semibold text-light">4.20%</td>
+                            <td class="py-3 text-end pe-3">
+                                <button class="btn btn-sm btn-primary me-1 px-3 py-2">Switch</button>
+                                <button class="btn btn-sm btn-outline-light px-3 py-2">Repay</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="d-md-none px-3 pb-3">
+                    <div class="d-flex align-items-center mb-2">
+                        <img src="../../assets/images/usdc.svg" width="32" class="me-2" alt="USDC">
+                        <div>
+                            <div class="fw-semibold text-white">USD Coin</div>
+                            <div class="text-secondary small">USDC</div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between text-light small mb-2">
+                        <div>Debt</div>
+                        <div>2,079.47&nbsp;&nbsp;<span class="fs-075">$2,079.24</span></div>
+                    </div>
+                    <div class="d-flex justify-content-between text-light small mb-4">
+                        <div>APY</div>
+                        <div>4.20%</div>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-sm btn-primary me-2 w-100 py-2">Supply</button>
+                        <button class="btn btn-sm btn-outline-light w-100 py-2">...</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="assetsBorrowSection" class="dashboard-card pt-3 mb-3">
+            <div class="d-flex justify-content-between align-items-center mb-4 mx-4">
+                <h5 class="mb-0 text-white fw-semibold">Assets to borrow</h5>
+                <span role="button" class="text-secondary" onclick="toggleSection('assetsBorrow')">
+                <span id="assetsBorrowToggleLabel">Hide</span>
+                <span class="bi ms-1 fs-5" id="assetsBorrowToggleIcon">–</span>
+                </span>
+            </div>
+            <div id="assetsBorrowContent">
+                <div class="table-responsive d-none d-md-block">
+                    <table class="table table-borderless align-middle mb-0">
+                        <thead>
+                        <tr class="text-secondary lending-border-bottom">
+                            <th class="fw-normal fs-0875 text-light ps-3 w-25">Asset</th>
+                            <th class="fw-normal text-center fs-0875 text-light">Available
+                                <i id="assetBorrowAvailableInfo" data-bs-toggle="tooltip"
+                                   data-bs-placement="top"
+                                   title="This is the total amount available for you to borrow. You can borrow based on your collateral and until the borrow cap is reached."
+                                   data-bs-custom-class="header-info-tooltip"
+                                   class="bi bi-info-circle fs-075 ms-1"></i>
+                            </th>
+                            <th class="fw-normal text-center fs-0875 text-light">APY, variable
+                                <i id="assetBorrowAPYInfo" data-bs-toggle="tooltip"
+                                   data-bs-placement="top"
+                                   title="Variable interest rate will fluctuate based on the market conditions."
+                                   data-bs-custom-class="header-info-tooltip"
+                                   class="bi bi-info-circle fs-075 ms-1"></i>
+                            </th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody id="borrowAssetsTableBody">
+                        <tr>
+                            <td class="py-3 ps-3 w-25">
+                                <img src="../../assets/images/usdc.svg" width="32" class="me-2 align-middle" alt="USDC">
+                                <span class="fw-semibold text-light">USDC</span>
+                            </td>
+                            <td class="py-2 text-center text-light">2.82M<br><span class="fs-085">$2.82M</span></td>
+                            <td class="py-3 text-center fw-semibold text-light">4.24%</td>
+                            <td class="py-3 text-end pe-3">
+                                <button class="btn btn-sm btn-primary me-1 px-3 py-2">Borrow</button>
+                                <button class="btn btn-sm btn-outline-light px-3 py-2">Details</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="d-md-none px-3 pb-3">
+                    <div class="d-flex align-items-center mb-2">
+                        <img src="../../assets/images/usdc.svg" width="32" class="me-2" alt="USDC">
+                        <div>
+                            <div class="fw-semibold text-white">USD Coin</div>
+                            <div class="text-secondary small">USDC</div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between text-light small mb-2">
+                        <div>Available
+                            <i id="assetBorrowAvailableInfoMobile" data-bs-toggle="tooltip"
+                               data-bs-placement="top"
+                               title="This is the total amount available for you to borrow. You can borrow based on your collateral and until the borrow cap is reached."
+                               data-bs-custom-class="header-info-tooltip"
+                               class="bi bi-info-circle fs-075 ms-1"></i>
+                        </div>
+                        <div>2.82M&nbsp;&nbsp;<span class="fs-075">$2.82M</span></div>
+                    </div>
+                    <div class="d-flex justify-content-between text-light small mb-4">
+                        <div>APY
+                            <i id="assetBorrowAPYInfoMobile" data-bs-toggle="tooltip"
+                               data-bs-placement="top"
+                               title="Variable interest rate will fluctuate based on the market conditions."
+                               data-bs-custom-class="header-info-tooltip"
+                               class="bi bi-info-circle fs-075 ms-1"></i>
+                        </div>
+                        <div>4.24%</div>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-sm btn-primary me-2 w-100 py-2">Supply</button>
+                        <button class="btn btn-sm btn-outline-light w-100 py-2">...</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

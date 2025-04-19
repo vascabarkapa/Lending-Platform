@@ -122,7 +122,7 @@ function handleWithdrawCurrencySelection() {
                 currency.innerHTML = "mRBTC";
             } else if (selectedCurrency === "BTC") {
                 addressLabel.textContent = "Bitcoin Address";
-                addressInput.placeholder = "bc1...";
+                addressInput.placeholder = "0x123123...";
                 addressInput.value = "";
                 tipText.innerHTML = `The <strong>Fees</strong> charged withdrawing to Bitcoin is <strong>0.1 mBTC</strong>.`;
                 currency.innerHTML = "mBTC";

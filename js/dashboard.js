@@ -21,4 +21,28 @@ function renderDashboardBalances(repeat = 0) {
     if (repeat < 2) {
         setTimeout(() => renderDashboardBalances(repeat + 1), 500);
     }
+
+    const assetBorrowAvailableInfo = document.getElementById("assetBorrowAvailableInfo");
+    const assetBorrowAvailableInfoMobile = document.getElementById("assetBorrowAvailableInfoMobile");
+    const assetBorrowAPYInfo = document.getElementById("assetBorrowAPYInfo");
+    const assetBorrowAPYInfoMobile = document.getElementById("assetBorrowAPYInfoMobile");
+
+    new bootstrap.Tooltip(assetBorrowAvailableInfo);
+    new bootstrap.Tooltip(assetBorrowAvailableInfoMobile);
+    new bootstrap.Tooltip(assetBorrowAPYInfo);
+    new bootstrap.Tooltip(assetBorrowAPYInfoMobile);
+}
+
+function toggleSection(sectionName) {
+    const content = document.getElementById(`${sectionName}Content`);
+    const label = document.getElementById(`${sectionName}ToggleLabel`);
+    const icon = document.getElementById(`${sectionName}ToggleIcon`);
+
+    if (!content || !label || !icon) return;
+
+    const isHidden = content.style.display === 'none';
+
+    content.style.display = isHidden ? 'block' : 'none';
+    label.innerText = isHidden ? 'Hide' : 'Show';
+    icon.innerText = isHidden ? '–' : '+';
 }
